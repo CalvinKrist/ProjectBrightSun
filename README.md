@@ -1,4 +1,4 @@
 # RedBlueCyberlab
 ## By Calvin, Clark, Jake, and Said
 
-A repo of tools for use in learning and studying cyber security
+A repository of tools and systems with the goal to simplify penetration testing and security for students.
