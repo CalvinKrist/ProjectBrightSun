@@ -1,0 +1,134 @@
+\documentclass[openright]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{flafter} 
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{forest}
+\usepackage{algpseudocode}
+\usepackage{changepage}
+\usepackage{siunitx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{titletoc}
+\usepackage{array}
+\usepackage{url}
+\usepackage{tabulary}
+\usepackage[labelformat=empty]{caption}
+\usepackage[english]{babel}
+\usepackage[nottoc]{tocbibind}
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[scaled=.85]{beramono}
+
+\newcolumntype{K}[1]{>{\centering\arraybackslash}p{#1}}
+
+\graphicspath{ {images/} }
+\usetikzlibrary{automata,positioning}
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\renewcommand{\familydefault}{\rmdefault}
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+
+\linespread{1.25}
+
+\pagestyle{fancy}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+\lhead{\projectAuthorShort}
+\chead{\reportTopic}
+\rhead{\leftmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\newcommand{\reportTopic}{Phase I and II Report}
+\newcommand{\projectAuthorShort}{Cybersecurity Education Group}
+\newcommand{\projectTitle}{Hands-on Cybersecurity Education}
+\newcommand{\reportDueDate}{February 23, 2018}
+\newcommand{\reportClass}{Synthesis Design II}
+\newcommand{\reportClassInstructor}{Professor Dana Elzey}
+\newcommand{\reportAuthorName}{Clark Benham (cb5ye), Calvin Krist (czk4ja), Saeed Razavi (slr4gf),\\and Jake Smith (jts5np)}
+\newcommand{\collaborators}{}
+
+\title{
+    \vspace{2in}
+    \LARGE{\textbf{\projectTitle}}\\
+    \vspace{0.1in}\large{\reportClass:\ \reportTopic}\\
+    \vspace{0.1in}\large{\reportClassInstructor}\\
+    \normalsize\vspace{0.1in}\large{Due\ on\ \reportDueDate\ at 10:00pm}
+    \vspace{1.4in}
+}
+
+\author{\reportAuthorName}
+\date{}
+
+\renewcommand{\contentsname}{Table of Contents}
+\titlespacing*{\chapter}{0pt}{-40pt}{40pt}
+
+\titleformat{\chapter}
+  {\Large\bfseries} % format
+  {}                % label
+  {0pt}             % sep
+  {\huge \vspace{-0.2in}}           % before-code
+
+\begin{document}
+
+\maketitle
+
+\large{\tableofcontents}
+
+\chapter{Example Report Section}
+
+\section{Example Section}
+
+\par Even
+
+\subsection{Example Subsection}
+
+\par more example text\cite{citationexample}. Example graphic
+
+\begin{center}
+    \includegraphics[scale=1]{images/cyber.jpg}
+    \captionof{figure}{\textbf{Figure \arabic{figure}:} Example figure caption}
+\end{center}
+
+\section{Example Section 2}
+
+\par More text!
+
+%Sets the bibliography style to UNSRT and imports the 
+%bibliography file "samples.bib".
+\bibliographystyle{unsrt}
+\bibliography{Bibliographies/Phase_I_II.bib}
+
+\listoffigures
+\cleardoublepage
+
+
+\end{document} 
