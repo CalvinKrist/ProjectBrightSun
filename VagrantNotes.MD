@@ -1,5 +1,3 @@
-*Vagrantfile goes in root directory of project. If 'vagrant up' is run from subdirectories, it will find Vagrantfile and use that
-
-	*means each different VB we package and develop on Github need their own folder and their own Vagrantfile
-
-*Might be some [good vagrant boxes](https://app.vagrantup.com/boxes/search) already made that we could jumpstart off of
+* Vagrantfile goes in root directory of project. If 'vagrant up' is run from subdirectories, it will find Vagrantfile and use that
+	* Means each different VB we package and develop on Github need their own folder and their own Vagrantfile
+* Might be some [good vagrant boxes](https://app.vagrantup.com/boxes/search) already made that we could jumpstart off of
