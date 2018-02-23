@@ -131,11 +131,11 @@
 
 \section{Problem Identification}
 
-\par Why are there so few cybersecurity job applicants and why are so few of them qualified? To begin, this is a very new field. As a result, there is no consensus as to what students should be taught and how they should be taught\cite{why_no_cyber_classes}. This means that there can be a large discrepancy between what employers want, what employers need, and what students are taught. Furthermore, not many universities offer undergraduate degrees in cybersecurity, much less a quality education in the field. This includes the University of Virginia. Here at UVA, there is currently a lot of debate between CS professors as to how much security education should be required to get a degree. Currently, while numerous security courses are offered and more are coming, there is no requirement to take one\cite{comsci_handbook}. Students only study cybersecurity if it interests them. This is not uncommon in United States universities.
+\par Why are there so few cybersecurity job applicants and why are so few of them qualified? To begin, this is a very new field. As a result, there is no consensus as to what students should be taught and how they should be taught\cite{why_no_cyber_classes}. This means that there can be a large discrepancy between what employers want, what employers need, and what students are taught. Furthermore, not many universities offer undergraduate degrees in cybersecurity, much less a quality education in the field. This includes the University of Virginia. Here at UVA, there is currently a lot of debate between CS professors as to how much security education should be required to get a degree. Currently, while numerous security courses are offered and more are coming, there is no requirement to take one\cite{comsci_handbook}. Students only study cybersecurity if it interests them.
 
-\par This results in two things: normal software developers leave more vulnerabilities in their applications, and less students become interested in cybersecurity. Not teaching basic security to CS undergraduates means that those students, now professional developers, are not aware of the security needs of applications or the ways that they can expose user data. This means lots of software, much of which is used by consumers, have vulnerabilities that can be abused by malicious hackers. If graduates were required to take basic security courses, they may be more cognizant of the security of their applications and consumers would be safer.
+\par This results in two things: normal software developers leave more vulnerabilities in their applications, and less students become interested in cybersecurity. Not teaching basic security to CS undergraduates means that those students, now professional developers, are not aware of the security needs of applications or the ways that they can expose user data. This means lots of software, much of which is used by consumers, have vulnerabilities that can be abused by malicious hackers\cite{why_no_cyber_classes}. If graduates were required to take basic security courses, they may be more cognizant of the security of their applications and consumers would be safer.
 
-\par Furthermore, because many universities do not require that students take security courses, many students do not. Cybersecurity, in contrast to most of computer science, is very intimidating. It has a dry reputation, and it's generous to say that there even \textit{basics} to cybersecurity. As we have seen by talking with students, many don't know where to begin studying the topic. 
+\par Furthermore, many students will not take cybersecurity courses unless it is required. Cybersecurity, in contrast to most of computer science, is very intimidating. It has a dry reputation, and it's generous to say that there even \textit{basics} to cybersecurity. As we have seen by talking with students, many don't know where to begin studying the topic. 
 
 \par Cybersecurity requires vast domain experience due to the diversity of systems that need to be protected. As a result, it's hard to learn and hard to become passionate about because there is no immediate payoff to studying it. This means that few students will become interested in the field on their own, and without universities pushing students towards towards the field, this problem will not be rectified.
 
@@ -152,13 +152,27 @@
     \captionof{figure}{\textbf{Figure \arabic{figure}:} Why-Why Diagram identifying the problem}
 \end{center}
 
-\par As can be seen in Figure 1, there are a few different conclusions that can be drawn. As has been discussed, cybersecurity is complicated because the systems it needs to defend are complicated: that can't be changes. However, the other two main lines of inquiry that the diagram shows--hands-on experience is hard to achieve due to the complexity of the systems, and there is no well defined curriculum--can both be targeted.
+\par As can be seen in Figure 1, there are a few different conclusions that can be drawn. As has been discussed, cybersecurity is complicated because the systems it needs to defend are complicated: that can't be changed because the systems serve users. Furthermore, the line of inquiry regarding curriculums is currently being worked on by other entities with lots of power, resources, and know-how. Specifically, the NSA developed criteria for measuring academic excellence in cybersecurity departments. Criteria include topics such as specific content to teach, degree of interdisciplinary education, level of faculty involvement and research, and student engagement. Each of the criteria have different methods detailed for proving how well a school meets them. If a school does well enough, their cybersecurity program will be accredited by the NSA\cite{nsa_accred}. 
+
+\par While only 19 schools are accredited at the moment, it includes universities such as Carnegie Mellon and Virginia Tech\cite{nsa_accred_schools}. The NSA is perhaps the only organization that could push such high quality schools to unify their curriculum's and develop shared, high quality standards. We expect that in future years many more schools will become accredited, including the University of Virginia. 
+
+\par It would be very difficult for us to contribute to this solution. We are not educators, and do not know how curriculum are designed. Nor do we have the knowledge or connections to analyze the NSA's criteria and curriculums based on those criteria. Comparing those programs to cybersecurity degrees at other schools would involve comparing metrics such as length of time for graduates to find a job, average satisfaction of employers with the graduates, and figuring out how to control for the fact that some schools will offer more extracurricular cybersecurity opportunities than others. 
+
+\par As such, we decided to focus the problem on something that we have the resources to tackle: the difficulty in modeling real world systems to get hands-on experience with cybersecurity. In order to help us focus on the issue, we defined the problem statement as:
+
+\textbf{It is very difficult for non-experts to learn and practice cybersecurity in a hands-on manner because of the complicated setup required.}
+
+\par Our goal is to enable students to easily create systems that allow them to study cybersecurity. Our hope is that students, teachers, and professionals can use our product to make the field more approachable and increase the number and proficiency of cybersecurity professionals. This could make a dent on the lack of qualified IT security specialists, lessening the risks associated with a world becoming more and more digital.
 
 \section{Prior Art}
 
-\par one thing to mention here that we didn't in our presentation is how many governments are pouring MILLIONS into cyber programs. that is, technically, prior art.
+\par One of the greatest limitations of simulating these complex systems is how much they need to vary machine to machine. Furthermore, in the real world these systems are set up on multiple, if not thousands, of machines. As a result, for most it is impossible to set up the hardware to perfectly copy the systems.
 
-\par see "The \$19 billion cybersecurity initiative President Obama proposed earlier this year included \$62 million for a new CyberCorps Reserve program that would train and provide scholarships to people who take cybersecurity jobs with the federal government" from \cite{why_no_cyber_classes}
+\par One technology that has arose to counter these issues is 'virtualization'. According to VMware, one of the main vendors of this technology, "virtualization is the "proccess of creating a software-based, or virtual, representation of something"\cite{virtualization_def}. Servers, machines, and even entire operating systems (OSs) can be virtualized. 
+
+\par One thing to mention here that we didn't in our presentation is how many governments are pouring MILLIONS into cyber programs. that is, technically, prior art.
+
+\par See "The \$19 billion cybersecurity initiative President Obama proposed earlier this year included \$62 million for a new CyberCorps Reserve program that would train and provide scholarships to people who take cybersecurity jobs with the federal government" from \cite{why_no_cyber_classes}
 
 
 \section{Resources}
@@ -166,12 +180,23 @@
 \chapter{Solution Identification}
 
 \section{Context}
+
+\par Before diving into specifics regarding potential solution ideas, it is crucial to first understand the context and environment in which our solution will operate.
+
+\par In an economic context, there is currently a very competitive market for educational and technology based software. This competition continues to drive down prices and raise the overall quality of solutions available to the public. Additionally, with the rise of the open source development mentality of the general community, more and more training resources are being created, completely free for anyone to use and modify. By making these tools available under the MIT License or similar terms, creators are able to get more people using their tools. This higher adoption rate ultimately helps the creators better achieve their goal: creating a useful tool that adds value for someone in someway.
+
+\par In keeping with this idea, we are also planning to keep our project (or at least the majority of it) open to the public (ie free to use). By opening our project up to more people, we envision two main benefits. First, with more active users of our product, more diverse and extensive feedback will be generated. We can then in turn utilize this feedback to create a higher quality tool that is tailored to even more people's needs. In addition, one of our overarching goals for the project is to, in general, improve cybersecurity education for beginners. Therefore, it follows that with more people using our solution, our impact on the problem area will multiply. By adding any sort of fee to use our product, at least at this point, we think it would be cost prohibitive for our intended userbase.
+
+\par 
+
 ****************JAKE****************
--economic: students / beginners do not want to pay for products until they prove to be useful, subscription models are more popular for learning content, lots of potentially competing similar free infosec training resources, trend towards open-source projects
 
 socio-cultural: target age remains constant - generations of new students in high school/college looking to learn cybersecurity, also adults looking to learn/practice cybersecurity, cybersecurity is a fast growing industry - field is in high demand of quality solutions, trend towards people deciding to study 
 
--how do the problem and potential solutions interact with the socio-cultural, organizational, economic, political,…context? 
+technological - use of containerization technology like docker, salt, puppet, chef, vagrant, virtualbox, CROSS PLATFORM
+
+working closely with the university to identify technology needs and challenges, great environment to test in
+
 
 \section{Customers and Stakeholders}
 ****************JAKE****************
@@ -216,7 +241,14 @@ TALK ABOUT MITIGATIONS
 
 \section{Brainstorming}
 
-\par 
+***************SAEED*****************
+***Section planning to be reformatted into writing***
+
+Restate problem before discussing possible solutions
+    ***Section planning to be reformatted into writing***
+
+Restate problem before discussing possible solutions
+
 
 \section{Solution Identification}
 
