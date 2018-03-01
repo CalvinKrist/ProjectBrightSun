@@ -1,5 +1,5 @@
 #Ubuntu Packer Files
-### Coppied from (this guy)[https://github.com/kaorimatz/packer-templates], edited by Calvin Krist
+### Coppied from [this guy](https://github.com/kaorimatz/packer-templates), edited by Calvin Krist
 
 * When this works correctly, it can take a while even AFTER everything is downloaded. It downloads, launches to VirtualBox, does some stuff
  that takes a while, closes it, and cleans up. Only at the end do we have a Vagrant 
