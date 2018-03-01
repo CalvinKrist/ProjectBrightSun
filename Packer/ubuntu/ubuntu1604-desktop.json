@@ -10,6 +10,5 @@
   "iso_name": "ubuntu-16.04.1-server-amd64.iso",
   "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.3-server-amd64.iso",
   "memory": "1024",
-  "preseed": "preseed.cfg",
-  "vagrantfile_template": "vagrantfile/vagrantfile-ubuntu1604-desktop.tpl"
+  "preseed": "preseed.cfg"
 }

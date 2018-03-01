@@ -52,8 +52,7 @@
     {
       "keep_input_artifact": false,
       "output": "box/{{.Provider}}/{{user `vm_name`}}-{{user `version`}}.box",
-      "type": "vagrant",
-      "vagrantfile_template": "{{ user `vagrantfile_template` }}"
+      "type": "vagrant"
     }
   ],
   "provisioners": [
@@ -109,7 +108,6 @@
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "false",
-    "vagrantfile_template": "vagrantfile/vagrantfile-ubuntu1604-desktop.tpl",
     "version": "0.1.0",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1604-desktop",
