@@ -1,1 +1,2 @@
 Packer/**/packer_cache
+Packer/**/output-virtualbox-iso/

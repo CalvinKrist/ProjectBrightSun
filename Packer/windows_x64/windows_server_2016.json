@@ -1,0 +1,85 @@
+{
+  "builders": [{
+	"type": "virtualbox-iso",
+    "vm_name": "windows_server_2016",
+	"communicator": "winrm",
+	"iso_url": "{{user `iso_url`}}",
+	"iso_checksum_type": "{{user `iso_checksum_type`}}",
+	"iso_checksum": "{{user `iso_checksum`}}",
+	"headless": false,
+	"boot_wait": "4m",
+    "boot_command": "",
+	"winrm_username": "vagrant",
+	"winrm_password": "vagrant",
+	"winrm_timeout": "6h",
+	"shutdown_command": "a:/sysprep.bat",
+	"guest_os_type": "Windows2016_64",
+	"guest_additions_mode": "disable",
+	"disk_size": "{{user `disk_size`}}",
+	"floppy_files": [
+		"{{user `autounattend`}}",
+		"./floppy/WindowsPowershell.lnk",
+		"./floppy/PinTo10.exe",
+		"./scripts/unattend.xml",
+		"./scripts/sysprep.bat",
+		"./scripts/disable-screensaver.ps1",
+		"./scripts/disable-winrm.ps1",
+		"./scripts/enable-winrm.ps1",
+		"./scripts/microsoft-updates.bat",
+		"./scripts/win-updates.ps1",
+		"./scripts/oracle-cert.cer"
+    ],
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "2048"],
+      ["modifyvm", "{{.Name}}", "--cpus", "2"]
+    ]
+  }],
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/enable-rdp.bat"
+      ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/debloat-windows.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/pin-powershell.bat",
+        "./scripts/set-winrm-automatic.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/uac-enable.bat",
+        "./scripts/compact.bat"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "./answer_files/2016/Autounattend_sysprep.xml",
+      "destination": "c:/Windows/Temp/Autounattend_sysprep.xml"
+    }
+  ],
+  "post-processors": [{
+	"type": "vagrant",
+	"keep_input_artifact": false,
+	"output": "../../Boxes/windows_x64/windows_server_2016_{{.Provider}}.box",
+	"vagrantfile_template": "windows_server_2016_vagrantfile.template"
+  }],
+  "variables": {
+    "iso_url": "http://care.dlservice.microsoft.com/dl/download/1/4/9/149D5452-9B29-4274-B6B3-5361DBDA30BC/14393.0.161119-1705.RS1_REFRESH_SERVER_EVAL_X64FRE_EN-US.ISO",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
+    "autounattend": "./answer_files/2016/Autounattend.xml",
+	"disk_size": "61440"
+  }
+}

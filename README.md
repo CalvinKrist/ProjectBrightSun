@@ -1,8 +1,52 @@
 # RedBlueCyberlab
-## By Calvin, Clark, Jake, and Saeed
 
 A repository of tools and systems with the goal to simplify penetration testing and security for students.
 
-[Notes on Vagrant](VagrantNotes.MD)
+## Getting Started
 
-User Story Template:   As a \role\, I want \feature\ so that \benefit\
+### Required System Specs:
+* 16GB+ of RAM
+* 60GB+ of free disk space
+
+### Prerequisites:
+1. Install VirtualBox: [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
+    * Version `5.2.8+`; Successfully tested on: `5.2.8`
+1. Install Packer: [https://www.packer.io/downloads.html](https://www.packer.io/downloads.html)
+    * Version `1.2.1+`; Successfully tested on: `1.2.1`
+1. Install Vagrant: [https://www.vagrantup.com/downloads.html](https://www.vagrantup.com/downloads.html)
+    * Version `2.0.2+`; Successfully tested on: `2.0.2`
+1. Install the Vagrant-Reload plugin: `vagrant plugin install vagrant-reload`
+1. Install Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+
+### Using this tool to building your lab:
+* fill_in_here
+
+## Project Authors
+This project was initially created by Clark Benham, Calvin Krist, Saeed Razavi, and Jake Smith as part of the Synthesis Design II class at the University of Virginia (UVA) for Rodman Engineering Students.
+* Clark Benham ([Github](https://github.com/CLARKBENHAM))
+* Calvin Krist ([Github](https://github.com/CalvinKrist))
+* Saeed Razavi ([Github](https://github.com/SaeedRazavi))
+* Jake Smith ([Github](https://github.com/ION28), [Twitter](https://twitter.com/jtsmith282), [LinkedIn](https://linkedin.com/in/jakesmith282/))
+
+## Project Contributers
+list_of_awesome_contributers
+
+## Credit & Acknowledgments
+Without these amazing people and tools, we would not have been able to build any of this.
+* [@clong](https://github.com/clong)'s [Detection Lab](https://github.com/clong/DetectionLab)
+* [@joefitzgerald](https://github.com/joefitzgerald)'s [Packer Windows Templates](https://github.com/joefitzgerald/packer-windows)
+* [@kaorimatz](https://github.com/kaorimatz)'s [Packer Linux Templates](https://github.com/kaorimatz/packer-templates)
+
+## Technology Stack
+* Oracle's [VirtualBox](https://www.virtualbox.org/): Virtualization software
+* HashiCorp's [Packer](https://www.packer.io): Automated building of virtual machines
+* HashiCorp's [Vagrant](https://www.vagrantup.com/): Virtual environment management
+* Microsoft's [Developer Virtual Machines](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/): Source of Windows VMs
+* Canonical's [Ubuntu](http://releases.ubuntu.com/): Source of Ubuntu VMs
+* Microsoft's [Windows Powershell](https://docs.microsoft.com/en-us/powershell/scripting/getting-started/getting-started-with-windows-powershell?): Scripting language to automate setup of Windows VMs
+* [Shell Scripts](https://en.wikipedia.org/wiki/Shell_script): Scripting language to automate setup of Linux VMs
+* work_in_progress
+
+## Miscellaneous Notes
+* User Story Template:   As a \_\___role__\_\_ I want \_\___feature__\_\_ so that \_\___benefit__\_\_
+* [Notes on Vagrant](VagrantNotes.MD)
