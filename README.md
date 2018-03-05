@@ -18,7 +18,7 @@ A repository of tools and systems with the goal to simplify penetration testing 
 1. Install the Vagrant-Reload plugin: `vagrant plugin install vagrant-reload`
 1. Install Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-### Using this tool to building your lab:
+### Using this tool to build your lab:
 * fill_in_here
 
 ## Project Authors
