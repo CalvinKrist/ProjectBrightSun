@@ -21,6 +21,9 @@ A repository of tools and systems with the goal to simplify penetration testing 
 ### Using this tool to build your lab:
 * fill_in_here
 
+## Development Progress
+[![Throughput Graph](https://graphs.waffle.io/CalvinKrist/RedBlueCyberlab/throughput.svg)](https://waffle.io/CalvinKrist/RedBlueCyberlab/metrics/throughput)
+
 ## Project Authors
 This project was initially created by Clark Benham, Calvin Krist, Saeed Razavi, and Jake Smith as part of the Synthesis Design II class at the University of Virginia (UVA) for Rodman Engineering Students.
 * Clark Benham ([Github](https://github.com/CLARKBENHAM))
