@@ -1,20 +1,20 @@
 {
   "builders": [{
     "type": "virtualbox-iso",
-    "vm_name": "windows_81",
+    "vm_name": "{{user `vm_name`}}",
     "communicator": "winrm",
     "iso_url": "{{user `iso_url`}}",
     "iso_checksum_type": "{{user `iso_checksum_type`}}",
     "iso_checksum": "{{user `iso_checksum`}}",
-    "headless": false,
+    "headless": "{{user `headless`}}",
     "boot_wait": "4m",
     "boot_command": "",
     "winrm_username": "vagrant",
     "winrm_password": "vagrant",
-    "winrm_timeout": "6h",
+    "winrm_timeout": "{{user `winrm_timeout`}}",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "Windows81_64",
-    "guest_additions_mode": "disable",
+    "guest_additions_mode": "{{user `guest_additions_mode`}}",
     "disk_size": "{{user `disk_size`}}",
     "floppy_files": [
         "{{user `autounattend`}}",
@@ -26,8 +26,8 @@
         "./scripts/oracle-cert.cer"
     ],
     "vboxmanage": [
-      ["modifyvm", "{{.Name}}", "--memory", "2048"],
-      ["modifyvm", "{{.Name}}", "--cpus", "2"]
+      ["modifyvm", "{{.Name}}", "--memory", "{{user `ram_size`}}"],
+      ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpu_count`}}"]
     ]
   }],
   "provisioners": [
@@ -57,8 +57,8 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "../../Boxes/windows_x64/windows_81_{{.Provider}}.box",
-      "vagrantfile_template": "windows_81_vagrantfile.template"
+      "output": "{{user `output_dir`}}",
+      "vagrantfile_template": "{{user `vagrantfile_template`}}"
     }
   ],
   "variables": {
@@ -66,6 +66,14 @@
     "iso_checksum_type": "md5",
     "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
     "autounattend": "./answer_files/81/Autounattend.xml",
-    "disk_size": "61440"
+    "disk_size": "61440",
+    "headless": false,
+    "vm_name": "windows_81",
+    "winrm_timeout": "6h",
+    "guest_additions_mode": "disable",
+    "ram_size": "2048",
+    "cpu_count": "2",
+    "output_dir": "../../Boxes/windows_x64/windows_81_{{.Provider}}.box",
+    "vagrantfile_template": "windows_81_vagrantfile.template"
   }
 }
