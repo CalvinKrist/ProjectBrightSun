@@ -17,3 +17,5 @@
 * Most of this could be refactored, so that the 'main scripts' just call a base script with different iso link, checksum, and desktop flag. Would make code more readable / maintainable, easier to edit with HTML.
 
 * ubuntu1604-desktop.json should be build as 'packer build -var-file=ubuntu1604-desktop.json ubuntu.json'
+
+    //"vagrantfile_template": "vagrantfile/vagrantfile-ubuntu1604-desktop.tpl",
