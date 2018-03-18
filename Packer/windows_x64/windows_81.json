@@ -13,20 +13,14 @@
     "winrm_password": "vagrant",
     "winrm_timeout": "{{user `winrm_timeout`}}",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-    "guest_os_type": "Windows10_64",
+    "guest_os_type": "Windows81_64",
     "guest_additions_mode": "{{user `guest_additions_mode`}}",
     "disk_size": "{{user `disk_size`}}",
-	"floppy_files": [
+    "floppy_files": [
         "{{user `autounattend`}}",
-        "./floppy/WindowsPowershell.lnk",
-        "./floppy/PinTo10.exe",
-        "./scripts/fixnetwork.ps1",
-        "./scripts/MakeWindows10GreatAgain.ps1",
-        "./scripts/MakeWindows10GreatAgain.reg",
-        "./scripts/rearm-windows.ps1",
-        "./scripts/disable-screensaver.ps1",
-        "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1",
+		"./scripts/disable-screensaver.ps1",
+		"./scripts/disable-winrm.ps1",
+		"./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/oracle-cert.cer"
@@ -39,7 +33,6 @@
   "provisioners": [
     {
       "type": "windows-shell",
-      "remote_path": "/tmp/script.bat",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/vm-guest-tools.bat",
@@ -47,53 +40,40 @@
       ]
     },
     {
-      "type": "powershell",
-      "scripts": [
-        "./scripts/debloat-windows.ps1",
-        "./scripts/MakeWindows10GreatAgain.ps1",
-        "./scripts/rearm-windows.ps1"
-      ]
-    },
-    {
       "type": "windows-restart"
     },
     {
-      "type": "powershell",
-      "scripts": [
-        "./scripts/set-powerplan.ps1"
-      ]
-    },
-    {
       "type": "windows-shell",
-      "remote_path": "/tmp/script.bat",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/pin-powershell.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/set-winrm-automatic.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
+        "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ]
     }
   ],
-  "post-processors": [{
-    "type": "vagrant",
-    "keep_input_artifact": false,
-    "output": "{{user `output_dir`}}",
-    "vagrantfile_template": "{{user `vagrantfile_template`}}"
-  }],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "{{user `output_dir`}}",
+      "vagrantfile_template": "{{user `vagrantfile_template`}}"
+    }
+  ],
   "variables": {
-    "iso_url": "http://care.dlservice.microsoft.com/dl/download/B/8/B/B8B452EC-DD2D-4A8F-A88C-D2180C177624/15063.0.170317-1834.RS2_RELEASE_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
-    "iso_checksum_type": "sha1",
-    "iso_checksum": "6c60f91bf0ad7b20f469ab8f80863035c517f34f",
-    "autounattend": "./answer_files/10/Autounattend.xml",
+    "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+    "autounattend": "./answer_files/81/Autounattend.xml",
     "disk_size": "61440",
     "headless": false,
-    "vm_name": "windows_10",
+    "vm_name": "windows_81",
     "winrm_timeout": "6h",
     "guest_additions_mode": "disable",
     "ram_size": "2048",
     "cpu_count": "2",
-    "output_dir": "../../Boxes/windows_x64/windows_10_{{.Provider}}.box",
-    "vagrantfile_template": "windows_10_vagrantfile.template"
+    "output_dir": "../../Boxes/windows_x64/windows_81_{{.Provider}}.box",
+    "vagrantfile_template": "windows_81_vagrantfile.template"
   }
 }

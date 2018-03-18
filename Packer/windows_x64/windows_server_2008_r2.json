@@ -1,0 +1,76 @@
+{
+  "builders": [{
+    "type": "virtualbox-iso",
+	"vm_name": "{{user `vm_name`}}",
+	"communicator": "winrm",
+    "iso_url": "{{user `iso_url`}}",
+    "iso_checksum_type": "{{user `iso_checksum_type`}}",
+    "iso_checksum": "{{user `iso_checksum`}}",
+    "headless": "{{user `headless`}}",
+	"boot_wait": "4m",
+    "boot_command": "",
+    "winrm_username": "vagrant",
+	"winrm_password": "vagrant",
+	"winrm_timeout": "{{user `winrm_timeout`}}",
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+    "guest_os_type": "Windows2008_64",
+	"guest_additions_mode": "{{user `guest_additions_mode`}}",
+    "disk_size": "{{user `disk_size`}}",
+    "floppy_files": [
+        "{{user `autounattend`}}",
+		"./scripts/disable-screensaver.ps1",
+		"./scripts/disable-winrm.ps1",
+		"./scripts/enable-winrm.ps1",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1",
+		"./scripts/oracle-cert.cer"
+    ],
+	"vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "{{user `ram_size`}}"],
+      ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpu_count`}}"]
+    ]
+  }],
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/enable-rdp.bat"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/set-winrm-automatic.bat",
+        "./scripts/uac-enable.bat",
+        "./scripts/compact.bat"
+      ]
+    }
+  ],
+  "post-processors": [{
+    "type": "vagrant",
+    "keep_input_artifact": false,
+    "output": "{{user `output_dir`}}",
+    "vagrantfile_template": "{{user `vagrantfile_template`}}"
+  }],
+  "variables": {
+    "iso_url": "http://download.microsoft.com/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "4263be2cf3c59177c45085c0a7bc6ca5",
+    "autounattend": "./answer_files/2008_r2/Autounattend.xml",
+    "disk_size": "61440",
+    "headless": false,
+    "vm_name": "windows_server_2008_r2",
+    "winrm_timeout": "8h",
+    "guest_additions_mode": "disable",
+    "ram_size": "2048",
+    "cpu_count": "2",
+    "output_dir": "../../Boxes/windows_x64/windows_server_2008_r2_{{.Provider}}.box",
+    "vagrantfile_template": "windows_server_2008_r2_vagrantfile.template"
+  }
+}

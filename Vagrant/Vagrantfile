@@ -1,0 +1,172 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "windows_7" do |cfg|
+    cfg.vm.box = "../Boxes/windows_x64/windows_7_virtualbox.box"
+    cfg.vm.hostname = "windows-7"
+
+    # use the plaintext WinRM transport and force it to use basic authentication.
+    # NB this is needed because the default negotiate transport stops working
+    #    after the domain controller is installed.
+    #    see https://groups.google.com/forum/#!topic/vagrant-up/sZantuCM0q4
+    cfg.winrm.transport = :plaintext
+    cfg.winrm.basic_auth_only = true
+
+    cfg.vm.communicator = "winrm"
+    cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+
+	# Examples of provisioning scripts
+    # cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.2"
+    # cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
+    # cfg.vm.provision "reload"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+=begin
+  config.vm.define "windows_10" do |cfg|
+    cfg.vm.box = "../Boxes/windows_x64/windows_10_virtualbox.box"
+    cfg.vm.hostname = "windows-10"
+
+    # use the plaintext WinRM transport and force it to use basic authentication.
+    # NB this is needed because the default negotiate transport stops working
+    #    after the domain controller is installed.
+    #    see https://groups.google.com/forum/#!topic/vagrant-up/sZantuCM0q4
+    cfg.winrm.transport = :plaintext
+    cfg.winrm.basic_auth_only = true
+
+    cfg.vm.communicator = "winrm"
+    cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+
+	# Examples of provisioning scripts
+    # cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.2"
+    # cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
+    # cfg.vm.provision "reload"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+  config.vm.define "windows_81" do |cfg|
+    cfg.vm.box = "../Boxes/windows_x64/windows_81_virtualbox.box"
+    cfg.vm.hostname = "windows-81"
+
+    # use the plaintext WinRM transport and force it to use basic authentication.
+    # NB this is needed because the default negotiate transport stops working
+    #    after the domain controller is installed.
+    #    see https://groups.google.com/forum/#!topic/vagrant-up/sZantuCM0q4
+    cfg.winrm.transport = :plaintext
+    cfg.winrm.basic_auth_only = true
+
+    cfg.vm.communicator = "winrm"
+    cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+
+	# Examples of provisioning scripts
+    # cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.2"
+    # cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
+    # cfg.vm.provision "reload"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+  config.vm.define "windows_server_2008_r2" do |cfg|
+    cfg.vm.box = "../Boxes/windows_x64/windows_server_2008_r2_virtualbox.box"
+    cfg.vm.hostname = "windows-server-2008-r2"
+
+    # use the plaintext WinRM transport and force it to use basic authentication.
+    # NB this is needed because the default negotiate transport stops working
+    #    after the domain controller is installed.
+    #    see https://groups.google.com/forum/#!topic/vagrant-up/sZantuCM0q4
+    cfg.winrm.transport = :plaintext
+    cfg.winrm.basic_auth_only = true
+
+    cfg.vm.communicator = "winrm"
+    cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+
+	# Examples of provisioning scripts
+    # cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.2"
+    # cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
+    # cfg.vm.provision "reload"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+  config.vm.define "windows_server_2012_r2" do |cfg|
+    cfg.vm.box = "../Boxes/windows_x64/windows_server_2012_r2_virtualbox.box"
+    cfg.vm.hostname = "windows-server-2012-r2"
+
+    # use the plaintext WinRM transport and force it to use basic authentication.
+    # NB this is needed because the default negotiate transport stops working
+    #    after the domain controller is installed.
+    #    see https://groups.google.com/forum/#!topic/vagrant-up/sZantuCM0q4
+    cfg.winrm.transport = :plaintext
+    cfg.winrm.basic_auth_only = true
+
+    cfg.vm.communicator = "winrm"
+    cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+
+	# Examples of provisioning scripts
+    # cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.2"
+    # cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
+    # cfg.vm.provision "reload"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+  config.vm.define "windows_server_2016" do |cfg|
+    cfg.vm.box = "../Boxes/windows_x64/windows_server_2016_virtualbox.box"
+    cfg.vm.hostname = "windows-server-2016"
+
+    # use the plaintext WinRM transport and force it to use basic authentication.
+    # NB this is needed because the default negotiate transport stops working
+    #    after the domain controller is installed.
+    #    see https://groups.google.com/forum/#!topic/vagrant-up/sZantuCM0q4
+    cfg.winrm.transport = :plaintext
+    cfg.winrm.basic_auth_only = true
+
+    cfg.vm.communicator = "winrm"
+    cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+
+	# Examples of provisioning scripts
+    # cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.2"
+    # cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
+    # cfg.vm.provision "reload"
+
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 1]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+=end
+end
