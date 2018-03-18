@@ -27,7 +27,7 @@ A repository of tools and systems with the goal to simplify penetration testing 
 ## Project Authors
 This project was initially created by Clark Benham, Calvin Krist, Saeed Razavi, and Jake Smith as part of the Synthesis Design II class at the University of Virginia (UVA) for Rodman Engineering Students.
 * Clark Benham ([Github](https://github.com/CLARKBENHAM))
-* Calvin Krist ([Github](https://github.com/CalvinKrist)), [Twitter](https://twitter.com/CalvinKrist), [LinkedIn](https://www.linkedin.com/in/calvin-krist/)
+* Calvin Krist ([Github](https://github.com/CalvinKrist), [Twitter](https://twitter.com/CalvinKrist), [LinkedIn](https://www.linkedin.com/in/calvin-krist/))
 * Saeed Razavi ([Github](https://github.com/SaeedRazavi))
 * Jake Smith ([Github](https://github.com/ION28), [Twitter](https://twitter.com/jtsmith282), [LinkedIn](https://linkedin.com/in/jakesmith282/))
 
