@@ -67,6 +67,12 @@
       "type": "file",
       "source": "./answer_files/2016/Autounattend_sysprep.xml",
       "destination": "c:/Windows/Temp/Autounattend_sysprep.xml"
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/add-users.ps1"
+      ]
     }
   ],
   "post-processors": [{
@@ -81,7 +87,7 @@
     "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
     "autounattend": "./answer_files/2016/Autounattend.xml",
 	"disk_size": "61440",
-    "headless": false,
+    "headless": "false",
     "vm_name": "windows_server_2016",
     "winrm_timeout": "6h",
     "guest_additions_mode": "disable",

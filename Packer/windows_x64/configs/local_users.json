@@ -1,0 +1,27 @@
+{
+	"local_users": [
+		{
+			"username": "alice",
+			"password": "P@ssw0rd",
+			"active": false,
+			"passwordchg": true,
+			"comment": "Hi, I'm Alice",
+			"fullname": "Alice Smith",
+			"random": true,
+			"groups": [
+				"Guests"
+			]
+		},{
+			"username": "bob",
+			"password": "P@ssw0rd",
+			"active": true,
+			"passwordchg": false,
+			"comment": "Hi, I'm Bob",
+			"fullname": "Bob Smith",
+			"random": false,
+			"groups": [
+				"Administrators", "Remote Desktop Users"
+			]
+		}
+	]
+}

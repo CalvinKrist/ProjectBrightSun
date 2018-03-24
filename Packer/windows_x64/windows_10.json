@@ -29,7 +29,8 @@
         "./scripts/enable-winrm.ps1",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/oracle-cert.cer"
+        "./scripts/oracle-cert.cer",
+        "./configs/local_users.json"
     ],
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "{{user `ram_size`}}"],
@@ -73,6 +74,12 @@
         "./scripts/set-winrm-automatic.bat",
         "./scripts/compact.bat"
       ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/add-users.ps1"
+      ]
     }
   ],
   "post-processors": [{
@@ -87,7 +94,7 @@
     "iso_checksum": "6c60f91bf0ad7b20f469ab8f80863035c517f34f",
     "autounattend": "./answer_files/10/Autounattend.xml",
     "disk_size": "61440",
-    "headless": false,
+    "headless": "false",
     "vm_name": "windows_10",
     "winrm_timeout": "6h",
     "guest_additions_mode": "disable",

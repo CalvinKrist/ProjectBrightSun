@@ -51,6 +51,12 @@
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "./scripts/add-users.ps1"
+      ]
     }
   ],
   "post-processors": [{
@@ -65,7 +71,7 @@
     "iso_checksum": "458ff91f8abc21b75cb544744bf92e6a",
     "autounattend": "./answer_files/2012_r2/Autounattend.xml",
     "disk_size": "61440",
-    "headless": false,
+    "headless": "false",
     "vm_name": "windows_server_2012_r2",
     "winrm_timeout": "6h",
     "guest_additions_mode": "disable",
