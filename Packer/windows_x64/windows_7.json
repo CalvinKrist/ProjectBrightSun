@@ -48,6 +48,7 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/set-winrm-automatic.bat",
+        "./scripts/compile-dotnet-assemblies.bat",
         "./scripts/uac-enable.bat",
         "./scripts/compact.bat"
       ]
