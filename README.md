@@ -1,6 +1,6 @@
 # RedBlueCyberlab
 
-A repository of tools and systems with the goal to simplify penetration testing and security for students.
+A local website that allows for the automated installation of a variety of virtual machines to VirtualBox using packer and vagrant. 
 
 ## Getting Started
 
