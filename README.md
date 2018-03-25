@@ -39,6 +39,7 @@ Without these amazing people and tools, we would not have been able to build any
 * [@clong](https://github.com/clong)'s [Detection Lab](https://github.com/clong/DetectionLab)
 * [@joefitzgerald](https://github.com/joefitzgerald)'s [Packer Windows Templates](https://github.com/joefitzgerald/packer-windows)
 * [@kaorimatz](https://github.com/kaorimatz)'s [Packer Linux Templates](https://github.com/kaorimatz/packer-templates)
+* [@hahndorf](https://github.com/hahndorf)'s [Blog post on Installing Windows Features on the Command Line](https://peter.hahndorf.eu/blog/WindowsFeatureViaCmd.html)
 
 ## Technology Stack
 * Oracle's [VirtualBox](https://www.virtualbox.org/): Virtualization software

@@ -24,7 +24,9 @@
         "./scripts/hotfix-KB3102810.bat",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
-        "./scripts/oracle-cert.cer"
+        "./scripts/oracle-cert.cer",
+        "./configs/local_users.json",
+        "./configs/windows_optional_features.json"
     ],
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "{{user `ram_size`}}"],
@@ -56,7 +58,8 @@
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/add-users.ps1"
+        "./scripts/add-users.ps1",
+        "./scripts/add-windows-optional-features.ps1"
       ]
     }
   ],
