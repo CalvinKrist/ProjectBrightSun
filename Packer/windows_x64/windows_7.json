@@ -83,7 +83,7 @@
     "guest_additions_mode": "disable",
     "ram_size": "2048",
     "cpu_count": "2",
-    "output_dir": "../../Boxes/windows_x64/windows_7_{{.Provider}}.box",
+    "output_dir": "../../Boxes/windows_x64/windows_7.box",
     "vagrantfile_template": "windows_7_vagrantfile.template"
   }
 }

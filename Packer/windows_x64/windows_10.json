@@ -102,7 +102,7 @@
     "guest_additions_mode": "disable",
     "ram_size": "2048",
     "cpu_count": "2",
-    "output_dir": "../../Boxes/windows_x64/windows_10_{{.Provider}}.box",
+    "output_dir": "../../Boxes/windows_x64/windows_10.box",
     "vagrantfile_template": "windows_10_vagrantfile.template"
   }
 }
