@@ -1,6 +1,13 @@
 #Ubuntu Packer Files
 ### Coppied from [this guy](https://github.com/kaorimatz/packer-templates), edited by Calvin Krist
 
+* Install desktop GUI 17.10.1:
+	** SUDO APT-GET UPDATE --FIX-MISSING (do this for all installations anyways)
+	//do i need to startNetworkManager with systemctl start NetworkManager.service?
+	** sudo dpkg --configre -a
+	** sudo apt-get upgrade -f
+	** sudo apt-fet install -upgrade ;;ubuntu-desktop -f //-f makes you not need to type yes
+Then sudo apt-get install ubuntu-desktop
 * When this works correctly, it can take a while even AFTER everything is downloaded. It downloads, launches to VirtualBox, does some stuff
  that takes a while, closes it, and cleans up. Only at the end do we have a Vagrant 
 * From this point, one can initialize vagrant and set the default box to be the newly created box. Calling 'vagrant init' will then result in the VM being launched in headless mode.
