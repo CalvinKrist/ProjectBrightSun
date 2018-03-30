@@ -1,6 +1,6 @@
 {
   "_comment": "Build with `packer build -var-file=ubuntu1404-i386.json ubuntu.json`",
-  "vm_name": "ubuntu1404",
+  "vm_name": "ubuntu1404-i386",
   "cpus": "1",
   "disk_size": "65536",
   "iso_checksum": "6071b0844ecbb8aa9a246b15c7aa20e798d42ed5b41c1b71aaea1f4283985ba4",

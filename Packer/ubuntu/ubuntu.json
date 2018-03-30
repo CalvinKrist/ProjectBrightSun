@@ -60,8 +60,7 @@
     {
       "keep_input_artifact": false,
       "output": "../../Boxes/ubuntu/{{user `vm_name`}}-{{user `version`}}.box",
-      "type": "vagrant",
-      "vagrantfile_template": "{{ user `vagrantfile_template` }}"
+      "type": "vagrant"
     }
   ],
   "provisioners": [
@@ -115,7 +114,7 @@
     "iso_path": "/Volumes/Storage/software/ubuntu",
     "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04-server-amd64.iso",
     "locale": "en_US",
-    "memory": "512",
+    "memory": "1024",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "ubuntu",
     "preseed" : "preseed.cfg",
@@ -130,6 +129,6 @@
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu1404",
     "vmware_guest_os_type": "ubuntu-64",
-	"vram": "16"
+	"vram": "32"
   }
 }
