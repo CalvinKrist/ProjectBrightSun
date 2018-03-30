@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <title>Project BrightSun</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+	
+	
+	
+<nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">Project BrightSun</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="./Home.HTML">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="./Config.HTML">Config Setup <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./Lessons.HTML">Lesson Templates</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./Credits.HTML">Credits</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row justify-content-end">
+		<div class="btn-group" role="group" aria-label="Setup Buttons">
+			<button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#optionsModal">Add New</button>
+			<button type="button" class="btn btn-outline-primary btn-lg ">Download</button>
+		</div>
+  </div>
+  <div class="row-xl-auto">
+	<p>"More Test Content"</p>
+  </div>
+</div>
+
+<div class="modal" id="optionsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Criteria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<form>
+			<div class="form-group">
+				<label for="platformSelect">Platform</label>
+				<select class="custom-select" id="platformSelect" >
+					<option value = 'default' id='defaultPlatform' selected>Select Platform</option>
+				    <option value = 'win'>Windows</option>
+					<option value = 'lin'>Linux</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="osSelect">OS</label>
+				<select class="custom-select" id="osSelect" disabled>
+					<option value = 'default' id='defaultOs' selected>Select OS</option>
+				    <option>Variable option1</option>
+					<option>Variable option2</option>
+				</select>
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+	    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="addButton">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--		ALL IN THIS COMMENT IS DEFUNCT PROOF OF CONCEPT FROM ORIGINAL BUILD
+<table class="table table-static">
+    <tr>
+      <td>
+        Load Template <br>
+      </td>
+      <td>
+        <input class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" type="file">
+      </td>
+    </tr>
+   </thread>
+
+  <tr>
+    <th scope="row" rowspan="2">
+      Checkboxes Section 1
+    </th>
+    <td>
+      <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 1a
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 2a
+        </label>
+      </div>
+    </fieldset>
+    </td>
+    <td>
+     <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 3a
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 4a
+        </label>
+      </div>
+    </fieldset>
+    </td>
+  </tr>
+ 
+  <tr>
+       <td>
+      <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 1b
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 2b
+        </label>
+      </div>
+    </fieldset>
+    </td>
+    <td>
+     <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 3b
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 4b
+        </label>
+      </div>
+    </fieldset>
+    </td>
+  </tr>
+
+<tr>
+    <th scope="row" rowspan="2">
+      Checkboxes Section 2
+    </th>
+       <td>
+      <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 1c
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 2c
+        </label>
+      </div>
+    </fieldset>
+    </td>
+    <td>
+     <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 3c
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 4c
+        </label>
+      </div>
+    </fieldset>
+    </td>
+  </tr>
+ 
+  <tr>
+       <td>
+      <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 1d
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 2d
+        </label>
+      </div>
+    </fieldset>
+    </td>
+    <td>
+     <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 3d
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" value="" checked="" type="checkbox">
+          Option 4d
+        </label>
+      </div>
+    </fieldset>
+    </td>
+  </tr>
+
+</table>
+-->
+	<script src='./ConfigJQ.js'></script>
+	<script>
+		var osSelect = $('#osSelect');
+		$('#platformSelect').change(function() {
+			if($( "#platformSelect option:selected" ).val() !== 'default'){
+				osSelect.removeAttr('disabled');
+			}
+			else{
+				// not functional should reset selection when dropdown is disabled $('#defaultOs').attr('selected','selected').siblings().removeAttr('selected');
+				osSelect.attr('disabled','disabled');
+			}
+		});
+	</script>
+	<script>
+		$("#addButton").on('click', function(){
+			<!--do things-->
+			$('#addButton').attr('data-dismiss',"modal");
+		});
+	</script>
+ </body>
+</html>
