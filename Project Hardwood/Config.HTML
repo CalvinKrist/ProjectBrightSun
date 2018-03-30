@@ -11,7 +11,7 @@
     <!-- Material Design for Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 
-    <title>Project Hardwood</title>
+    <title>Project BrightSun</title>
   </head>
   <body>
     <!-- Optional JavaScript -->
@@ -20,11 +20,11 @@
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-
-
-
+	
+	
+	
 <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="#">Project Hardwood</a>
+  <a class="navbar-brand" href="#">Project BrightSun</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -47,8 +47,57 @@
   </div>
 </nav>
 
+<div class="container-fluid">
+  <div class="row justify-content-end">
+		<div class="btn-group" role="group" aria-label="Setup Buttons">
+			<button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#optionsModal">Add New</button>
+			<button type="button" class="btn btn-outline-primary btn-lg ">Download</button>
+		</div>
+  </div>
+  <div class="row-xl-auto">
+	<p>"More Test Content"</p>
+  </div>
+</div>
+
+<div class="modal" id="optionsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Criteria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<form>
+			<div class="form-group">
+				<label for="platformSelect">Platform</label>
+				<select class="custom-select" id="platformSelect" >
+					<option value = 'default' id='defaultPlatform' selected>Select Platform</option>
+				    <option value = 'win'>Windows</option>
+					<option value = 'lin'>Linux</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="osSelect">OS</label>
+				<select class="custom-select" id="osSelect" disabled>
+					<option value = 'default' id='defaultOs' selected>Select OS</option>
+				    <option>Variable option1</option>
+					<option>Variable option2</option>
+				</select>
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+	    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="addButton">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
+<!--		ALL IN THIS COMMENT IS DEFUNCT PROOF OF CONCEPT FROM ORIGINAL BUILD
 <table class="table table-static">
     <tr>
       <td>
@@ -215,6 +264,25 @@
   </tr>
 
 </table>
-
-  </body>
+-->
+	<script src='./ConfigJQ.js'></script>
+	<script>
+		var osSelect = $('#osSelect');
+		$('#platformSelect').change(function() {
+			if($( "#platformSelect option:selected" ).val() !== 'default'){
+				osSelect.removeAttr('disabled');
+			}
+			else{
+				// not functional should reset selection when dropdown is disabled $('#defaultOs').attr('selected','selected').siblings().removeAttr('selected');
+				osSelect.attr('disabled','disabled');
+			}
+		});
+	</script>
+	<script>
+		$("#addButton").on('click', function(){
+			<!--do things-->
+			$('#addButton').attr('data-dismiss',"modal");
+		});
+	</script>
+ </body>
 </html>
