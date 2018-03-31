@@ -1,0 +1,25 @@
+<html>
+
+<body>
+	<input type="button" onclick="build_boxes()" value="Create Zip" download="something.zip"></input>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/jszip.js"></script>
+	<script type="text/javascript" src="js/download.js"></script>
+	<script type="text/javascript" src="js/generate_download.js"></script>
+	
+	<!-- Importing Box Configuration Files -->
+	<script type="text/javascript" src="box_configs/windows_10.js"></script>
+	
+
+<script>
+function create_zip() {
+	var zip = new JSZip();
+	zip.add("hello1.txt", "Hello First World\n");
+	zip.add("hello2.txt", "Hello Second World\n");
+	content = zip.generate();
+	download("data:application/zip;base64," + content, "something.zip", "application/zip");
+}
+</script>
+</body>
+</html>
