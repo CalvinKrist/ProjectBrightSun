@@ -42,6 +42,7 @@ Without these amazing people and tools, we would not have been able to build any
 * [@hahndorf](https://github.com/hahndorf)'s [Blog post on Installing Windows Features on the Command Line](https://peter.hahndorf.eu/blog/WindowsFeatureViaCmd.html)
 * [@Stuk](https://github.com/Stuk)'s [JSZip](https://github.com/Stuk/jszip)
 * [@rndme](https://github.com/rndme)'s [download](https://github.com/rndme/download)
+* [@mariahamaris](https://github.com/mariahamaris) for acting as a client to our project team and for her support throughout the project
 
 ## Technology Stack
 * Oracle's [VirtualBox](https://www.virtualbox.org/): Virtualization software
