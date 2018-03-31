@@ -18,20 +18,20 @@ var windows_10 = {
     "disk_size": "{{user `disk_size`}}",
 	"floppy_files": [
         "{{user `autounattend`}}",
-        "./floppy/WindowsPowershell.lnk",
-        "./floppy/PinTo10.exe",
-        "./scripts/fixnetwork.ps1",
-        "./scripts/MakeWindows10GreatAgain.ps1",
-        "./scripts/MakeWindows10GreatAgain.reg",
-        "./scripts/rearm-windows.ps1",
-        "./scripts/disable-screensaver.ps1",
-        "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1",
-        "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",
-        "./scripts/oracle-cert.cer",
-        "./configs/local_users.json",
-        "./configs/windows_optional_features.json"
+        "./windows_x64/floppy/WindowsPowershell.lnk",
+        "./windows_x64/floppy/PinTo10.exe",
+        "./windows_x64/scripts/fixnetwork.ps1",
+        "./windows_x64/scripts/MakeWindows10GreatAgain.ps1",
+        "./windows_x64/scripts/MakeWindows10GreatAgain.reg",
+        "./windows_x64/scripts/rearm-windows.ps1",
+        "./windows_x64/scripts/disable-screensaver.ps1",
+        "./windows_x64/scripts/disable-winrm.ps1",
+        "./windows_x64/scripts/enable-winrm.ps1",
+        "./windows_x64/scripts/microsoft-updates.bat",
+        "./windows_x64/scripts/win-updates.ps1",
+        "./windows_x64/scripts/oracle-cert.cer",
+        "./windows_x64/configs/local_users.json",
+        "./windows_x64/configs/windows_optional_features.json"
     ],
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "{{user `ram_size`}}"],
@@ -44,16 +44,16 @@ var windows_10 = {
       "remote_path": "/tmp/script.bat",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/vm-guest-tools.bat",
-        "./scripts/enable-rdp.bat"
+        "./windows_x64/scripts/vm-guest-tools.bat",
+        "./windows_x64/scripts/enable-rdp.bat"
       ]
     },
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/debloat-windows.ps1",
-        "./scripts/MakeWindows10GreatAgain.ps1",
-        "./scripts/rearm-windows.ps1"
+        "./windows_x64/scripts/debloat-windows.ps1",
+        "./windows_x64/scripts/MakeWindows10GreatAgain.ps1",
+        "./windows_x64/scripts/rearm-windows.ps1"
       ]
     },
     {
@@ -62,7 +62,7 @@ var windows_10 = {
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/set-powerplan.ps1"
+        "./windows_x64/scripts/set-powerplan.ps1"
       ]
     },
     {
@@ -70,17 +70,17 @@ var windows_10 = {
       "remote_path": "/tmp/script.bat",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/pin-powershell.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
-        "./scripts/set-winrm-automatic.bat",
-        "./scripts/compact.bat"
+        "./windows_x64/scripts/pin-powershell.bat",
+        "./windows_x64/scripts/compile-dotnet-assemblies.bat",
+        "./windows_x64/scripts/set-winrm-automatic.bat",
+        "./windows_x64/scripts/compact.bat"
       ]
     },
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/add-users.ps1",
-        "./scripts/add-windows-optional-features.ps1"
+        "./windows_x64/scripts/add-users.ps1",
+        "./windows_x64/scripts/add-windows-optional-features.ps1"
       ]
     }
   ],
@@ -93,7 +93,7 @@ var windows_10 = {
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/B/8/B/B8B452EC-DD2D-4A8F-A88C-D2180C177624/15063.0.170317-1834.RS2_RELEASE_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
     "iso_checksum_type": "sha1",
     "iso_checksum": "6c60f91bf0ad7b20f469ab8f80863035c517f34f",
-    "autounattend": "./answer_files/10/Autounattend.xml",
+    "autounattend": "./windows_x64/answer_files/10/Autounattend.xml",
     "disk_size": "61440",
     "headless": "false",
     "vm_name": "windows_10",
