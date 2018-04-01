@@ -183,13 +183,18 @@
 	<script type="text/javascript" src="box_configs/windows_server_2008_r2.js"></script>
 	<script type="text/javascript" src="box_configs/windows_server_2012_r2.js"></script>
 	<script type="text/javascript" src="box_configs/windows_server_2016.js"></script>
+	
 	<script type="text/javascript" src="box_configs/ubuntu_1404.js"></script>
 	<script type="text/javascript" src="box_configs/ubuntu_1604.js"></script>
 	<script type="text/javascript" src="box_configs/ubuntu_1710.js"></script>
+	
 	<script type="text/javascript" src="box_configs/ubuntu_1404_desktop.js"></script>
 	<script type="text/javascript" src="box_configs/ubuntu_1604_desktop.js"></script>
+	<script type="text/javascript" src="box_configs/ubuntu_1710_desktop.js"></script>
+	
 	<script type="text/javascript" src="box_configs/ubuntu_1404_i386.js"></script>
 	<script type="text/javascript" src="box_configs/ubuntu_1604_i386.js"></script>
+	<script type="text/javascript" src="box_configs/ubuntu_1710_i386.js"></script>
 	
 	
 	
@@ -197,7 +202,7 @@
 		window.boxes=[];
 		var osSelect = $('#osSelect');
 		var osWindows64Array = ["windows_7", "windows_81", "windows_10", "windows_server_2008_r2", "windows_server_2012_r2", "windows_server_2016"];
-		var osLinux64Array = [];
+		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1404_i386", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1604_i386", "ubuntu_1710", "ubuntu_1710_desktop", "ubuntu_1710_i386"];
 		
 		$('#platformSelect').change(function() {
 			if($( "#platformSelect option:selected" ).val() !== 'default'){
