@@ -1,9 +1,5 @@
 function build_boxes() {
-	var boxes = []; //Will be moved into function parameters later
-	boxes.push({'name': 'dc1', 'platform':'windows_x64', 'os_version':'windows_server_2008_r2'});
-	boxes.push({'name': 'dc2', 'platform':'windows_x64', 'os_version':'windows_server_2012_r2'});
-	boxes.push({'name': 'dc3', 'platform':'windows_x64', 'os_version':'windows_server_2016'});
-	
+	var boxes = window.boxes;
 	
 	var zip = new JSZip();
 	
@@ -50,41 +46,40 @@ function build_boxes() {
 					ubuntu_1404['variables']['vm_name'] = boxes[i]['name'];
 					box_json = JSON.stringify(ubuntu_1404, null, 2);
 					break;
-				case "ubuntu_1404-i386":
-					ubuntu_1404-i386['variables']['vm_name'] = boxes[i]['name'];
-					box_json = JSON.stringify(ubuntu_1404-i386, null, 2);
+				case "ubuntu_1404_i386":
+					ubuntu_1404_i386['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1404_i386, null, 2);
 					break;
-				case "ubuntu_1404-desktop":
-					ubuntu_1404-desktop['variables']['vm_name'] = boxes[i]['name'];
-					box_json = JSON.stringify(ubuntu_1404-desktop, null, 2);
+				case "ubuntu_1404_desktop":
+					ubuntu_1404_desktop['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1404_desktop, null, 2);
 					break;
 				case "ubuntu_1604":
 					ubuntu_1604['variables']['vm_name'] = boxes[i]['name'];
 					box_json = JSON.stringify(ubuntu_1604, null, 2);
 					break;
-				case "ubuntu_1604-i386":
-					ubuntu_1604-i386['variables']['vm_name'] = boxes[i]['name'];
-					box_json = JSON.stringify(ubuntu_1604-i386, null, 2);
+				case "ubuntu_1604_i386":
+					ubuntu_1604_i386['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1604_i386, null, 2);
 					break;
-				case "ubuntu_1604-desktop":
-					ubuntu_1604-desktop['variables']['vm_name'] = boxes[i]['name'];
-					box_json = JSON.stringify(ubuntu_1604-desktop, null, 2);
+				case "ubuntu_1604_desktop":
+					ubuntu_1604_desktop['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1604_desktop, null, 2);
 					break;
 				case "ubuntu_1710":
 					ubuntu_1710['variables']['vm_name'] = boxes[i]['name'];
 					box_json = JSON.stringify(ubuntu_1710, null, 2);
 					break;
-				case "ubuntu_1710-i386":
-					ubuntu_1710-i386['variables']['vm_name'] = boxes[i]['name'];
-					box_json = JSON.stringify(ubuntu_1710-i386, null, 2);
+				case "ubuntu_1710_i386":
+					ubuntu_1710_i386['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1710_i386, null, 2);
 					break;
-				case "ubuntu_1710-desktop":
-					ubuntu_1710-desktop['variables']['vm_name'] = boxes[i]['name'];
-					box_json = JSON.stringify(ubuntu_1710-desktop, null, 2);
+				case "ubuntu_1710_desktop":
+					ubuntu_1710_desktop['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1710_desktop, null, 2);
 					break;
 				default:
 					continue;
-				
 			}
 		} else if(boxes[i]['platform'] === "windows_x64") {
 			switch(boxes[i]['os_version']) {
@@ -132,13 +127,13 @@ function build_boxes() {
 			zip.add("ubuntu.json", JSON.stringify(ubuntu, null, 2));
 			break;
 		}
-	
+	}
 	
 	//GENERATE THE BUILD SCRIPT
 	var build_script = "";
 	
 	for(var i = 0; i < boxes.length; i++) {
-		if(boxes[i]['platform'] === "linux") {
+		if(boxes[i]['platform'] === "linux_x64") {
 			build_script += "packer build -var-file=" + boxes[i]['os_version'] + ".json ubuntu.json\n";
 		} else if(boxes[i]['platform'] === "windows_x64") {
 			build_script += "packer build " + boxes[i]['name'] + ".json\n";
