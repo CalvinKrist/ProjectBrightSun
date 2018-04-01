@@ -1,7 +1,7 @@
 function build_boxes() {
 	var boxes = []; //Will be moved into function parameters later
-	boxes.push({'name': 'dc1', 'platform':'windows_x64', 'os_version':'windows_10'});
-	boxes.push({'name': 'dc2', 'platform':'windows_x64', 'os_version':'windows_10'});
+	boxes.push({'name': 'dc1', 'platform':'windows_x64', 'os_version':'windows_7'});
+	boxes.push({'name': 'dc2', 'platform':'windows_x64', 'os_version':'windows_81'});
 	
 	
 	var zip = new JSZip();
@@ -39,6 +39,16 @@ function build_boxes() {
 			continue;
 		} else if(boxes[i]['platform'] === "windows_x64") {
 			switch(boxes[i]['os_version']) {
+				case "windows_7":
+					windows_7['variables']['vm_name'] = boxes[i]['name'];
+					windows_7['variables']['output_dir'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
+					box_json = JSON.stringify(windows_7, null, 2);
+					break;
+				case "windows_81":
+					windows_81['variables']['vm_name'] = boxes[i]['name'];
+					windows_81['variables']['output_dir'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
+					box_json = JSON.stringify(windows_81, null, 2);
+					break;
 				case "windows_10":
 					windows_10['variables']['vm_name'] = boxes[i]['name'];
 					windows_10['variables']['output_dir'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"

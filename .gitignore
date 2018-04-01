@@ -3,4 +3,8 @@ Packer/**/output-virtualbox-iso/
 Vagrant/.vagrant
 Packer/ubuntu/*.txt
 Packer/ubuntu/Vagrantfile
-build/*
+build/.vagrant/*
+build/*.ps1
+build/*.json
+build/Vagrantfile
+build/packer_cache

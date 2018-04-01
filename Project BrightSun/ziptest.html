@@ -9,17 +9,9 @@
 	<script type="text/javascript" src="js/generate_download.js"></script>
 	
 	<!-- Importing Box Configuration Files -->
+	<script type="text/javascript" src="box_configs/windows_7.js"></script>
+	<script type="text/javascript" src="box_configs/windows_81.js"></script>
 	<script type="text/javascript" src="box_configs/windows_10.js"></script>
 	
-
-<script>
-function create_zip() {
-	var zip = new JSZip();
-	zip.add("hello1.txt", "Hello First World\n");
-	zip.add("hello2.txt", "Hello Second World\n");
-	content = zip.generate();
-	download("data:application/zip;base64," + content, "something.zip", "application/zip");
-}
-</script>
 </body>
 </html>
