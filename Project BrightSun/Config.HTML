@@ -141,9 +141,9 @@
 						<select class="custom-select" id="platformSelect" >
 							<option value = 'default' id='defaultPlatform' selected>Select Platform</option>
 							<option value = 'windows_x64'>Windows (64-bit)</option>
-							<option value = 'windows_x32'>Windows (32-bit)</option>
+							<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
 							<option value = 'linux_x64'>Linux (64-bit)</option>
-							<option value = 'linux_x32'>Linux (32-bit)</option>
+							<!--<option value = 'linux_x32'>Linux (32-bit)</option>-->
 						</select>
 					</div>
 					<div class="form-group">
@@ -203,7 +203,13 @@
 						}));
 					});
 				} else if($("#platformSelect option:selected").val()==="linux_x64"){
-				
+				$("#osSelect option").remove();
+					$.each(osLinux64Array, function (i, item) {
+						$('#osSelect').append($('<option>', { 
+							value: item,
+							text : item
+						}));
+					});
 				}
 			}
 			else{
