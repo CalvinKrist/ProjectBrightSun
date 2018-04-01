@@ -1,2 +1,0 @@
-Bootswatch Pulse
-Bootstrap Starter Template
