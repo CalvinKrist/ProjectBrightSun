@@ -87,7 +87,7 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="card-deck">
+			<div class="card-deck" id="machine_deck">
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title">Card title</h5>
@@ -133,26 +133,32 @@
 			  <div class="modal-body">
 				<form>
 					<div class="form-group">
+						<label for="machineNameBox">Machine Name</label>
+						<input type="text" class="form-control" id="machineNameBox">
+					</div>
+					<div class="form-group">
 						<label for="platformSelect">Platform</label>
 						<select class="custom-select" id="platformSelect" >
 							<option value = 'default' id='defaultPlatform' selected>Select Platform</option>
-							<option value = 'win'>Windows</option>
-							<option value = 'lin'>Linux</option>
+							<option value = 'windows_x64'>Windows (64-bit)</option>
+							<option value = 'windows_x32'>Windows (32-bit)</option>
+							<option value = 'linux_x64'>Linux (64-bit)</option>
+							<option value = 'linux_x32'>Linux (32-bit)</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="osSelect">OS</label>
 						<select class="custom-select" id="osSelect" disabled>
 							<option value = 'default' id='defaultOs' selected>Select OS</option>
-							<option>Variable option1</option>
-							<option>Variable option2</option>
+							<option value = "placeholder">Variable option1</option>
+							<option value = "placeholder">Variable option2</option>
 						</select>
 					</div>
 				</form>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" id="addButton">Add</button>
+				<button type="button" class="btn btn-primary" id="addButton" onclick="add_box()">Add</button>
 			  </div>
 			</div>
 		  </div>
@@ -180,22 +186,44 @@
 	
 	
 	<script>
+		window.boxes=[];
 		var osSelect = $('#osSelect');
+		var osWindows64Array = ["windows_7", "windows_81", "windows_10", "windows_server_2008_r2", "windows_server_2012_r2", "windows_server_2016"];
+		var osLinux64Array = [];
+		
 		$('#platformSelect').change(function() {
 			if($( "#platformSelect option:selected" ).val() !== 'default'){
 				osSelect.removeAttr('disabled');
+				if($("#platformSelect option:selected").val()==="windows_x64"){
+					$("#osSelect option").remove();
+					$.each(osWindows64Array, function (i, item) {
+						$('#osSelect').append($('<option>', { 
+							value: item,
+							text : item
+						}));
+					});
+				} else if($("#platformSelect option:selected").val()==="linux_x64"){
+				
+				}
 			}
 			else{
 				// not functional should reset selection when dropdown is disabled $('#defaultOs').attr('selected','selected').siblings().removeAttr('selected');
 				osSelect.attr('disabled','disabled');
 			}
 		});
-	</script>
-	<script>
 		$("#addButton").on('click', function(){
 			<!--do things-->
 			$('#addButton').attr('data-dismiss',"modal");
 		});
+		function add_box(){
+			var machName = $("#machineNameBox").val();
+			var plat = $("#platformSelect option:selected").val();
+			var os = $("#osSelect option:selected").val();
+			
+			window.boxes.push({'name': machName, 'platform':plat, 'os_version':os});
+			
+		}
+		
 	</script>
 
 <!--		ALL IN THIS COMMENT IS DEFUNCT PROOF OF CONCEPT FROM ORIGINAL BUILD
