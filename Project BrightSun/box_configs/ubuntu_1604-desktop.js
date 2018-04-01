@@ -10,5 +10,5 @@ var ubuntu_1604-desktop ={
   "iso_url": "http://releases.ubuntu.com/16.04.4/ubuntu-16.04.4-server-amd64.iso",
   "memory": "1024",
   "preseed": "preseed-desktop.cfg",
-  "vagrantfile_template": "tpl/vagrantfile-ubuntu1604-desktop.tpl"
+  "vagrantfile_template": "ubuntu/tpl/vagrantfile-ubuntu1604-desktop.tpl"
 }

@@ -9,6 +9,6 @@ var ubunt_1404-desktop ={
   "iso_url": "http://releases.ubuntu.com/14.04.5/ubuntu-14.04.5-server-amd64.iso",
   "memory": "1024",
   "preseed": "preseed.cfg",
-  "vagrantfile_template": "tpl/vagrantfile-ubuntu1404-desktop.tpl",
+  "vagrantfile_template": "ubuntu/tpl/vagrantfile-ubuntu1404-desktop.tpl",
   "boot_command_prefix": "<esc><esc><enter><wait>"
 }

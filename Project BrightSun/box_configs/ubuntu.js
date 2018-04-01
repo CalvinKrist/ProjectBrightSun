@@ -21,7 +21,7 @@ var ubuntu = {
       ],
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
-        "http/{{ user `preseed` }}"
+        "ubuntu/http/{{ user `preseed` }}"
       ],
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
@@ -80,17 +80,17 @@ var ubuntu = {
       ],
       "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "script/update.sh",
-        "script/desktop.sh",
-        "script/vagrant.sh",
-        "script/sshd.sh",
-        "script/vmware.sh",
-        "script/virtualbox.sh",
-        "script/parallels.sh",
-        "script/motd.sh",
-        "{{user `custom_script`}}",
-        "script/minimize.sh",
-        "script/cleanup.sh"
+        "ubuntu/script/update.sh",
+        "ubuntu/script/desktop.sh",
+        "ubuntu/script/vagrant.sh",
+        "ubuntu/script/sshd.sh",
+        "ubuntu/script/vmware.sh",
+        "ubuntu/script/virtualbox.sh",
+        "ubuntu/script/parallels.sh",
+        "ubuntu/script/motd.sh",
+        "ubuntu/{{user `custom_script`}}",
+        "ubuntu/script/minimize.sh",
+        "ubuntu/script/cleanup.sh"
       ],
       "type": "shell",
       "expect_disconnect": "true"

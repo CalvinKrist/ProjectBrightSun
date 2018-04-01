@@ -10,5 +10,5 @@ var ubuntu_1710-desktop = {
   "iso_url": "http://releases.ubuntu.com/17.10.1/ubuntu-17.10.1-server-amd64.iso",
   "memory": "1024",
   "preseed": "preseed-desktop.cfg",
-  "vagrantfile_template": "tpl/vagrantfile-ubuntu1704-desktop.tpl"
+  "vagrantfile_template": "ubuntu/tpl/vagrantfile-ubuntu1704-desktop.tpl"
 }
