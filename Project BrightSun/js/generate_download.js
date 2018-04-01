@@ -7,7 +7,7 @@ function build_boxes() {
 	var vagrantfile = "Vagrant.configure(\"2\") do |config|\n";
 	
 	for(var i = 0; i < boxes.length; i++) {
-		if(boxes[i]['platform'] === "linux") {
+		if(boxes[i]['platform'] === "linux_x64") {
 			vagrantfile += "config.vm.box = \"../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box\"\n"
 			vagrantfile += "config.vm.provider :virtualbox do |vb|\n"
 			vagrantfile += "\tvb.name = \"" + boxes[i]['name'] + "\"\n"
@@ -39,7 +39,7 @@ function build_boxes() {
 	//ADD JSON CONFIGS FOR EACH MACHINE
 	for(var i = 0; i < boxes.length; i++) {
 		var box_json = "";
-		if(boxes[i]['platform'] === "linux") {
+		if(boxes[i]['platform'] === "linux_x64") {
 			ubuntu['variables']['output'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
 			switch(boxes[i]['os_version']) {
 				case "ubuntu_1404":
@@ -123,7 +123,7 @@ function build_boxes() {
 	}
 	
 	for(var i = 0; i < boxes.length; i++) {
-		if(boxes[i]['platform'] === "linux") {
+		if(boxes[i]['platform'] === "linux_x64") {
 			zip.add("ubuntu.json", JSON.stringify(ubuntu, null, 2));
 			break;
 		}
