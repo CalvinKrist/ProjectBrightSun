@@ -1,8 +1,8 @@
 function build_boxes() {
 	var boxes = []; //Will be moved into function parameters later
-	boxes.push({'name': 'dc1', 'platform':'windows_x64', 'os_version':'windows_server_2008_r2'});
-	boxes.push({'name': 'dc2', 'platform':'windows_x64', 'os_version':'windows_server_2012_r2'});
-	boxes.push({'name': 'dc3', 'platform':'windows_x64', 'os_version':'windows_server_2016'});
+	boxes.push({'name': '1604', 'platform':'linux', 'os_version':'ubuntu_1604'});
+	boxes.push({'name': '1404', 'platform':'linux', 'os_version':'ubuntu_1404'});
+	boxes.push({'name': '1704-i386', 'platform':'linux', 'os_version':'ubuntu_1710-i386'});
 	
 	
 	var zip = new JSZip();
