@@ -8,3 +8,4 @@ build/*.ps1
 build/*.json
 build/Vagrantfile
 build/packer_cache
+build/output-virtualbox-iso/

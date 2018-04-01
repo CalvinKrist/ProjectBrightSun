@@ -1,7 +1,8 @@
 function build_boxes() {
 	var boxes = []; //Will be moved into function parameters later
-	boxes.push({'name': 'dc1', 'platform':'windows_x64', 'os_version':'windows_7'});
-	boxes.push({'name': 'dc2', 'platform':'windows_x64', 'os_version':'windows_81'});
+	boxes.push({'name': 'dc1', 'platform':'windows_x64', 'os_version':'windows_server_2008_r2'});
+	boxes.push({'name': 'dc2', 'platform':'windows_x64', 'os_version':'windows_server_2012_r2'});
+	boxes.push({'name': 'dc3', 'platform':'windows_x64', 'os_version':'windows_server_2016'});
 	
 	
 	var zip = new JSZip();
@@ -53,6 +54,21 @@ function build_boxes() {
 					windows_10['variables']['vm_name'] = boxes[i]['name'];
 					windows_10['variables']['output_dir'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
 					box_json = JSON.stringify(windows_10, null, 2);
+					break;
+				case "windows_server_2008_r2":
+					windows_server_2008_r2['variables']['vm_name'] = boxes[i]['name'];
+					windows_server_2008_r2['variables']['output_dir'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
+					box_json = JSON.stringify(windows_server_2008_r2, null, 2);
+					break;
+				case "windows_server_2012_r2":
+					windows_server_2012_r2['variables']['vm_name'] = boxes[i]['name'];
+					windows_server_2012_r2['variables']['output_dir'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
+					box_json = JSON.stringify(windows_server_2012_r2, null, 2);
+					break;
+				case "windows_server_2016":
+					windows_server_2016['variables']['vm_name'] = boxes[i]['name'];
+					windows_server_2016['variables']['output_dir'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
+					box_json = JSON.stringify(windows_server_2016, null, 2);
 					break;
 				default:
 					continue;

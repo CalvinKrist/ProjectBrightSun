@@ -1,4 +1,4 @@
-{
+var windows_server_2016 = {
   "builders": [{
 	"type": "virtualbox-iso",
     "vm_name": "{{user `vm_name`}}",
@@ -18,18 +18,18 @@
 	"disk_size": "{{user `disk_size`}}",
 	"floppy_files": [
 		"{{user `autounattend`}}",
-		"./floppy/WindowsPowershell.lnk",
-		"./floppy/PinTo10.exe",
-		"./scripts/unattend.xml",
-		"./scripts/sysprep.bat",
-		"./scripts/disable-screensaver.ps1",
-		"./scripts/disable-winrm.ps1",
-		"./scripts/enable-winrm.ps1",
-		"./scripts/microsoft-updates.bat",
-		"./scripts/win-updates.ps1",
-		"./scripts/oracle-cert.cer",
-        "./configs/local_users.json",
-        "./configs/windows_optional_features.json"
+		"./windows_x64/floppy/WindowsPowershell.lnk",
+		"./windows_x64/floppy/PinTo10.exe",
+		"./windows_x64/scripts/unattend.xml",
+		"./windows_x64/scripts/sysprep.bat",
+		"./windows_x64/scripts/disable-screensaver.ps1",
+		"./windows_x64/scripts/disable-winrm.ps1",
+		"./windows_x64/scripts/enable-winrm.ps1",
+		"./windows_x64/scripts/microsoft-updates.bat",
+		"./windows_x64/scripts/win-updates.ps1",
+		"./windows_x64/scripts/oracle-cert.cer",
+        "./windows_x64/configs/local_users.json",
+        "./windows_x64/configs/windows_optional_features.json"
     ],
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "{{user `ram_size`}}"],
@@ -41,14 +41,14 @@
       "type": "windows-shell",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/vm-guest-tools.bat",
-        "./scripts/enable-rdp.bat"
+        "./windows_x64/scripts/vm-guest-tools.bat",
+        "./windows_x64/scripts/enable-rdp.bat"
       ]
     },
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/debloat-windows.ps1"
+        "./windows_x64/scripts/debloat-windows.ps1"
       ]
     },
     {
@@ -58,37 +58,36 @@
       "type": "windows-shell",
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/pin-powershell.bat",
-        "./scripts/set-winrm-automatic.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
-        "./scripts/uac-enable.bat",
-        "./scripts/compact.bat"
+        "./windows_x64/scripts/pin-powershell.bat",
+        "./windows_x64/scripts/set-winrm-automatic.bat",
+        "./windows_x64/scripts/compile-dotnet-assemblies.bat",
+        "./windows_x64/scripts/uac-enable.bat",
+        "./windows_x64/scripts/compact.bat"
       ]
     },
     {
       "type": "file",
-      "source": "./answer_files/2016/Autounattend_sysprep.xml",
+      "source": "./windows_x64/answer_files/2016/Autounattend_sysprep.xml",
       "destination": "c:/Windows/Temp/Autounattend_sysprep.xml"
     },
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/add-users.ps1",
-        "./scripts/add-windows-optional-features.ps1"
+        "./windows_x64/scripts/add-users.ps1",
+        "./windows_x64/scripts/add-windows-optional-features.ps1"
       ]
     }
   ],
   "post-processors": [{
 	"type": "vagrant",
 	"keep_input_artifact": false,
-	"output": "{{user `output_dir`}}",
-	"vagrantfile_template": "{{user `vagrantfile_template`}}"
+	"output": "{{user `output_dir`}}"
   }],
   "variables": {
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/1/4/9/149D5452-9B29-4274-B6B3-5361DBDA30BC/14393.0.161119-1705.RS1_REFRESH_SERVER_EVAL_X64FRE_EN-US.ISO",
     "iso_checksum_type": "md5",
     "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
-    "autounattend": "./answer_files/2016/Autounattend.xml",
+    "autounattend": "./windows_x64/answer_files/2016/Autounattend.xml",
 	"disk_size": "61440",
     "headless": "false",
     "vm_name": "windows_server_2016",
@@ -96,7 +95,6 @@
     "guest_additions_mode": "disable",
     "ram_size": "2048",
     "cpu_count": "2",
-    "output_dir": "../../Boxes/windows_x64/windows_server_2016.box",
-    "vagrantfile_template": "windows_server_2016_vagrantfile.template"
+    "output_dir": "../Boxes/windows_x64/windows_server_2016.box"
   }
 }
