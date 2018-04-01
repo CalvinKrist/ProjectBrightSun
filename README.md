@@ -56,4 +56,3 @@ Without these amazing people and tools, we would not have been able to build any
 
 ## Miscellaneous Notes
 * User Story Template:   As a \_\___role__\_\_ I want \_\___feature__\_\_ so that \_\___benefit__\_\_
-* [Notes on Vagrant](VagrantNotes.MD)
