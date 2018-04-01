@@ -143,7 +143,7 @@
 							<option value = 'windows_x64'>Windows (64-bit)</option>
 							<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
 							<option value = 'linux_x64'>Linux (64-bit)</option>
-							<!--<option value = 'linux_x32'>Linux (32-bit)</option>-->
+							<option value = 'linux_x32'>Linux (32-bit)</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -202,7 +202,8 @@
 		window.boxes=[];
 		var osSelect = $('#osSelect');
 		var osWindows64Array = ["windows_7", "windows_81", "windows_10", "windows_server_2008_r2", "windows_server_2012_r2", "windows_server_2016"];
-		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1404_i386", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1604_i386", "ubuntu_1710", "ubuntu_1710_desktop", "ubuntu_1710_i386"];
+		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1710", "ubuntu_1710_desktop"];
+		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];
 		
 		$('#platformSelect').change(function() {
 			if($( "#platformSelect option:selected" ).val() !== 'default'){
@@ -218,6 +219,14 @@
 				} else if($("#platformSelect option:selected").val()==="linux_x64"){
 				$("#osSelect option").remove();
 					$.each(osLinux64Array, function (i, item) {
+						$('#osSelect').append($('<option>', { 
+							value: item,
+							text : item
+						}));
+					});
+				} else if($("#platformSelect option:selected").val()==="linux_x32"){
+				$("#osSelect option").remove();
+					$.each(osLinux32Array, function (i, item) {
 						$('#osSelect').append($('<option>', { 
 							value: item,
 							text : item
