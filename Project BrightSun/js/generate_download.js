@@ -11,22 +11,29 @@ function build_boxes() {
 	var vagrantfile = "Vagrant.configure(\"2\") do |config|\n";
 	
 	for(var i = 0; i < boxes.length; i++) {
-		vagrantfile += "\tconfig.vm.define \"" + boxes[i]['name'] + "\" do |" + boxes[i]['name'] + "|\n";
-		vagrantfile += "\t\t" + boxes[i]['name'] + ".vm.box = \"../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box\"\n"
-		vagrantfile += "\t\t" + boxes[i]['name'] + ".vm.provider :virtualbox do |vb|\n";
-		vagrantfile += "\t\t\tvb.name = \"" + boxes[i]['name'] + "\"\n";
-		vagrantfile += "\t\t\tvb.gui = true\n";
-		vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--memory\", 2048]\n";
-		vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--cpus\", 1]\n";
-		vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--vram\", \"32\"]\n";
-		vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--clipboard\", \"bidirectional\"]\n";
-		vagrantfile += "\t\t\tvb.customize [\"setextradata\", \"global\", \"GUI/SuppressMessages\", \"all\"]\n";
-		vagrantfile += "\t\tend\n";
-		vagrantfile += "\t\t\n";
-		vagrantfile += "\t\t" + boxes[i]['name'] + ".winrm.transport = :plaintext\n";
-		vagrantfile += "\t\t" + boxes[i]['name'] + ".winrm.basic_auth_only = true\n";
-		vagrantfile += "\t\t" + boxes[i]['name'] + ".vm.communicator = \"winrm\"\n";
-		vagrantfile += "\tend\n";
+		if(boxes[i]['platform'] === "linux") {
+			vagrantfile += "config.vm.box = \"../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box\"\n"
+			vagrantfile += "config.vm.provider :virtualbox do |vb|\n"
+			vagrantfile += "\tvb.name = \"" + boxes[i]['name'] + "\"\n"
+			vagrantfile += "\tend\n"
+		} else if(boxes[i]['platform'] === "windows_x64") {
+			vagrantfile += "\tconfig.vm.define \"" + boxes[i]['name'] + "\" do |" + boxes[i]['name'] + "|\n";
+			vagrantfile += "\t\t" + boxes[i]['name'] + ".vm.box = \"../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box\"\n"
+			vagrantfile += "\t\t" + boxes[i]['name'] + ".vm.provider :virtualbox do |vb|\n";
+			vagrantfile += "\t\t\tvb.name = \"" + boxes[i]['name'] + "\"\n";
+			vagrantfile += "\t\t\tvb.gui = true\n";
+			vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--memory\", 2048]\n";
+			vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--cpus\", 1]\n";
+			vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--vram\", \"32\"]\n";
+			vagrantfile += "\t\t\tvb.customize [\"modifyvm\", :id, \"--clipboard\", \"bidirectional\"]\n";
+			vagrantfile += "\t\t\tvb.customize [\"setextradata\", \"global\", \"GUI/SuppressMessages\", \"all\"]\n";
+			vagrantfile += "\t\tend\n";
+			vagrantfile += "\t\t\n";
+			vagrantfile += "\t\t" + boxes[i]['name'] + ".winrm.transport = :plaintext\n";
+			vagrantfile += "\t\t" + boxes[i]['name'] + ".winrm.basic_auth_only = true\n";
+			vagrantfile += "\t\t" + boxes[i]['name'] + ".vm.communicator = \"winrm\"\n";
+			vagrantfile += "\tend\n";
+		}
 	}
 	vagrantfile += "\nend";
 	
@@ -37,7 +44,48 @@ function build_boxes() {
 	for(var i = 0; i < boxes.length; i++) {
 		var box_json = "";
 		if(boxes[i]['platform'] === "linux") {
-			continue;
+			ubuntu['variables']['output'] = "../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box"
+			switch(boxes[i]['os_version']) {
+				case "ubuntu_1404":
+					ubuntu_1404['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1404, null, 2);
+					break;
+				case "ubuntu_1404-i386":
+					ubuntu_1404-i386['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1404-i386, null, 2);
+					break;
+				case "ubuntu_1404-desktop":
+					ubuntu_1404-desktop['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1404-desktop, null, 2);
+					break;
+				case "ubuntu_1604":
+					ubuntu_1604['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1604, null, 2);
+					break;
+				case "ubuntu_1604-i386":
+					ubuntu_1604-i386['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1604-i386, null, 2);
+					break;
+				case "ubuntu_1604-desktop":
+					ubuntu_1604-desktop['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1604-desktop, null, 2);
+					break;
+				case "ubuntu_1710":
+					ubuntu_1710['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1710, null, 2);
+					break;
+				case "ubuntu_1710-i386":
+					ubuntu_1710-i386['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1710-i386, null, 2);
+					break;
+				case "ubuntu_1710-desktop":
+					ubuntu_1710-desktop['variables']['vm_name'] = boxes[i]['name'];
+					box_json = JSON.stringify(ubuntu_1710-desktop, null, 2);
+					break;
+				default:
+					continue;
+				
+			}
 		} else if(boxes[i]['platform'] === "windows_x64") {
 			switch(boxes[i]['os_version']) {
 				case "windows_7":
@@ -79,12 +127,22 @@ function build_boxes() {
 		zip.add(boxes[i]['name'] + ".json", box_json);
 	}
 	
+	for(var i = 0; i < boxes.length; i++) {
+		if(boxes[i]['platform'] === "linux") {
+			zip.add("ubuntu.json", JSON.stringify(ubuntu, null, 2));
+			break;
+		}
+	
 	
 	//GENERATE THE BUILD SCRIPT
 	var build_script = "";
 	
 	for(var i = 0; i < boxes.length; i++) {
-		build_script += "packer build " + boxes[i]['name'] + ".json\n";
+		if(boxes[i]['platform'] === "linux") {
+			build_script += "packer build -var-file=" + boxes[i]['os_version'] + ".json ubuntu.json\n";
+		} else if(boxes[i]['platform'] === "windows_x64") {
+			build_script += "packer build " + boxes[i]['name'] + ".json\n";
+		}
 	}
 	build_script += "vagrant up";
 	
