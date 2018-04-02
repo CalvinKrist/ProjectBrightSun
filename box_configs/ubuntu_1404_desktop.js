@@ -1,4 +1,4 @@
-var ubunt_1404-desktop ={
+var ubunt_1404_desktop ={
   "vm_name": "ubuntu1404-desktop",
   "desktop": "true",
   "cpus": "1",

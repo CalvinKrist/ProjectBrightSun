@@ -1,4 +1,4 @@
-var ubuntu_1710-desktop = {
+var ubuntu_1710_desktop = {
   "vm_name": "ubuntu1710-desktop",
   "desktop": "true",
   "locale": "en_US.UTF-8",

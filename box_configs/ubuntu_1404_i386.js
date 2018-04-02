@@ -1,4 +1,4 @@
-var ubuntu_1404-i386 = {
+var ubuntu_1404_i386 = {
   "vm_name": "ubuntu1404-i386",
   "cpus": "1",
   "disk_size": "65536",

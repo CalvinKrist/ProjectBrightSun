@@ -1,4 +1,4 @@
-var ubuntu_1604-desktop ={
+var ubuntu_1604_desktop = {
   "vm_name": "ubuntu1604-desktop",
   "desktop": "true",
   "locale": "en_US.UTF-8",
