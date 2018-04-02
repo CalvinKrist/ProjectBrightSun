@@ -134,7 +134,7 @@ function build_boxes() {
 	
 	for(var i = 0; i < boxes.length; i++) {
 		if(boxes[i]['platform'] === "linux_x64") {
-			build_script += "packer build -var-file=" + boxes[i]['os_version'] + ".json ubuntu.json\n";
+			build_script += "packer build -var-file=\"" + boxes[i]['name'] + ".json\" ubuntu.json\n";
 		} else if(boxes[i]['platform'] === "windows_x64") {
 			build_script += "packer build " + boxes[i]['name'] + ".json\n";
 		}
