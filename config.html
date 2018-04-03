@@ -44,83 +44,17 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#optionsModal">Add New Machine</button>
+						<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#optionsModal" onclick="clear_fields()">Add New Machine</button>
 						<button type="button" class="btn btn-outline-success" onclick="build_boxes()">Download</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<br>
-		<div class="row">
-			<div class="card-deck">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="card-link btn btn-sm btn-info">Edit</a>
-						<a href="#" class="card-link btn btn-sm btn-danger">Remove</a>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="card-link btn btn-sm btn-info">Edit</a>
-						<a href="#" class="card-link btn btn-sm btn-danger">Remove</a>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="card-link btn btn-sm btn-info">Edit</a>
-						<a href="#" class="card-link btn btn-sm btn-danger">Remove</a>
-					</div>
-				</div>
-			</div>
+		<div id="card_well">
+			You have no machines yet! Click the "Add new machine" button to get started.
+			<div class="row"><div class="card-deck"></div></div>
 		</div>
-		<br>
-		<div class="row">
-			<div class="card-deck" id="machine_deck">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="card-link btn btn-sm btn-info">Edit</a>
-						<a href="#" class="card-link btn btn-sm btn-danger">Remove</a>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="card-link btn btn-sm btn-info">Edit</a>
-						<a href="#" class="card-link btn btn-sm btn-danger">Remove</a>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="card-link btn btn-sm btn-info">Edit</a>
-						<a href="#" class="card-link btn btn-sm btn-danger">Remove</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<div class="modal" id="optionsModal" tabindex="-1" role="dialog">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -139,7 +73,6 @@
 					<div class="form-group">
 						<label for="platformSelect">Platform</label>
 						<select class="custom-select" id="platformSelect" >
-							<option value = 'default' id='defaultPlatform' selected>Select Platform</option>
 							<option value = 'windows_x64'>Windows (64-bit)</option>
 							<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
 							<option value = 'linux_x64'>Linux (64-bit)</option>
@@ -148,17 +81,14 @@
 					</div>
 					<div class="form-group">
 						<label for="osSelect">OS</label>
-						<select class="custom-select" id="osSelect" disabled>
-							<option value = 'default' id='defaultOs' selected>Select OS</option>
-							<option value = "placeholder">Variable option1</option>
-							<option value = "placeholder">Variable option2</option>
+						<select class="custom-select" id="osSelect">
 						</select>
 					</div>
 				</form>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" id="addButton" onclick="add_box()">Add</button>
+				<button type="button" class="btn btn-primary" id="addButton">Add</button>
 			  </div>
 			</div>
 		  </div>
@@ -171,7 +101,6 @@
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
-	<script src="./ConfigJQ.js"></script>
 	<script type="text/javascript" src="js/jszip.js"></script>
 	<script type="text/javascript" src="js/download.js"></script>
 	<script type="text/javascript" src="js/generate_download.js"></script>
@@ -206,6 +135,13 @@
 		var osWindows64Array = ["windows_7", "windows_81", "windows_10", "windows_server_2008_r2", "windows_server_2012_r2", "windows_server_2016"];
 		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1710", "ubuntu_1710_desktop"];
 		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];
+		
+		$.each(osWindows64Array, function (i, item) {
+			$('#osSelect').append($('<option>', { 
+				value: item,
+				text : item
+			}));
+		});
 		
 		$('#platformSelect').change(function() {
 			if($( "#platformSelect option:selected" ).val() !== 'default'){
@@ -242,187 +178,37 @@
 			}
 		});
 		$("#addButton").on('click', function(){
-			<!--do things-->
-			$('#addButton').attr('data-dismiss',"modal");
+			if(check_all_add_fields_set()) {
+				$('#addButton').attr('data-dismiss',"modal");
+				add_box();
+			} else {
+				$('#optionsModal').modal('show');
+			}
 		});
-		function add_box(){
+		function check_all_add_fields_set() {
+			if($("#machineNameBox").val() === "") { //name not set
+				alert("Please give your box a hostname!");
+				return false;
+			}
+			return true;
+		}
+		function add_box() {
 			var machName = $("#machineNameBox").val();
 			var plat = $("#platformSelect option:selected").val();
 			var os = $("#osSelect option:selected").val();
 			
 			window.boxes.push({'name': machName, 'platform':plat, 'os_version':os});
 			
+			//Add card to page
+			if(window.boxes.length % 3 === 1 && window.boxes.length !== 0) { //add new row
+				$('#card_well')[0].innerHTML += '<br><div class="row"><div class="card-deck"></div></div>';
+			}
+			
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger">Remove</a></div></div>';
 		}
-		
+		function clear_fields() {
+			$("#machineNameBox").val('');
+		}
 	</script>
-
-<!--		ALL IN THIS COMMENT IS DEFUNCT PROOF OF CONCEPT FROM ORIGINAL BUILD
-<table class="table table-static">
-    <tr>
-      <td>
-        Load Template <br>
-      </td>
-      <td>
-        <input class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" type="file">
-      </td>
-    </tr>
-   </thread>
-
-  <tr>
-    <th scope="row" rowspan="2">
-      Checkboxes Section 1
-    </th>
-    <td>
-      <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 1a
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 2a
-        </label>
-      </div>
-    </fieldset>
-    </td>
-    <td>
-     <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 3a
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 4a
-        </label>
-      </div>
-    </fieldset>
-    </td>
-  </tr>
- 
-  <tr>
-       <td>
-      <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 1b
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 2b
-        </label>
-      </div>
-    </fieldset>
-    </td>
-    <td>
-     <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 3b
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 4b
-        </label>
-      </div>
-    </fieldset>
-    </td>
-  </tr>
-
-<tr>
-    <th scope="row" rowspan="2">
-      Checkboxes Section 2
-    </th>
-       <td>
-      <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 1c
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 2c
-        </label>
-      </div>
-    </fieldset>
-    </td>
-    <td>
-     <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 3c
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 4c
-        </label>
-      </div>
-    </fieldset>
-    </td>
-  </tr>
- 
-  <tr>
-       <td>
-      <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 1d
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 2d
-        </label>
-      </div>
-    </fieldset>
-    </td>
-    <td>
-     <fieldset class="form-group">
-      <legend>Checkboxes</legend>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 3d
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" value="" checked="" type="checkbox">
-          Option 4d
-        </label>
-      </div>
-    </fieldset>
-    </td>
-  </tr>
-
-</table>
--->
 </body>
 </html>
