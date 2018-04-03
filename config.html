@@ -218,7 +218,9 @@
 			} else {
 			}
 			
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>Windows Server 2008</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger">Remove</a></div></div>';
+			var os_label = '<p>' + os + '</p>';
+			
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger">Remove</a></div></div>';
 		}
 		function clear_fields() {
 			$("#machineNameBox").val('');
