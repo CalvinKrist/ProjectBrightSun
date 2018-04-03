@@ -1,4 +1,8 @@
 function build_boxes() {
+	if(window.boxes.length === 0) {
+		alert("Please add a new machine first!");
+		return;
+	}
 	var boxes = window.boxes;
 	
 	var zip = new JSZip();

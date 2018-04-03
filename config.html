@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 </head>
 <body>
-	<nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
 		<a class="navbar-brand" href="#">Project BrightSun</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -44,15 +44,15 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#optionsModal" onclick="clear_fields()">Add New Machine</button>
-						<button type="button" class="btn btn-outline-success" onclick="build_boxes()">Download</button>
+						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" onclick="clear_fields()">Add New Machine</button>
+						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<br>
 		<div id="card_well">
-			You have no machines yet! Click the "Add new machine" button to get started.
+			<p id="no_box_text">You have no machines yet! Click the "Add new machine" button to get started.</p>
 			<div class="row"><div class="card-deck"></div></div>
 		</div>
 		<div class="modal" id="optionsModal" tabindex="-1" role="dialog">
@@ -65,26 +65,24 @@
 				</button>
 			  </div>
 			  <div class="modal-body">
-				<form>
-					<div class="form-group">
-						<label for="machineNameBox">Machine Name</label>
-						<input type="text" class="form-control" id="machineNameBox">
-					</div>
-					<div class="form-group">
-						<label for="platformSelect">Platform</label>
-						<select class="custom-select" id="platformSelect" >
-							<option value = 'windows_x64'>Windows (64-bit)</option>
-							<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
-							<option value = 'linux_x64'>Linux (64-bit)</option>
-							<option value = 'linux_x32'>Linux (32-bit)</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="osSelect">OS</label>
-						<select class="custom-select" id="osSelect">
-						</select>
-					</div>
-				</form>
+				<div class="form-group">
+					<label for="machineNameBox">Machine Name</label>
+					<input type="text" class="form-control" id="machineNameBox">
+				</div>
+				<div class="form-group">
+					<label for="platformSelect">Platform</label>
+					<select class="custom-select" id="platformSelect" >
+						<option value = 'windows_x64'>Windows (64-bit)</option>
+						<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
+						<option value = 'linux_x64'>Linux (64-bit)</option>
+						<option value = 'linux_x32'>Linux (32-bit)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="osSelect">OS</label>
+					<select class="custom-select" id="osSelect">
+					</select>
+				</div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -179,7 +177,7 @@
 		});
 		$("#addButton").on('click', function(){
 			if(check_all_add_fields_set()) {
-				$('#addButton').attr('data-dismiss',"modal");
+				$('#optionsModal').modal('hide');
 				add_box();
 			} else {
 				$('#optionsModal').modal('show');
@@ -188,6 +186,9 @@
 		function check_all_add_fields_set() {
 			if($("#machineNameBox").val() === "") { //name not set
 				alert("Please give your box a hostname!");
+				return false;
+			} else if(window.boxes.map(value => value.name).includes($("#machineNameBox").val())) {
+				alert("Your box hostname cannot be the same as another box!");
 				return false;
 			}
 			return true;
@@ -199,12 +200,25 @@
 			
 			window.boxes.push({'name': machName, 'platform':plat, 'os_version':os});
 			
+			if(window.boxes.length === 0) {
+				$('#no_box_text').show();
+			} else {
+				$('#no_box_text').hide();
+			}
+			
 			//Add card to page
 			if(window.boxes.length % 3 === 1 && window.boxes.length !== 0) { //add new row
 				$('#card_well')[0].innerHTML += '<br><div class="row"><div class="card-deck"></div></div>';
 			}
 			
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger">Remove</a></div></div>';
+			if(plat.includes('windows')) {
+				var plat_label = '<span class="badge badge-info">Windows</span>';
+			} else if(plat.includes('linux')) {
+				var plat_label = '<span class="badge badge-warning">Linux</span>';
+			} else {
+			}
+			
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>Windows Server 2008</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger">Remove</a></div></div>';
 		}
 		function clear_fields() {
 			$("#machineNameBox").val('');
