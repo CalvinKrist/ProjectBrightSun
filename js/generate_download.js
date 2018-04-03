@@ -142,6 +142,7 @@ function build_boxes() {
 	build_script += "vagrant up";
 	
 	zip.add("build.ps1", build_script);
+	zip.add("build.sh", build_script);
 	
 	
 	//GENERATE THE ZIP FILE AND START DOWNLOAD
