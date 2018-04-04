@@ -134,6 +134,9 @@
 		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1710", "ubuntu_1710_desktop"];
 		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];
 		
+		
+		//populates modal os drop-down with windows options when modal is 
+		//created since windows is the default selected platform
 		$.each(osWindows64Array, function (i, item) {
 			$('#osSelect').append($('<option>', { 
 				value: item,
@@ -141,6 +144,8 @@
 			}));
 		});
 		
+		
+		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		$('#platformSelect').change(function() {
 			if($( "#platformSelect option:selected" ).val() !== 'default'){
 				osSelect.removeAttr('disabled');
@@ -175,6 +180,11 @@
 				osSelect.attr('disabled','disabled');
 			}
 		});
+		
+		
+		//When "add" button on modal is clicked, checks if all fields are populated. If not,
+		//gives a warning saying to do so and lets you return to the modal to try again. 
+		//If so, hides the modal and calls the add_box() function
 		$("#addButton").on('click', function(){
 			if(check_all_add_fields_set()) {
 				$('#optionsModal').modal('hide');
@@ -183,6 +193,9 @@
 				$('#optionsModal').modal('show');
 			}
 		});
+		
+		
+		//checks if name field is populated with valid content. If not, returns false and gives an alert, otherwise, returns true.
 		function check_all_add_fields_set() {
 			if($("#machineNameBox").val() === "") { //name not set
 				alert("Please give your box a hostname!");
@@ -193,6 +206,8 @@
 			}
 			return true;
 		}
+		
+		//adds data selected in modal to a box for later download
 		function add_box() {
 			var machName = $("#machineNameBox").val();
 			var plat = $("#platformSelect option:selected").val();
@@ -220,8 +235,15 @@
 			
 			var os_label = '<p>' + os + '</p>';
 			
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger">Remove</a></div></div>';
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
 		}
+		var i =1;
+		$(".removeButton").on('click', function(event){
+			console.log(i);
+			i++;
+			console.log($(event.currentTarget).closest(".card-title").text());
+		});
+		
 		function clear_fields() {
 			$("#machineNameBox").val('');
 		}
