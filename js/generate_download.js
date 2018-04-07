@@ -13,7 +13,7 @@ function build_boxes() {
 	for(var i = 0; i < boxes.length; i++) {
 		if(boxes[i]['platform'] === "linux_x64") {
 			vagrantfile += "config.vm.box = \"../Boxes/" + boxes[i]['platform'] + "/" + boxes[i]['name'] + ".box\"\n"
-			vagrantfile += "conf.vm.define \"" + boxes[i]['name'] + "\""
+			vagrantfile += "config.vm.define \"" + boxes[i]['name'] + "\"\n"
 			vagrantfile += "config.vm.provider :virtualbox do |vb|\n"
 			vagrantfile += "\tvb.name = \"" + boxes[i]['name'] + "\"\n"
 			vagrantfile += "\tend\n"
