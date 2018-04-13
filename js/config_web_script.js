@@ -112,12 +112,18 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		}
 		
 		
-		//below is the not (not yet working) foundation for card removal
-		var i =1;
-		$(".removeButton").on('mouseenter', function(event){
-			console.log(i);
-			i++;
-			console.log($(event.currentTarget).closest(".card-title").text());
+		//below is the foundation for card removal
+		$('#card_well').on('click', '.removeButton', function(event){
+			//must use  $('#card_well').on('click', '.removeButton', function(event){ 
+			//instead of $('.removeButton').on('click', function(event){ because you can
+			//only directly target elements that exist when the script it initially executed
+			
+			$(event.currentTarget).closest(".card").remove();
+			
+			//function for when I can finally access the HTML
+			/*
+			
+			*/
 		});
 		
 		
