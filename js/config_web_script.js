@@ -86,6 +86,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var plat = $("#platformSelect option:selected").val();
 			var os = $("#osSelect option:selected").val();
 			
+			
 			window.boxes.push({'name': machName, 'platform':plat, 'os_version':os});
 			
 			if(window.boxes.length === 0) {
@@ -112,18 +113,20 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		}
 		
 		
-		//below is the foundation for card removal
-		$('#card_well').on('click', '.removeButton', function(event){
-			//must use  $('#card_well').on('click', '.removeButton', function(event){ 
-			//instead of $('.removeButton').on('click', function(event){ because you can
-			//only directly target elements that exist when the script it initially executed
+		//removes the object represented by the card from window.boxes then removes the card from the GUI
+		$('#card_well').on('click', '.removeButton', function(event){   			//must use  $('#card_well').on('click', '.removeButton', function(event){ instead of $('.removeButton').on('click', function(event){ because you can only directly target elements that exist when the script it initially executed
+
+			var machToRemoveName = $(event.currentTarget).closest('.card').find($('.card-title')).text();
+			var machToRemoveIndex;
+			$.each(window.boxes, function(index, value){
+				if(machToRemoveName === value.name){
+					machToRemoveIndex = index;
+					return false;
+				}
+			});
+			window.boxes.splice(machToRemoveIndex, 1);
 			
 			$(event.currentTarget).closest(".card").remove();
-			
-			//function for when I can finally access the HTML
-			/*
-			
-			*/
 		});
 		
 		
