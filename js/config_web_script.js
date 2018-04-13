@@ -79,6 +79,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			return true;
 		}
 		
+		
 		//adds data selected in modal to a box for later download
 		function add_box() {
 			var machName = $("#machineNameBox").val();
@@ -110,13 +111,15 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
 		}
 		
+		
 		//below is the not (not yet working) foundation for card removal
 		var i =1;
-		$(".removeButton").on('click', function(event){
+		$(".removeButton").on('mouseenter', function(event){
 			console.log(i);
 			i++;
 			console.log($(event.currentTarget).closest(".card-title").text());
 		});
+		
 		
 		//clears name text box in the modal
 		$("#addNewMachineButton").on('click', function(){
