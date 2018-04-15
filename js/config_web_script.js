@@ -7,7 +7,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];
 		
 		
-		//populates modal os drop-down with windows options when modal is 
+		//populates options modal os drop-down with windows options when options modal is 
 		//created since windows is the default selected platform
 		$.each(osWindows64Array, function (i, item) {
 			$('#osSelect').append($('<option>', { 
@@ -17,7 +17,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		});
 		
 		
-		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
+		//options-modal: When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		$('#platformSelect').change(function() {
 			if($( "#platformSelect option:selected" ).val() !== 'default'){
 				osSelect.removeAttr('disabled');
@@ -41,6 +41,42 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				$("#osSelect option").remove();
 					$.each(osLinux32Array, function (i, item) {
 						$('#osSelect').append($('<option>', { 
+							value: item,
+							text : item
+						}));
+					});
+				}
+			}
+			else{
+				// not functional should reset selection when dropdown is disabled $('#defaultOs').attr('selected','selected').siblings().removeAttr('selected');
+				osSelect.attr('disabled','disabled');
+			}
+		});
+		
+		//edit-modal: When the platform is changed in the drop-down, clears and repopulates os drop-down options
+		$('#editPlatformSelect').change(function() {
+			if($( "#editPlatformSelect option:selected" ).val() !== 'default'){
+				osSelect.removeAttr('disabled');
+				if($("#editPlatformSelect option:selected").val()==="windows_x64"){
+					$("#editOsSelect option").remove();
+					$.each(osWindows64Array, function (i, item) {
+						$('#editOsSelect').append($('<option>', { 
+							value: item,
+							text : item
+						}));
+					});
+				} else if($("#editPlatformSelect option:selected").val()==="linux_x64"){
+				$("#editOsSelect option").remove();
+					$.each(osLinux64Array, function (i, item) {
+						$('#editOsSelect').append($('<option>', { 
+							value: item,
+							text : item
+						}));
+					});
+				} else if($("#editPlatformSelect option:selected").val()==="linux_x32"){
+				$("#editOsSelect option").remove();
+					$.each(osLinux32Array, function (i, item) {
+						$('#editOsSelect').append($('<option>', { 
 							value: item,
 							text : item
 						}));
@@ -109,7 +145,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			
 			var os_label = '<p>' + os + '</p>';
 			
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
 		}
 		
 		
@@ -130,7 +166,19 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		});
 		
 		
-		//clears name text box in the modal
+		$('#card_well').on('click', '.editButton', function(event){
+			var machName = $(event.currentTarget).closest('.card').find($('.card-title')).text();
+			var machPlat = $(event.currentTarget).closest('.card').find($('#platformSelect option:selected')).val();
+			var machOs = $(event.currentTarget).closest('.card').find($('#psSelect option:selected')).val();
+		
+			$('#editMachineNameBox').val(machName);
+			$('#editPlatformSelect').val(machPlat);
+			$('#editOsSelect').val(machOs);
+			
+		});
+		
+		
+		//clears name text box in the options modal
 		$("#addNewMachineButton").on('click', function(){
 			$("#machineNameBox").val('');
 		});
