@@ -28,8 +28,8 @@ var windows_server_2008_r2 = {
         "./windows_x64/configs/windows_optional_features.json"
     ],
 	"vboxmanage": [
-      ["modifyvm", "{{.Name}}", "--memory", "{{user `ram_size`}}"],
-      ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpu_count`}}"]
+      ["modifyvm", "{{.Name}}", "--memory", "{{user `memory`}}"],
+      ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpus`}}"]
     ]
   }],
   "provisioners": [
@@ -77,8 +77,8 @@ var windows_server_2008_r2 = {
     "vm_name": "windows_server_2008_r2",
     "winrm_timeout": "8h",
     "guest_additions_mode": "disable",
-    "ram_size": "2048",
-    "cpu_count": "2",
+    "memory": "2048",
+    "cpus": "2",
     "output_dir": "../Boxes/windows_x64/windows_server_2008_r2.box"
   }
 }
