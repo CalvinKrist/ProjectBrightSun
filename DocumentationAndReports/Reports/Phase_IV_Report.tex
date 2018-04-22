@@ -1,0 +1,218 @@
+\documentclass[openright]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{flafter} 
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{forest}
+\usepackage{algpseudocode}
+\usepackage{changepage}
+\usepackage{siunitx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{titletoc}
+\usepackage{array}
+\usepackage[toc,page]{appendix}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage{tabulary}
+\usepackage[labelformat=empty]{caption}
+\usepackage[english]{babel}
+\usepackage[nottoc]{tocbibind}
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[scaled=.85]{beramono}
+
+\newcolumntype{K}[1]{>{\centering\arraybackslash}p{#1}}
+
+\graphicspath{ {images/} }
+\usetikzlibrary{automata,positioning}
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\renewcommand{\familydefault}{\rmdefault}
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+
+\linespread{1.25}
+
+\pagestyle{fancy}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+\lhead{\projectAuthorShort}
+\chead{\reportTopic}
+\rhead{\leftmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\newcommand{\reportTopic}{Phase IV Report}
+\newcommand{\projectAuthorShort}{Cybersecurity Education Group}
+\newcommand{\projectTitle}{Hands-on Cybersecurity Education}
+\newcommand{\reportDueDate}{February 23, 2018}
+\newcommand{\reportClass}{Synthesis Design II}
+\newcommand{\reportClassInstructor}{Professor Dana Elzey}
+\newcommand{\reportAuthorName}{Clark Benham (cb5ye), Calvin Krist (czk4ja), Saeed Razavi (slr4gf),\\and Jake Smith (jts5np)}
+\newcommand{\collaborators}{}
+
+\title{
+    \vspace{2in}
+    \LARGE{\textbf{\projectTitle}}\\
+    \vspace{0.1in}\large{\reportClass:\ \reportTopic}\\
+    \vspace{0.1in}\large{\reportClassInstructor}\\
+    \normalsize\vspace{0.1in}\large{Due\ on\ \reportDueDate\ at 5:00pm}
+    \vspace{1.4in}
+}
+
+\author{\reportAuthorName}
+\date{}
+
+\renewcommand{\contentsname}{Table of Contents}
+\titlespacing*{\chapter}{0pt}{-40pt}{40pt}
+
+\titleformat{\chapter}
+  {\Large\bfseries} % format
+  {}                % label
+  {0pt}             % sep
+  {\huge \vspace{-0.2in}}           % before-code
+
+\begin{document}
+
+\maketitle
+
+\large{\tableofcontents}
+
+\chapter{Introduction}
+
+\par steal most of this form our Phase I/II report
+
+\section{Problem Context}
+
+\section{Problem Overview}
+
+\section{Customers and Target Audience}
+
+\subsection{UVA Computer and Network Security Club}
+
+\subsection{Cybersecurity Professors}
+
+
+\chapter{Testing Methods}
+
+\section{Quantitative Analysis}
+
+\section{Qualitative Analysis}
+note: talk about customer feedback approach, etc
+
+\section{Product Requirements}
+
+
+\chapter{Iterative Approach}
+
+\section{Usage of Scrum Project Management}
+talk about as applied to project, with reviews/retrospectives, etc
+
+\subsection{Perspective: Beginning Scrum User}
+
+\subsection{Perspective: Experienced Scrum User}
+
+\section{Major Increment 1: POC - Automated Virtualization}
+answer question? is it possible to automate builds of different operating systems? how to do so? etc
+
+\section{Major Increment 2: POC -  Website and Virtualization Integration}
+answer question? how is the easiest way for user to create layout on website? how can website export to autobuilding format? how to automate setup? etc
+
+\chapter{Current State: A Minimum Viable Product (MVP)}
+
+\section{Overview}
+write a high level overview here
+
+\subsection{Windows Virtualization}
+
+\subsubsection{Current Progress}
+
+\subsubsection{Future Work}
+
+\subsection{Linux Virtualization}
+
+\subsubsection{Current Progress}
+
+\subsubsection{Future Work}
+
+\subsection{Website Presentation}
+
+\subsubsection{Current Progress}
+
+\subsubsection{Future Work}
+
+\subsection{Lesson Templates}
+
+\subsubsection{Current Progress}
+
+\subsubsection{Future Work}
+
+\section{Future Plans}
+
+\chapter{Risk Assessment}
+
+\section{Design for Environmental Sustainability}
+
+\chapter{Conclusion}
+
+\par Numerical testing: this is where we talk about the actual testing of our project and what we learned from it. For us, this is likely an analysis of minimum hardware specs with the context of generating product requirements that will allow us to make a product for our audience. In other words, what do we need to do in order to ensure that students can use our product?
+
+\par Iterate: here we spend a lot of time talking about how our product has changed throughout the iterative design process. How did we begin, what features did we add and why, what did we learn, what might we do differently, how did customer input affect what we do, did the purpose of our product change, etc. This one should have an emphasis on specific design changes, especially major changes. Looking at our project releases should help with this. Make sure we discuss WHY we made the decisions we did: WHY did we use modals for editing boxe? WHY did we make everything a local website? The WHY matters a lot.
+
+\par Current state: what is our fina design right now? This should be as exhaustive as possible, likely involving lots of images. We should discuss how we intend the product to be used at the moment. What are the strengths and weaknesses of the design? What do we see being an issue in the future? Do we think people will use it? Why and why not? Who will use it? Moving forward: what features do we plan to add in the future? Do we have a plan for how and when we will do so? How will those features change the use of our product? Does that change any of the risk factors? What design goals will we need to meet? How will we overcome the challenges identified in the 'current state' section? How are we going to keep organized when we're not physically near each other? What other challenges might we face? How will we promote our product? This should be a solid plan for the future.
+
+
+\par Risk assessment: here we should assess the various risks inherent in our design. This will involve tables and things like that. We need to come at this from multiple angles: an environmental angle and 'other'. The environmental angle will be hard, but generally might go like 'our product could increase power consumption and the use of computers. As IoT devices become more prominent and secure, they will be used more, requiring more hardware, increasing things like silicon mining. Here are some rough estimates of the impact our product could have as a function of its popularity'. The 'other' section should discuss ethics a lot: what if our product is used to hack a factory and someone gets hurt? What if our product is used to protect a factory and no one gets hurt? Are there other associated risks like health risks from sitting all day? We need to justify what we say and come up with a plan to mitigate risks, and show how we have mitigated risks so far.
+
+
+\par Reflection: what have we learned? How did we learn this? How will we incorporate what we learned into our project moving forwards? Would we do anything differently? Reflect.
+
+\pat Conclusion: how effectively have we addressed the identified problem? Will this effectively help teach cybersecurity and address the dearth of qualified professionals? Will it make the problem worse? What will we continue to do to address the problem?
+
+
+
+
+\begin{appendices}
+\chapter{Brainstormed Solution Ideas List}
+
+
+\end{appendices}
+
+%Sets the bibliography style to UNSRT and imports the 
+%bibliography file "samples.bib".
+
+\bibliographystyle{unsrt}
+\bibliography{Bibliographies/Phase_I_II.bib}
+
+
+\listoffigures
+\cleardoublepage
+
+
+\end{document} 
