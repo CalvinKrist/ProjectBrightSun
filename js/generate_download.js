@@ -57,8 +57,9 @@ function build_boxes() {
 	var build_script = "";
 	
 	for(var i = 0; i < boxes.length; i++) {
-			build_script += "packer build " + boxes[i]['name'] + ".json\n";
+			build_script += "packer build " + boxes[i]['name'] + ".json\n"; //&
 	}
+	//build_script += "wait";
 	build_script += "vagrant up";
 	
 	zip.add("build.ps1", build_script);
