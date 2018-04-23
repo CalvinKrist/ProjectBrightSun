@@ -81,8 +81,71 @@
 			  <div class="tab-pane fade" id="lesson1" role="tabpanel">
 				<div class="jumbotron">
 					<div class="container">
-						<h1 class="display-4">Lesson 1: Lesson Title</h1>
-						<p class="lead">text</p>
+						<h1 class="display-4">Lesson 1: Creating your first Domain Controller (DC)</h1>
+						<p class="lead">Tags: <span class="badge badge-info">Windows</span> <span class="badge badge-primary">Active Directory</span></p>
+						<p class="lead">Estimated time: 1 hour</p>
+						<p class="lead">Difficulty: Easy</p>
+						<p class="lead">Operating Systems: Windows Server 2008 R2 Server Core</p>
+						<p class="lead">Tools Used: <code>cmd.exe</code>, <kbd>netsh</kbd>, <kbd>dism</kbd>, <kbd>dcpromo</kbd>, and <kbd>dsquery/mod</kbd></p>
+						<hr>
+						<h3>Basic Setup:</h3>
+						<ol>
+							<li>Go to the <a href="config.html">Config page</a> and add two machines with the following settings:</li>
+							<dl>
+								<dt>dc1</dt>
+								<dd>Platform: Windows, Operating System: windows_server_2008_r2</dd>
+								<dt>workstation1</dt>
+								<dd>Platform: Windows, Operating System: windows_7</dd>
+							</dl>
+							<li>Download and extract the <code>.zip</code> file. Launch an Administrator Powershell prompt and navigate to the folder you unzipped it to.</li>
+							<li>Run <kbd>.\build.ps1</kbd> in order to build the boxes. This will take ~40 minutes depending on your computer and internet connection.</li>
+							<li>Once both machines have been added to VirtualBox, edit their Network Settings to be the following:</li>
+							<img src="res/lessons/lesson1/VirtualBoxSettings.png" class="img-fluid" alt="Responsive image">
+							<p></p>
+							<div class="alert alert-info" role="alert">
+								Note: Selecting <code>Internal Network</code> will place all machines on their own isolated virtual LAN network, but still allow them to communicate with each other.
+							</div>
+							<div class="alert alert-danger" role="alert">
+								Note: If you would like the Virtual Machines to also have Internet (not required), you will need to add another Network Adapter for <code>NAT</code> or <code>Bridged</code>.
+							</div>
+							<li>Turn on both Virtual Machines, and proceed through the installation proceedure. For the Server 2008 R2 machine, be sure to select <code>Windows Server 2008 R2 Enterprise (Server Core Edition)</code> when prompted for which Windows version to install.
+						</ol>
+						<h3>Setting up the Domain Controller:</h3>
+						<ol>
+							<li>Once the machine boots and you log in, you should see only a Windows Command Prompt. That is normal! Server Core is a stripped down version of the regular Windows Server, and it only has a command line interface.</li>
+							<li>Create new Active Directory Domain and DNS Server:</li>
+							<pre><kbd>dism /online /enable-feature /featurename:"NetFx2-ServerCore"
+dism /online /enable-feature /featurename:"NetFx3-ServerCore"
+dism /online /enable-feature /featurename:"DirectoryServices-DomainController-ServerFoundation"
+dism /online /enable-feature /featurename:"DirectoryServices-ADAM-ServerCore"
+dcpromo /ReplicaOrNewDomain:domain /Sitename:ad-jambajuice-com /InstallDNS:yes /NewDomain:forest /NewDomainDNSName:jambajuice.com /SafeModeAdminPassword:Chiapet1</kbd></pre>
+							<li>Promote the Computer to DC:</li>
+							<kbd>dcpromo /ReplicaOrNewDomain:Replica /ReplicaDomainDNSName:jambajuice.com /Username:Administrator /password:Chiapet1 /SafeModeAdminPassword:Chiapet1</kbd>
+							<li>Set a static IP Address:</li>
+							<kbd>netsh interface ip set address "Ethernet" static 10.0.0.10 255.255.0.0 10.0.0.1 1</kbd>
+							<li>Allow the DC to be pinged:</li>
+							<kbd>netsh advfirewall firewall add rule name="ICMP Allow for IPV4" protocol=icmpv4:8,any dir=in action=allow</kbd>
+						</ol>
+						<h3>Setting up the Workstation</h3>
+						<ol>
+							<li>Launch and Administrator <code>cmd.exe</code></li>
+							<li>Ensure the workstation can communicate with the DC by running <kbd>ping 10.0.0.10</kbd></li>
+							<li>Join the Domain. Note you will need to use the Domain Administrator password you configured above</li>
+							<kbd>netdom join %COMPUTERNAME% /domain:jambajuice.com /userd:DA /passwordd:Password<kbd>
+						</ol>
+						<h3>Manage Active Directory</h3>
+						<ol>
+							<li>On the DC, experiment with the below commands to manage the Active Directory users</li>
+							<ul>
+								<li>List Domain Users:</li>
+								<kbd>dsquery group -name "Domain Admins" | dsget group -members</kbd>
+								<li>Add a new Domain Admin:</li>
+								<pre><kbd>dsadd user cn=Bob,ou=Cake,ou=Finance,dc=jambajuice,dc=com -disabled no -pwd Chiapet1
+dsquery user -name "Bob" | dsmod group cn="Domain Admins",cn=Users,dc=jambajuice,dc=com -addmbr</kbd></pre>
+								<li>Rename User Account:</li>
+								<kbd>dsquery user -name "Bob" | dsmove -newname "Joe"</kbd>
+							</ul>
+						</ol>
 					</div>
 				</div>
 			  </div>
