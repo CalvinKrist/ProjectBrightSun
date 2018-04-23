@@ -13,7 +13,7 @@
 
     <title>Project BrightSun</title>
   </head>
-  <body>
+<body class="text-center">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -22,8 +22,10 @@
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
 
-
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
+    <div class="cover-container d-flex h-100 mx-auto flex-column">
+      <header class="mb-auto">
+		  
+<nav class="nav navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">Project BrightSun</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -48,141 +50,67 @@
     </ul>
   </div>
 </nav>
-<br><br>
-	<div align="center">
-		<img src="res/logo.png"> 
-	</div>
-<div align="center">
-<h1><b><font face="Impact">More Coming Soon</font></b></h1> 
-<br><h6><p>Slogan: Improving Cyber Security Education</p></h6></div>
+      </header>
+	  
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Project BrightSun</h1>
+        
+        <p class="lead">Enhancing cybersecurity education through hands-on exercises</p>
+        <p class="lead">
+		  <a href="config.html"><button type="button" class="btn btn-lg btn-outline-primary">Get Started</button></a>
+        </p>
+      </main>
+	  
+	        <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Created by: Jake Smith, Saeed Razavi, Calvin Krist, and Clark Benham</p>
+        </div>
+      </footer>
+	  
+    </div>
+<style>
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
 
-<!--start of bulleted summary 1 color sheet-->
-<div class="container-fluid">
-    <div class="row" style="background-color: #e3f2fd;"> <!--color should have been copied from above-->
-        <div class="container">
-            <div class="row" >
-                <div class="col-md-12" align="left">
-				<div>
-					<p><h5>Features</h6></p>
-					<ul><h6>
-					<li>Easy Downloads of Virtual Boxes</li>
-					<li>Practice cyber securiity without setting up accounts</li>
-					<li>Don't risk messing with your computer</li>
-					<li>High status people you should emulate love it!</li>
-					<li>Moloch Commands!</li>
-					</h6></ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	<br><br>
-	</div>
-</div>
+html,
+body {
+  height: 100%;
+  background-color: #5b5b5b;
+}
 
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: #fff;
+}
 
-<!--start of color change describing various features; get start with lesson; download box; templates for box-->
-<div class="container-fluid">
-    <div class="row" style="background-color: #a9g5ff;"> <!--random color-->
-        <div class="col-sm-4" align="center">
-			<br>
-			<a href="file:///C:/Users/Student/git/RedBlueCyberlab/lessons.html"><img src="res/Lesson.png" width="200" height="150"> </a></img>
-			<br><font face="arial">Start a Lesson</font>
-			<br><p><small>We recomend you start here if you have no experiance; this is how you learn the basics</small></p>
-		</div>
-		<div class="col-sm-4" align="center">	
-			<br>			
-			<a href="file:///C:/Users/Student/git/RedBlueCyberlab/config.html"><img src="res/Box.png" width="200" height="200"></a></img>
-			<br><font face="arial">Download your first box</font>
-			<br><p><small>Customize the moxes you download from a variety of operating systems and years</small></p>
-		</div>
-		<div class="col-sm-4" align="center">
-			<br>
-			<a href="file:///C:/Users/Student/git/RedBlueCyberlab/Template.html"><img src="res/GoButton.png" width="200" height="200"></a> </img>
-			<br><font face="arial">Download a Popular Template</font>
-			<br><p><small>Choose from a list of popular pre-configured set-ups</small></p>
-		</div>
-		<br><br>
+.cover-container {
+	width: 100%;
+}
 
-	</div>
-</div>
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
 
-<!--start of our team section, when changing head Shot change the name of your pic to your Capitalized first name-->
-<div class="container-fluid">
-    <div class="row" style="background-color: #27AE60;"> <!--random color-->
-        <div class="col-sm-3" align="center">
-							<br>
-			<img src="res/Jake.png" width="150" height="150"></img>
-			<div>
-			<b>Jake Smith</b>
-				<ul>
-				<li>Bio</li>
-				<li>Bio2</li>
-				<li>Bio3</li>
-				<li>link1</li>
-				<li>link2</li>
-				<li>link3</li>
-				</ul>
-			</div>
-		</div>
-		
-		<div class="col-sm-3" align="center">
-			<br>
-			<img src="res/Calvin.png" width="150" height="150"></img>
-			<div>
-			<b>Calvin Krist</b>
-				<ul>
-				<li>Bio</li>
-				<li>Bio2</li>
-				<li>Bio3</li>
-				<li>link1</li>
-				<li>link2</li>
-				<li>link3</li>
-				</ul>
-			</div>
-		</div>
-		
-		<div class="col-sm-3" align="center">
-			<br>
-		<img src="res/Saeed.png" width="150" height="150"></img>
-			<div>
-			<b>Saeed Razavi</b>
-				<ul>
-				<li>Bio</li>
-				<li>Bio2</li>
-				<li>Bio3</li>
-				<li>link1</li>
-				<li>link2</li>
-				<li>link3</li>
-				</ul>
-			</div>
-		</div>
-		
-		<div class="col-sm-3" align="center">
-			<br>
-			<img src="res/Clark.png" width="150" height="150"></img>
-			<div>
-			<b>Clark Benham</b>
-				<ul>
-				<li>Bio</li>
-				<li>Bio2</li>
-				<li>Bio3</li>
-				<li>link1</li>
-				<li>link2</li>
-				<li>link3</li>
-				</ul>
-			</div>
-		</div>
-	<br>	
-	</div>
-</div>
+.mastfoot {
+  color: rgba(255, 255, 255, .5);
+}
 
-<div class="container-fluid">
-    <div class="row" style="background-color: #FFFFFF;"> <!--random color-->
-		<p><small><a href="file:///C:/Users/Student/git/RedBlueCyberlab/credits.html">our wonderous and illustrious sponsers</a></small></p>
-
-
-
-
+</style>
 
   </body>
 </html>
