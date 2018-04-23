@@ -20,6 +20,8 @@
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+	
+	<script src="https://fezvrasta.github.io/bootstrap-material-design/dist/js/bootstrap-material-design.js"></script>
 
 
 
@@ -48,40 +50,68 @@
     </ul>
   </div>
 </nav>
-<div class="container" style="padding-top: 30px;">
-	<div class="row">
-		<div class="col-md-3" style="max-height:600px; overflow-y:scroll">
+	<div class="container" style="padding-top: 30px;">
+		<div class="row">
+			<div class="col-md-12">
 				<h2>Lessons</h2>
-			  <div class="card">
-			`    <div class="card-body">
-				  <h5 class="card-title">Lesson 0</h5>
-				  <p class="card-text">Installing prerequisite software.</p>
-				</div>
-			  </div>
-			  <br>
-			  <div class="card">
-				<div class="card-body">
-				  <h5 class="card-title">Card title</h5>
-				  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-				</div>
-			  </div>
-			  <br>
-			  <div class="card">
-				<div class="card-body">
-				  <h5 class="card-title">Card title</h5>
-				  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				</div>
-			  </div>
-		</div>
-		<div class="col-md-9" style="max-height:600px; overflow-y:scroll">
-			<div class="jumbotron" style="height:600px">
-			  <div class="container">
-				<h1 class="display-4">Lesson 0: Installing Prerequisite Software</h1>
-				<p class="lead">Three programs need to be installed: <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, <a href="https://www.vagrantup.com/downloads.html">Vagrant</a>, and <a href="https://www.packer.io/downloads.html">Packer</a>. Go and download the version of each that is appropriate for your system. </p>
-				<p class="lead">VirtualBox and Vagrant can be easily installed by running their installers and restarting your system. Packer is a little more complicated. On Windows, place 'packer.exe' in a folder on "C:\Program Files". You then need to go to your advanced system settings by right clicking 'MyPC', selecting 'Properties' and going to 'Advanced System Settings' on the left. Click 'Environment Variables' in the bottom right and then open the 'Path'. Add a new variable to the path pointing to the directory packer.exe was placed in. </p>
-				<p class="lead">All of the required software should now be installed!</p>
-			 </div>
 			</div>
+		</div>		
+		<div class="row">
+		  <div class="col-4">
+			<div class="list-group" id="list-tab" role="tablist">
+			  <a class="list-group-item list-group-item-action active" id="lesson0-list" data-toggle="list" href="#lesson0" role="tab">Lesson 0</a>
+			  <a class="list-group-item list-group-item-action" id="lesson1-list" data-toggle="list" href="#lesson1" role="tab" >Lesson 1</a>
+			  <a class="list-group-item list-group-item-action" id="lesson1-list" data-toggle="list" href="#lesson2" role="tab" >Lesson 2</a>
+			  <a class="list-group-item list-group-item-action" id="lesson1-list" data-toggle="list" href="#lesson3" role="tab" >Lesson 3</a>
+			  <a class="list-group-item list-group-item-action" id="lesson1-list" data-toggle="list" href="#lesson4" role="tab" >Lesson 4</a>
+			</div>
+		  </div>
+		  <div class="col-8" style="max-height:500px; overflow-y:scroll">
+			<div class="tab-content" id="nav-tabContent">
+			  <div class="tab-pane fade show active" id="lesson0" role="tabpanel">
+				<div class="jumbotron">
+					<div class="container">
+						<h1 class="display-4">Lesson 0: Installing Prerequisite Software</h1>
+						<p class="lead">Three programs need to be installed: <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, <a href="https://www.vagrantup.com/downloads.html">Vagrant</a>, and <a href="https://www.packer.io/downloads.html">Packer</a>. Go and download the version of each that is appropriate for your system. </p>
+						<p class="lead">VirtualBox and Vagrant can be easily installed by running their installers and restarting your system. Packer is a little more complicated. On Windows, place 'packer.exe' in a folder on "C:\Program Files". You then need to go to your advanced system settings by right clicking 'MyPC', selecting 'Properties' and going to 'Advanced System Settings' on the left. Click 'Environment Variables' in the bottom right and then open the 'Path'. Add a new variable to the path pointing to the directory packer.exe was placed in. </p>
+						<p class="lead">All of the required software should now be installed!</p>
+					</div>
+				</div>
+			  </div>
+			  <div class="tab-pane fade" id="lesson1" role="tabpanel">
+				<div class="jumbotron">
+					<div class="container">
+						<h1 class="display-4">Lesson 1: Lesson Title</h1>
+						<p class="lead">text</p>
+					</div>
+				</div>
+			  </div>
+			  <div class="tab-pane fade" id="lesson2" role="tabpanel">
+				<div class="jumbotron">
+					<div class="container">
+						<h1 class="display-4">Lesson 2: Lesson Title</h1>
+						<p class="lead">text</p>
+					</div>
+				</div>
+			  </div>
+			  <div class="tab-pane fade" id="lesson3" role="tabpanel">
+				<div class="jumbotron">
+					<div class="container">
+						<h1 class="display-4">Lesson 3: Lesson Title</h1>
+						<p class="lead">text</p>
+					</div>
+				</div>
+			  </div>
+			  <div class="tab-pane fade" id="lesson4" role="tabpanel">
+				<div class="jumbotron">
+					<div class="container">
+						<h1 class="display-4">Lesson 4: Lesson Title</h1>
+						<p class="lead">text</p>
+					</div>
+				</div>
+			  </div>
+			</div>
+		  </div>
 		</div>
 	</div>
 </div>
