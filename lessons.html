@@ -50,14 +50,13 @@
     </ul>
   </div>
 </nav>
-	<div class="container" style="padding-top: 30px;">
 		<div class="row">
 			<div class="col-md-12">
 				<h2>Lessons</h2>
 			</div>
 		</div>		
 		<div class="row">
-		  <div class="col-4">
+		  <div class="col-2">
 			<div class="list-group" id="list-tab" role="tablist">
 			  <a class="list-group-item list-group-item-action active" id="lesson0-list" data-toggle="list" href="#lesson0" role="tab">Lesson 0</a>
 			  <a class="list-group-item list-group-item-action" id="lesson1-list" data-toggle="list" href="#lesson1" role="tab" >Lesson 1</a>
@@ -66,15 +65,43 @@
 			  <a class="list-group-item list-group-item-action" id="lesson1-list" data-toggle="list" href="#lesson4" role="tab" >Lesson 4</a>
 			</div>
 		  </div>
-		  <div class="col-8" style="max-height:500px; overflow-y:scroll">
+		  <div class="col-10" style="overflow-y:scroll">
 			<div class="tab-content" id="nav-tabContent">
 			  <div class="tab-pane fade show active" id="lesson0" role="tabpanel">
 				<div class="jumbotron">
-					<div class="container">
+					<div class="container" >
 						<h1 class="display-4">Lesson 0: Installing Prerequisite Software</h1>
-						<p class="lead">Three programs need to be installed: <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, <a href="https://www.vagrantup.com/downloads.html">Vagrant</a>, and <a href="https://www.packer.io/downloads.html">Packer</a>. Go and download the version of each that is appropriate for your system. </p>
-						<p class="lead">VirtualBox and Vagrant can be easily installed by running their installers and restarting your system. Packer is a little more complicated. On Windows, place 'packer.exe' in a folder on "C:\Program Files". You then need to go to your advanced system settings by right clicking 'MyPC', selecting 'Properties' and going to 'Advanced System Settings' on the left. Click 'Environment Variables' in the bottom right and then open the 'Path'. Add a new variable to the path pointing to the directory packer.exe was placed in. </p>
-						<p class="lead">All of the required software should now be installed!</p>
+						<p class="lead">Tags: <span class="badge badge-info">Windows</span> <span class="badge badge-primary">Installation</span></p>
+						<p class="lead">Estimated time: 20 minutes</p>
+						<p class="lead">Difficulty: Easy</p>
+						<p class="lead">Operating Systems: Windows 7 and Up</p>
+						<p class="lead">Tools Used: <code>cmd.exe</code></p>
+						<hr>
+						<h3> Preparation </h3>
+						<ol>
+							<li> We will start by downloading the three applications <code>Project BrightSun</code> needs to work. Go to the download pages for <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, <a href="https://www.vagrantup.com/downloads.html">Vagrant</a>, and <a href="https://www.packer.io/downloads.html">Packer</a>.
+							     Download the VirtualBox and Vagrant installers. For Packer, you should download a <code>.zip</code> file. Open the file and extract <code>packer.exe</code> to a directory you can remember.</li></br>
+							<li> Run the VirtuaBox installer and then the Vagrant installer. After both installers have finished executing, restart your computer.
+							<div class="alert alert-danger" role="alert">
+								Note: if you have multiple drives on your computer, ensure <code>VirtualBox</code> is installed in the same directory as <code>Project BrightSun</code>. Otherwise, you will get errors when trying to build new machines.
+							</div> </li>
+							<li> Packer doesn't have an installer: <code>packer.exe</code> is the application itself. As such, we need to move it to the "Program Files" directory and then tell Windows where it is so that <code>packer</code> can be accessed from the command line. We're going to do all of this from the Windows command line in order to learn <code>cmd.exe</code> basics.
+								</br></br>
+								Open an Administrator session of command prompt. This can be done by navigating to "C:\Windows\System32". Scroll down until you find <code>cmd.exe</code>, right-click, and select "Run as administrator".
+								</br><img src="res/lessons/lesson0/cmd-admin.png" class="img-fluid" alt="Responsive image"></br>
+								We are now going to make a directory within "Program Files" for packer. Type <code>mkdir "C:\\Program Files"\packer</code> and click enter. "mkdir" tells command prompt to make a directory at the path we specified. We now need to move <code>packer.exe</code> to the directory we made. This can be done by typing <code>copy PATH/TO/PACKER.EXE "C:\\Program Files"\\packer.exe</code> into the command prompt. The "copy" command will a move a file from the first filepath specified to the second filepath. In the example shown below, you can see that I copied <code>packer.exe</code> from my Downloads directory to the packer folder we made earlier.
+								</br></br>
+								Finally, we need to add <code>packer.exe</code> to something called the "Path". In Windows, when a command is run from the command prompt, the "Path" is searched for files and directories that could contain the command. "Project BrightSun" needs to be able to call packer from command prompt, so it needs to be added to the Path. This can be done by typing <code>setx PATH "%PATH%;PATH/TO/PACKER/DIRECTORY/</code>. This command is a little complicated. <code>setx</code> allows you to set system variables such as PATH permanently. The second parameter it takes in is the variable we are setting, the PATH in this case. The third parameter is what we are setting it to. 
+								Surrounding PATH with percentage signs (<code>%PATH%</code>) in the third parameter inserts the current path. From there, we add a new PATH variable called <code>PATH/TO/PACKER/DIRECTORY/</code>. Note that it's a path to the <i>directory</i>, NOT to <code>packer.exe</code>. An example of all the commands can be seen below.
+								</br><img src="res/lessons/lesson0/commands.png" class="img-fluid" alt="Responsive image"></br></br>
+								<div class="alert alert-info" role="alert">
+								Note: Adding the packer directory to the PATH can be done through the Windows GUI. On Windows 10, this can be done by going to "Advanced System Settings" and navigating to the "Environment Variables".
+							</div>
+							</li>
+							<li> Now, we should verify that everything was installed correctly. VirtualBox can be tested by just searching your computer for the application and launching it. Vagrant and packer can both be tested by typing their names in command prompt. If they were properly installed, you should see an output telling you about possible commands.
+							</br><img src="res/lessons/lesson0/verify.png" class="img-fluid" alt="Responsive image"></br>
+							</li>
+						</ol>
 					</div>
 				</div>
 			  </div>
@@ -176,7 +203,7 @@ dsquery user -name "Bob" | dsmod group cn="Domain Admins",cn=Users,dc=jambajuice
 			</div>
 		  </div>
 		</div>
-	</div>
+
 </div>
   </body>
 </html>
