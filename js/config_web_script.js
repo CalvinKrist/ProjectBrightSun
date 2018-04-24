@@ -127,6 +127,10 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				alert("Your box hostname cannot be the same as another box!");
 				return false;
 			}
+			else if($("#machineNameBox").val().indexOf(' ') >= 0){
+				alert("Your box hostname cannot contain whitespace!");
+				return false;
+			}
 			return true;
 		}
 		
@@ -138,6 +142,10 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				return false;
 			} else if($("#editMachineNameBox").val() !== $("#editModal").data("currentMachName") && window.boxes.map(value => value.name).includes($("#editMachineNameBox").val())) {
 				alert("Your box hostname cannot be the same as another box!");
+				return false;
+			}
+			else if($("#editMachineNameBox").val().indexOf(' ') >= 0){
+				alert("Your box hostname cannot contain whitespace!");
 				return false;
 			}
 			return true;
