@@ -178,7 +178,8 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		//saves data selected in modal to the current box and card being edited
 		function save_edits(){
-			var machName = $("#editMachineNameBox").val();
+			var oldMachName = $("#editModal").data("currentMachName");
+			var newMachName = $("#editMachineNameBox").val();
 			var plat = $("#editPlatformSelect option:selected").val();
 			var os = $("#editOsSelect option:selected").val();
 
@@ -187,20 +188,53 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			
 			var machToEditIndex;
 			$.each(window.boxes, function(index, value){
-				if($('#editModal').data("currentMachName") === value.name){
+				if(oldMachName === value.name){
 					machToEditIndex = index;
 					return false;
 				}
 			});
 	
-			window.boxes[machToEditIndex].name = machName;
+			window.boxes[machToEditIndex].name = newMachName;
 			window.boxes[machToEditIndex].platform = plat;
 			window.boxes[machToEditIndex].os_version = os;
 		
 			console.log(machToEditIndex+"\n"+window.boxes[machToEditIndex].name+"\n"+window.boxes[machToEditIndex].platform+"\n"+window.boxes[machToEditIndex].os_version);
 			
-			//find the right card and change the inner HTML
-				//change the html data and the internal labels
+			
+		var currentCard = $('#card_well').find('div[data-name]').filter(function(){
+				return $(this).data('name') === oldMachName;
+		});//theoretically this should be doable with $('#card_well').find('div[data-name = oldMachName]') but that was returning undefined
+		
+		currentCard.data('name', newMachName);
+		currentCard.data('platform', plat);
+		currentCard.data('os', os);
+		console.log(currentCard.data('name')+ "  "+ newMachName);
+		//oddly enough, these return the same thing so it is setting it correctly, 
+		//but when the HTML is logged, it says that the cards still have their original data
+		//weirder than that is the fact that the edit modal gets its contents from the card data
+		//and it functions as if the card data was successfully changed....
+		//identify what is going on here before it causes a problem....
+		/*
+		
+		DD      OO    N   N  TTTTTTT        IIIII    GG    N   N    OO    RRR    EEEE
+		D  D   O  O   NN  N     T             I     G      NN  N   O  O   R  R   E
+		D  D   O  O   N N N     T             I     G  G   N N N   O  O   RRR    EEEE
+		D  D   O  O   N  NN     T             I     G  G   N  NN   O  O   R  R   E
+		DD      OO    N   N     T           IIIII    GG    N   N    OO    R  R   EEEE 
+		
+		*/
+		
+		if(plat.includes('windows')) {
+				var plat_label = '<span class="badge badge-info">Windows</span>';
+			} else if(plat.includes('linux')) {
+				var plat_label = '<span class="badge badge-warning">Linux</span>';
+			} else {
+			}
+			
+			var os_label = '<p>' + os + '</p>';
+		
+		currentCard[0].innerHTML = '<div class="card-body"><h5 class="card-title">' + newMachName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div>';
+		console.log(currentCard.parent()[0].innerHTML);
 		}
 		
 		
