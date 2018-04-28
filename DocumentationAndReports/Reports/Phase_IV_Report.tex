@@ -237,49 +237,23 @@ The result of the tests for Linux Servers, Linux Desktops, and Windows machiens 
 
 \par Our full analysis can be referenced for more details.
 
-\section{Analysis of Learning Methods}
-\ifx
-    Analysis of Efficacy:
-        Analyzing data from CyberPatriot: 
-        % https://docs.google.com/viewer?url=https%3A%2F%2Fwww.uscyberpatriot.org%2FDocuments%2FFact%2520Sheets%2FImpact%2520Report_2017.pdf
-        Cyber patriot participants:
-            conservatively ~59.4% were strongly influenced by participation to enter a 4 year degree program post highschool
-            
-            Strongly influenced to major accordingly:
-            conservatively ~19% other stem
-            conservatively ~24% other comp.sci
-            conservatively ~17% cybersecurity
-            
-            Strongly influenced employment goals
-            
-            conservatively ~6% other stem
-            conservatively ~46% other comp.sci
-            conservatively ~9% cybersecurity     
-            
-        Method and conclusion:
-            took data of reported influence of the program on career and college choices and aggregated it into a scalar by which to multiply raw percentages in other categories to create conservative representations of causality.
-            
-            There is much causality there with a sum total of nearly 60% influenced to do a 4 year degree program,  60% influenced to do a stem major, and 61% to have a stem job
-            
-            
-Elements from Jake's and Calvin's AEA:
-    
-\fi
+\section{Analysis of Project Need}
+
 \par To ensure we were working towards the right goals with our project, we set out to determine the need for and theoretical efficacy of our tool as a solution to the problem initially identified.
 
 \par To determine a need for our tool, we focused on the aspect of the established problem asserting that there is a shortage of well trained cybersecurity professionals in the workforce. To determine need, we analyzed findings from a Cisco cybersecurity report \cite{Cisco__annual_report} establishing that roughly 25 percent of surveyed cybersecurity professionals thought the number one problem in cybersecurity is a lack of trained personnel. With that statistic established, we examined the 2018 industry estimate of empty cybersecurity positions, 200,000 positions, compared to the projection for the next 4 years of up to 2.5 million empty positions. We determined that with the high percentage of professionals citing a lack of trained personnel to be the current biggest weakness in the industry, the massive projected growth of empty positions would greatly weaken the strength of the industry at large, justifying a need for an increase in the rate of new cybersecurity personnel entering the workforce.
 
-\par Once need for an increase in cybersecurity personnel entering the workforce was established, we needed to perform an analysis to determine if our product would be effective at promoting an increased rate of entry through its use as an education device for young people interested in the field. To determine the affect of early involvement in cybersecurity on the education and career goals of those involved, we analyzed data from a US Air-force CyberPatriot program impact report \cite{cyberpatriot}, assuming that participation in the program was relatively representative of participation in easy-to-access cybersecurity learning and practice activities as a whole. The report provided statistics for CyberPatriot participants and alumni regarding their post-secondary-school education and careers, as the extent to which participation in CyberPatriot influenced their education and career goals. The data regarding the influence of the program was taken and aggregated into a scalar to represent an average impact of the program on a participant. The rest of the data in the report was processed via multiplication of the raw data by that impact scalar to create data which conservatively represented causality between participation in the program and career and education outcomes. Findings indicated a causal link between participation in the program and entry into a 4 year degree program for ~59.4 percent of respondents. Causality was also established for ~55 percent of respondents who went on to seek employment in computer science and cybersecurity, as well as for ~41 percent of respondents who chose a computer science o 
+\par Once need for an increase in cybersecurity personnel entering the workforce was established, we needed to perform an analysis to determine if our product would be effective at promoting an increased rate of entry through its use as an education device for young people interested in the field. To determine the affect of early involvement in cybersecurity on the education and career goals of those involved, we analyzed data from a US Air-force CyberPatriot program impact report \cite{cyberpatriot}, assuming that participation in the program was relatively representative of participation in easy-to-access cybersecurity learning and practice activities as a whole. The report provided statistics for CyberPatriot participants and alumni regarding their post-secondary-school education and careers, as well as the extent to which participation in CyberPatriot influenced their education and career goals. The data regarding the influence of the program was taken and aggregated into a scalar to represent an average impact of the program on a participant. The rest of the data in the report was processed via multiplication of the raw data by that impact scalar to create data which conservatively represented causality between participation in the program and career and education outcomes. Findings indicated a causal link between participation in the program and entry into a 4 year degree program for ~59.4 percent of respondents. Causality was also established for ~55 percent of respondents who went on to seek employment in computer science and cybersecurity, as well as for ~41 percent of respondents who chose a computer science or cybersecurity related major in college. From this analysis, we determined that there is a causal link between access to cybersecurity education and tools at a young age, thus justifying the educational goals of BrightSun in response to the problem addressed. 
 
 \chapter{Iterative Approach}
 
 \section{Usage of Scrum Project Management}
-talk about as applied to project, with reviews/retrospectives, etc
 
-Delivering software with the correctly specified features, at the correct time, and at the planned cost is notoriously difficult. The example of the FBI’s Sentinel Project, a software case management system for the purpose of creating a digital management system for criminal cases, showcases this. Originally, the project was contracted out to Lockheed Martin as a several year endeavor costing hundreds of millions of dollars, with the traditional "waterfall" approach, where a centralized directive is given for the overall goal, and then Requirement Gathering, System design, Implementation, Testing, Deployment, and Maintenance, follow. Each step in the process is not started until the proceeding step is completed. This has the distinct disadvantages that once a mistake in a previous step is found, the work on later steps are likely worthless, and that by delaying testing of the interconnected system any interfacing errors are unlikely to be found until substantially work has been based on those earlier decisions{\cite{scrumFBI}}.  This is what happened with the Sentinel Project, where after reaching its due date, the new system failed to perform. The FBI then decided to drop Lockheed, in-source the development, and switch from Waterfall to Scrum project management. Then, in just 18 months after with less than one fifth of the original amount of developers, they rolled out the successful project. {\cite{scrumFBI}}. The reason for a successful project launch was a change from a Waterfall style to Scrum style approach to project management.
+\par Delivering software with the correctly specified features, at the correct time, and at the planned cost is notoriously difficult. The example of the FBI’s Sentinel Project, a software case management system for the purpose of creating a digital management system for criminal cases, showcases this. Originally, the project was contracted out to Lockheed Martin as a several year endeavor costing hundreds of millions of dollars, with the traditional "waterfall" approach, where a centralized directive is given for the overall goal, and then Requirement Gathering, System design, Implementation, Testing, Deployment, and Maintenance, follow. Each step in the process is not started until the proceeding step is completed. This has the distinct disadvantages that once a mistake in a previous step is found, the work on later steps are likely worthless, and that by delaying testing of the interconnected system any interfacing errors are unlikely to be found until substantially work has been based on those earlier decisions{\cite{scrumFBI}}.  This is what happened with the Sentinel Project, where after reaching its due date, the new system failed to perform. The FBI then decided to drop Lockheed, in-source the development, and switch from Waterfall to Scrum project management. Then, in just 18 months after with less than one fifth of the original amount of developers, they rolled out the successful project. {\cite{scrumFBI}}. The reason for a successful project launch was a change from a Waterfall style to Scrum style approach to project management.
+
+\par The Scrum system revolves around malleable project requirements that can be easily changed and acted upon based on customer input. Every week the development team plans out what they wish to accomplish that week, implement the deliverable, and evaluates the results with the customer for feedback. This is called a ‘Sprint’. Ideas are continuously developed through the project’s lifespan: the weekly planning meeting is a time where new ideas can be discussed among the group, and they can be pursued during the weekly sprint. Through this process, ideas not discovered during the pre-development brainstorming process can still be implemented into the project. For our project these weekly meetings were to gather our reactions to the week's work and ways to improve the process; then we were given opportunities to showcase progress made, and gauge the reaction of various individuals, from professionals, to professors, even the head of the UVA Cybersecurity team. We then held our second weekly meeting to address the concerns raised, or suggestions proffered, and decide on the path of development for the following week. This allowed us to change focus towards implementing a virtual box installer for enabling practice of novice users, and not towards establishing software which simulated system connectivity, based on the described difficulty. 
 
 
-The key tenets of Scrum revolve around malleable project requirements that can be easily changed and acted upon based on customer input. Every week the development team plans out what they wish to accomplish that week, implement the deliverables, and evaluates the results with the customer for feedback. This is called a ‘Sprint’.
 
 
 \subsection{Perspective: Beginning Scrum User}
@@ -336,7 +310,7 @@ The key tenets of Scrum revolve around malleable project requirements that can b
 \par Finally, projects can be released upon their creation. This has two main benefits: it allows for an easy overview of the time line of our project, and also preserves old versions of the project. That is very important because it allows us to revert to earlier versions of something breaks.
 
 \section{Major Iteration 1: POC - Automated Virtualization}
-\par There were two main goals Iteration 1: to test if it was possible to automate the building of virtualized operating systems, and to learn basic website design by making a demo local website. We needed to see if it was possible to automatically build virtual machines because that is the core product we are making. If this was not possible with current technology, we would need to rethink our approach to the problem. In other words, Iteration 1 was about proving the feasibility of our project. We also prioritized learning and starting website development because those skills are what turn a series of files and scripts into an actual product that can be shown to customers. It is the website, built on top of virtual machine automation technology, that could make Project BrightSun an easy to use learning tool. Otherwise, all we have made are a series of confusing and hard to use scripts. 
+\par There were two main goals Iteration 1: to test if it was possible to automate the building of virtualized operating systems, and to learn basic website design by making a demo local website. We needed to see if it was possible to automatically build virtual machines because that is the core product we are making. It is directly related to product Requirements 1 (machine apathetic), 2 (simple to set up), and 3 (models real world applications). If this was not possible with current technology, we would need to rethink our approach to the problem. In other words, Iteration 1 was about proving the feasibility of our project. We also prioritized learning and starting website development because those skills are what turn a series of files and scripts into an actual product that can be shown to customers, meeting product Requirement 2, simple to set up, and Requirement 4, teached cybersecurity effectively. It is the website, built on top of virtual machine automation technology, that could make Project BrightSun an easy to use learning tool. Otherwise, all we have made are a series of confusing and hard to use scripts. 
 \par Iteration 1 was achieved in four weeks.
 
 \par In order to see if automated virtual machine creation is possible, we drew upon Packer and Vagrant, two technologies discussed in our Phase I/II report. These technologies were chosen due to their ability to work on any operating system, which was a key product requirement, and their relative easy of use. Packer takes in a configuration file, specified in the command line, and can output a '\textit{.box}' file which represents a virtual machine. Vagrant can then take that '.box' file and mount it on VirtualBox, the application we use for interacting with virtual machines. This process can be seen in the figure below, where boxes represent files and arrows represent programs and processes.
@@ -375,7 +349,7 @@ The key tenets of Scrum revolve around malleable project requirements that can b
 %   >>This section is pretty well explained and I don't really think it needs much more. Perhaps discuss what led to the decision that this work around was the best (although we clearly just went with it because it made sense - get more team input here)
 % >Broadly:
 %   >>We would create a product resembling the shell of the minimum viable product to be fleshed out and given function in future development
-\par First, we made the virtual machine provisioning more versatile. At the end of Iteration One, virtual machines could be made using Packer and Vagrant, but an Ubuntu 16.04 machine was always the same machine. In other words, users couldn't install custom software, or configure the machine to suit their needs. Thus, it had very little use as either a professional or a learning tool. One of the main strengths of where we see our product going is that a wide variety of users can adapt it to suit their needs. In many ways, that is \textit{all} we are trying to accomplish: making a versatile method of automatically generating virtual environments. Thus, having the ability to customize the virtual environments is absolutely necessary, and this comes by supporting custom provisioning at both the Packer and Vagrant level. During Iteration 2, we were able to implement custom provisioning at the Packer level, meaning that users can create any number of virtual machines with custom scripts run. When Packer is used to generate `.box' files, additional custom provisioner scripts are executed. Users could modify these scripts to suit their own needs and, in the future, the scripts will be modifiable using the website. The figure below shows the new process for creating virtual machines.
+\par First, we made the virtual machine provisioning more versatile. At the end of Iteration One, virtual machines could be made using Packer and Vagrant, but an Ubuntu 16.04 machine was always the same machine. In other words, users couldn't install custom software, or configure the machine to suit their needs. Thus, it had very little use as either a professional or a learning tool, failing both Requirement 3 (models real world applications) and Requirement 4 (teaches cybersecurity effectively). One of the main strengths of where we see our product going is that a wide variety of users can adapt it to suit their needs. In many ways, that is \textit{all} we are trying to accomplish: making a versatile method of automatically generating virtual environments. Thus, having the ability to customize the virtual environments is absolutely necessary, and this comes by supporting custom provisioning at both the Packer and Vagrant level. During Iteration 2, we were able to implement custom provisioning at the Packer level, meaning that users can create any number of virtual machines with custom scripts run. When Packer is used to generate `.box' files, additional custom provisioner scripts are executed. Users could modify these scripts to suit their own needs and, in the future, the scripts will be modifiable using the website. The figure below shows the new process for creating virtual machines.
 
 \begin{center}
     \includegraphics[scale=0.64]{images/Proto2.png}
@@ -427,13 +401,13 @@ The key tenets of Scrum revolve around malleable project requirements that can b
     \captionof{figure}{\textbf{Figure \arabic{figure}:} VM Creation Design 2 vs 3}
 \end{center}
 
-\par The decision was based on how we see our product being used. Most likely, Project BrightSun is best suited to situations where either complicated virtual machines need to be made or multi-machine, complicated virtual environments need to be created. In the second use case, Design 2 is easier than Design 3 due to its ability to allow users to see all of their machines at once. While we do hope many students will use our product, we don't expect the burden of navigating a separate menu for creating a virtual machine to be prohibitive.
+\par The decision was based on how we see our product being used. Most likely, Project BrightSun is best suited to situations where either complicated virtual machines need to be made or multi-machine, complicated virtual environments need to be created. In the second use case, Design 2 is easier to use than Design 3 due to its ability to allow users to see all of their machines at once. While we do hope many students will use our product, we don't expect the burden of navigating a separate menu for creating a virtual machine to be prohibitive.
 
 \par Thus, we decided to implement Design 2. We did not implement multiple designs and give them to our customers to test due to how time prohibitive this would be. Each design would likely take two or three weeks to implement, and we decided the higher priority was getting a usable prototype to customers in order to get feedback. If the feedback had included difficulty navigating the virtual machine creation process, we would have re-designed the page.
 
 \par The next step was to implement the virtual machine creation page and link it to our scripts. This happened simultaneously, where half of our group made the webpage and the other half worked on the back-end that connected the website to our scripts. Ideally, the user would set up their machines in the webpage, click a button that said "Build", and then wait half an hour while it built and provisioned the virtual machines. However, that was not easily possible.
 
-\par One of our product requirements is to limit the number of applications the user must install to use Project BrightSun. As such, we could only use JavaScript to link the webpage to the scripts. Browsers limit what JavaScript can do for security purposes, meaning that even though it's a local website (not hosted on an external server) we are unable to run scripts directly from the website or to even read files from the computer. These are both large issues: the inability to run scripts from the website means user interaction is necessary and full automation from the website is impossible. The inability to read files from the computer means that we can't easily create a fully modular download that can be sent anywhere.
+\par Product Requirement 6 is to limit the number of applications the user must install to use Project BrightSun. As such, we could only use JavaScript to link the webpage to the scripts. Browsers limit what JavaScript can do for security purposes, meaning that even though it's a local website (not hosted on an external server) we are unable to run scripts directly from the website or to even read files from the computer. These are both large issues: the inability to run scripts from the website means user interaction is necessary and full automation from the website is impossible. The inability to read files from the computer means that we can't easily create a fully modular download that can be sent anywhere.
 
 \par We did not spend much time trying to overcome this problem, because it can be easily fixed later and we wanted to get a minimum viable product completed before the project deadline. Potential solutions we came up with included converting all the dependant files to JavaScript so they could be directly downloaded or moving the local website to a server we host. Both of these were rejected due to feasibility concerns. We chose not to convert the dependant files to JavaScript because there are hundreds of files and it would take too long to convert them. Furthermore, if the files needed to be changed or updated it would be much more difficult. We never considered the idea of moving to a hosted website for long because one of the main project requirements is that there be no associated costs for any party involved, including us. Hosting a website would cost money that would either require placing ads to pay for that or charging customers. Neither option was acceptable.
 
@@ -466,13 +440,23 @@ The key tenets of Scrum revolve around malleable project requirements that can b
 \chapter{Current State: A Minimum Viable Product (MVP)}
 
 \section{Overview}
-After finishing Major Iteration 2, we had about 2 sprints remaining in the project. By this point, we had validation on both of the major components required for a final product: demand (we have identified problem, customers, and requirements) and technical feasibility (automating installation of virtual machines and  downloading configurations through a website). Going forward from this point, we spent the final weeks of our project adding small features, enhancing the user experience, and building out the basis for our Lessons section.
+After finishing Major Iteration 2, we had about 2 sprints remaining in the project. By this point, we had validation on both of the major components required for a final product: demand (we have identified problem, customers, and requirements) and technical feasibility (automating installation of virtual machines and downloading configurations through a website). In essence, we have reached what we consider to be a solid Minimum Viable Product (MVP) with our current state. Going forward from this point, we spent the final weeks of our project adding small features, enhancing the user experience, and building out the basis for our Lessons section.
 
 \subsection{Linux Virtualization}
 
 \subsubsection{Current Progress}
 
+\par When we set out to do this project, we intended to offer support for the major Ubuntu distributions that are used. This includes Ubuntu 14.04, 16.04, 17.10, the dekstop versions of all of those, and the x32 bit versions of all of those. Successful automated installation was created for all except the 17.10 desktop. The virtual machines are created in about 20 minutes if they are a server and 20-60 minutes if a desktop, depending on the available hardware. Furthermore, there is support for customized provisioning user Packer, which will allow for customized installation and setup of any Linux machine. After they have been installed the first time, users can re-install the machines if they break in just a minute, making this already a valuable tool for week long labs in school.
+
 \subsubsection{Future Work}
+
+\par At its current state, there is a solid foundation to move forward with Linux machines. However, there are important features that we know users want that are missing:
+
+\begin{itemize}
+    \item While there is support for Packer custom provisioning, a library of pre-made scripts should be created or compiled to do many of the common tasks. This needs to include basic network tools and software packages.
+    \item Installation times of Linux Desktop machines needs to be brought down to under 30 minutes on machines with 2 GB of RAM and 2 CPU cores in order to meet Requirement 7, low machine specifications
+    \item The Linux machines supported should be abstracted in some manner to allow professionals to easily use Project BrightSun with Linux versions we don't currently support. This would work towards Requirement 1, machine apathy
+\end{itemize}
 
 \subsection{Windows Virtualization}
 
@@ -482,9 +466,9 @@ At our current state, we have support for the Windows versions listed in Appendi
 \subsubsection{Future Work}
 At its current state, we have a solid framework for Windows builds upon which we can continue to build. In the coming months, we will begin adding the items below which will enable further customization and more advanced environments to be created, all in an automated fashion through our platform.
 \begin{itemize}
-    \item Installation of specific software packages, ie hMailAdministrator, XAMPP, Cygwin, etc
-    \item Windows Active Directory Domain Services, which is crucial for setting up business-like environments
-    \item Ability to run custom scripts Powershell scripts on machine creation, enabling users to tweak additional settings on their own
+    \item Installation of specific software packages, ie hMailAdministrator, XAMPP, Cygwin, etc, in order to meet product Requirement 3, models real world applications.
+    \item Windows Active Directory Domain Services, which is crucial for setting up business-like environments (Requirement 3).
+    \item Ability to run custom scripts Powershell scripts on machine creation, enabling users to tweak additional settings on their own, in order to meet Requirement 1, machine apathy.
 \end{itemize}
 
 \subsection{Website Presentation}
@@ -499,6 +483,8 @@ Right now, as similar to Windows, the current status of the web platform proves 
     \item Virtual machine settings, ie RAM, HDD size, VirtualBox Networking info, etc
     \item Integration of aforementioned Linux customization options
     \item Integration of aforementioned Windows customization options
+    \item Support for importing and exporting virtual machine configurations. This is a feature we heard requested from lots of customers and works towards Requirement 2, simple to set up.
+    \item Basic network control through a GUI. This is key to make networks easier for new students, meeting Requirements 2 (easy to set up) and 4 (good teaching tool). It also makes it easier to set up virtual environments, making Project BrightSun helpful to intermediate and advanced users due to modeling real world environments, Requirement 3.
 \end{itemize}
 
 \noindent Although these may seem small, we anticipate these items taking a considerable amount of effort in order to properly integrate and test all of these new features.
@@ -508,10 +494,27 @@ Right now, as similar to Windows, the current status of the web platform proves 
 \subsubsection{Current Progress}
 Since the beginning of the project, our goal has been to find new ways to enhance cybersecurity education. In following with this mission, we quickly realized that it would not be enough to simply provide a tool to automate installation of complex environments, but we should have some documentation and example lessons alongside it. These lessons would enable students to have some guided direction when starting out before tackling more complex subjects and conducting research on their own. Right now, we only have a few lessons put together, one for getting started with our platform, and another on how to set up your own Windows Domain Controller.
 
+\begin{center}
+    \includegraphics[scale=0.50]{images/lesson.png}
+    \captionof{figure}{\textbf{Figure \arabic{figure}:} Lesson Page}
+    \label{config}
+\end{center}
+
 \subsubsection{Future Work}
-As we continue adding in more advanced customization options as described above, we plan to add more lessons that really highlight what our tool is capable of and 
+As we continue adding in more advanced customization options as described above, we plan to add more lessons that really highlight what our tool is capable of and focus on providing more introductory lessons/labs for key cybersecurity topics. For our student and teacher stakeholders, these lessons will both act as good starting points for lessons they can use in class / on their own as well as provide illustrate the benefits of our tool. Some future lessons we envision include:
+
+\begin{itemize}
+    \item Performing Golden and Silver Ticket attacks against Windows Active Directory Environments
+    \item Lateral Movement across a Windows Network
+    \item Managing and Securing Linux Users
+    \item Attacking a Business Network (similar to the setups found in the Collegiate Cyber Defense Competition (CCDC)) 
+\end{itemize}
+
+Key to making these lessons effective is offering pre-built virtual environment configurations that can be imported into Project BrightSun. This would allow students to learn in environments that we provisioned specifically for a lesson.
 
 \section{Future Plans}
+
+Above we have mentioned all of the future work we have planned for the project from a technical perspective, but not if and how we will ever accomplish those goals. Although this paper acts as a close to the official end of our project from a purely academic project for Engineering 1420, we plan to continue working on this project through the summer and beyond in our spare time. In particular, we have already quantified how this project may help us prepare for next year's CCDC competition and teach workshops at the Computer and Network Security Club next semester. Beyond that, we envision one day where our tool is actually used in a classroom environment to help students learn cybersecurity. Although we won't have as strict a schedule moving forward, we are all really looking forward to continuing with the project.
 
 \chapter{Risk Assessment}
 
@@ -651,10 +654,19 @@ The below table summarizes the potential risks, how likely they are to occur, an
 
 \chapter{Conclusion}
 
-\par Conclusion: how effectively have we addressed the identified problem? Will this effectively help teach cybersecurity and address the dearth of qualified professionals? Will it make the problem worse? What will we continue to do to address the problem?
+\par The deficit of cybersecurity professionals is a serious issue that many people will need to work to overcome. The goal of Project BrightSun is to help meet this crisis by encouraging students to study cybersecurity by simplifying the learning process. Project BrightSun aims to do this by making it easy to set up complicated virtual environments and learn cybersecurity basics in a hands-on manner.
 
+\par We created a website that allows users to decide which virtual machines they want to install through an intuitive GUI, download a package with most of the files they need, and run a single script to install all of the machines. This greatly simplifies the process of creating virtual machines, but is not yet a platform for creating virtual \textit{environments}.
 
+\par  Our project was described as "extremely valuable" by a Judge viewing our end of semester presentation, saying that it would have saved him over 40 hours in managing the installation of virtual boxes for his "Defense against the Dark Arts" Class. This ability to drastically simplify existing processes made the project a large success, for the limited version we have thus far created.
 
+\par Going forward, we aim to enable users to create systems of multiple virtual machines interacting together, simulating simple business environments. On top of this, we will build a robust lesson system that shows students how to set up virtual environments and then see for themselves cybersecurity basics.
+
+\par Our hope is that Project BrightSun will be used by students to help them practice cybersecurity, by teachers to increase the realism of their labs, and by professionals to quickly set up virtualized environments for security simulations. The net result would be more students going into cybersecurity, and better qualified security professionals.
+
+\par At the moment, however, Project BrightSun has not achieved this goal. There are not many lessons in place, and the virtual environments that can be created are simple at best. Moving forwards we hope that close interaction with our customers, including cybersecurity professionals, professors, and passionate students will enable us to turn Project BrightSun into a useful tool for education.
+
+\par In conclusion, this project has been an incredibly powerful experience both in terms of what we created and what we learned while doing so. While in school, it is rare to get an opportunity to have the freedom to go out and work on hard problems, yet this class is one of those examples. Throughout the course of the project, not only have we created a product that we are proud of, but each of us has learned many crucial skills that will help us going forward in our personal lives and professional careers. Thank you for this amazing opportunity.
 
 \begin{appendices}
 \chapter{Operating Systems}
