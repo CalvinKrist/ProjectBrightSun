@@ -69,6 +69,7 @@ var windows_server_2008_r2 = {
   }],
   "variables": {
     "iso_url": "http://download.microsoft.com/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "4263be2cf3c59177c45085c0a7bc6ca5",
     "autounattend": "./windows_x64/answer_files/2008_r2/Autounattend.xml",

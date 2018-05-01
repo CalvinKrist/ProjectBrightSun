@@ -72,6 +72,7 @@ var windows_7 = {
   ],
   "variables": {
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "1d0d239a252cb53e466d39e752b17c28",
     "autounattend": "./windows_x64/answer_files/7/Autounattend.xml",

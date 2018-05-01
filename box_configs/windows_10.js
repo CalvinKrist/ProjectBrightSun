@@ -91,6 +91,7 @@ var windows_10 = {
   }],
   "variables": {
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/B/8/B/B8B452EC-DD2D-4A8F-A88C-D2180C177624/15063.0.170317-1834.RS2_RELEASE_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO",
+	"platform":"windows",
     "iso_checksum_type": "sha1",
     "iso_checksum": "6c60f91bf0ad7b20f469ab8f80863035c517f34f",
     "autounattend": "./windows_x64/answer_files/10/Autounattend.xml",

@@ -105,6 +105,7 @@ var ubuntu_1710_i386 = {
     "install_vagrant_key": "true",
     "iso_path": "/Volumes/Storage/software/ubuntu",
     "locale": "en_US",
+	"platform":"linux",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "ubuntu",
     "rsync_proxy": "{{env `rsync_proxy`}}",

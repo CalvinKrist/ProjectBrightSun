@@ -100,6 +100,7 @@ var ubuntu_1710_desktop = {
     "custom_script": "script/custom-script.sh",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",
+	"platform":"linux",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",

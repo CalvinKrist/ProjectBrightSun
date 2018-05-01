@@ -97,6 +97,7 @@ var ubuntu_1404_i386 = {
   ],
   "variables": {
     "cleanup_pause": "",
+	"platform":"linux",
     "custom_script": "script/custom-script.sh",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",

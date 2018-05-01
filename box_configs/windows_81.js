@@ -71,6 +71,7 @@ var windows_81 = {
   ],
   "variables": {
     "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
     "autounattend": "./windows_x64/answer_files/81/Autounattend.xml",

@@ -1,6 +1,12 @@
 # RedBlueCyberlab
 
-A local website that allows for the automated installation of a variety of virtual machines to VirtualBox using packer and vagrant. 
+ProjectBrightsun allows for the automatic provisioning of complicated virtual environments through a GUI system. The Project also offers multiple lessoms revolving around the ability to easily generate virtual environments in otder to teach security basics, such as setting up and attacking an Active Directory environment.
+
+Teachers can use ProjectBrightSun to develop lab environments for their students. The students can then re-build the virtual environments easily and quickly if they break something.
+
+Professionals can use ProjectBrightSun to analyze the effects of small changes to an environment on its security. The ability to rapibly deploy and modify virtual environments can be a powerful security tool.
+
+Students can follow ProjectBrightsun's lessons while using our tools to learn more about cybersecurity and prepare themselves for a career in the field.
 
 ## Getting Started
 

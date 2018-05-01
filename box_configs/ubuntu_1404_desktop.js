@@ -97,6 +97,7 @@ var ubunt_1404_desktop ={
   ],
   "variables": {
     "cleanup_pause": "",
+	"platform":"linux",
     "custom_script": "script/custom-script.sh",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",
