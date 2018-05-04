@@ -24,17 +24,26 @@ function build_boxes() {
 	var vagrantfile = generateVagrantfile(packers, differences);
 	zip.add("Vagrantfile", vagrantfile);
 
-	//GENERATE THE BUILD SCRIPT
-	var build_script = "";
+	//GENERATE THE BUILD SCRIPTS
+	var win_build_script = "";
+	var nix_build_script = "";
 	
-	for(var i = 0; i < packers.length; i++) {
-		build_script += "packer build " + packers[i][0]['variables']['vm_name'] + ".json\n"; //&
+	//Windows Build SCRIPTS
+	win_build_script += "workflow Parallel-Vagrant {\n";
+	win_build_script += "\t$loc = Get-Location\n";
+	win_build_script += "\t$machines = \"" + packers[0][0]['variables']['vm_name'] + "\"";
+	for(var i = 1; i < packers.length; i++) {
+		win_build_script +=  ", \"" + packers[i][0]['variables']['vm_name'] + "\"";
 	}
-	//build_script += "wait";
-	build_script += "vagrant up";
+	win_build_script += "\n\tforeach -parallel($mach in $machines) {\n";
+	win_build_script += "\t\tpowershell.exe -Command \"cd $loc;packer build $mach\"\n";
+	win_build_script += "\t}\n";
+	win_build_script += "}\n";
+	win_build_script += "Parallel-Vagrant\n"; 
+	win_build_script += "vagrant up";
 	
-	zip.add("build.ps1", build_script);
-	zip.add("build.sh", build_script);
+	zip.add("build.ps1", win_build_script);
+	zip.add("build.sh", nix_build_script);
 	
 	
 	//GENERATE THE ZIP FILE AND START DOWNLOAD
@@ -145,5 +154,6 @@ function getPackerBox(boxes, indx) {
 	box_json['variables']['vm_name'] = boxes[indx]['name'];
 	box_json['variables']['output_dir'] = "../Boxes/" + boxes[indx]['platform'] + "/" + boxes[indx]['name'] + ".box";
 	box_json['post-processors'][0]['output'] = "../Boxes/" + boxes[indx]['platform'] + "/" + boxes[indx]['name'] + ".box";
+	box_json['builders'][0]['output_directory'] = boxes[indx]['name'] + "-iso-output";
 	return box_json;
 }

@@ -1,6 +1,7 @@
 var ubuntu_1404_i386 = {
 "builders": [
     {
+	  "output_directory":"{{user `vm_output`}}",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
@@ -130,6 +131,7 @@ var ubuntu_1404_i386 = {
     "memory": "1024",
     "preseed" : "preseed.cfg",
     "boot_command_prefix": "<esc><esc><enter><wait>",
+	"vm_output":"vm-iso-output",
 	"desktop": "false"
   }
 

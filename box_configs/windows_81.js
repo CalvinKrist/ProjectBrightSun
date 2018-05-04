@@ -1,5 +1,6 @@
 var windows_81 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",
     "type": "virtualbox-iso",
     "vm_name": "{{user `vm_name`}}",
     "communicator": "winrm",
@@ -11,6 +12,7 @@ var windows_81 = {
     "boot_command": "",
     "winrm_username": "vagrant",
     "winrm_password": "vagrant",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "winrm_timeout": "{{user `winrm_timeout`}}",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "Windows81_64",
@@ -82,6 +84,7 @@ var windows_81 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_81.box"
   }
 }

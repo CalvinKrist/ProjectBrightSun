@@ -1,5 +1,6 @@
 var windows_server_2016 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",
 	"type": "virtualbox-iso",
     "vm_name": "{{user `vm_name`}}",
 	"communicator": "winrm",
@@ -8,6 +9,7 @@ var windows_server_2016 = {
 	"iso_checksum": "{{user `iso_checksum`}}",
 	"headless": "{{user `headless`}}",
 	"boot_wait": "4m",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "boot_command": "",
 	"winrm_username": "vagrant",
 	"winrm_password": "vagrant",
@@ -96,6 +98,7 @@ var windows_server_2016 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_server_2016.box"
   }
 }

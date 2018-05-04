@@ -1,6 +1,7 @@
 var ubunt_1404_desktop ={
   "builders": [
     {
+	  "output_directory":"{{user `vm_output`}}",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
@@ -130,6 +131,7 @@ var ubunt_1404_desktop ={
 	"iso_url": "http://releases.ubuntu.com/14.04.5/ubuntu-14.04.5-server-amd64.iso",
 	"memory": "1024",
 	"preseed": "preseed.cfg",
+	"vm_output":"vm-iso-output",
 	"boot_command_prefix": "<esc><esc><enter><wait>"
   }
 

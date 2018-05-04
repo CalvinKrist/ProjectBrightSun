@@ -1,5 +1,6 @@
 var windows_10 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",
     "type": "virtualbox-iso",
     "vm_name": "{{user `vm_name`}}",
     "communicator": "winrm",
@@ -10,6 +11,7 @@ var windows_10 = {
     "boot_wait": "4m",
     "boot_command": "",
     "winrm_username": "vagrant",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "winrm_password": "vagrant",
     "winrm_timeout": "{{user `winrm_timeout`}}",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
@@ -102,6 +104,7 @@ var windows_10 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_10.box"
   }
 }
