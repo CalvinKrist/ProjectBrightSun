@@ -31,9 +31,9 @@ function build_boxes() {
 	//Windows Build SCRIPTS
 	win_build_script += "workflow Parallel-Vagrant {\n";
 	win_build_script += "\t$loc = Get-Location\n";
-	win_build_script += "\t$machines = \"" + packers[0][0]['variables']['vm_name'] + "\"";
+	win_build_script += "\t$machines = \"" + packers[0][0]['variables']['vm_name'] + ".json\"";
 	for(var i = 1; i < packers.length; i++) {
-		win_build_script +=  ", \"" + packers[i][0]['variables']['vm_name'] + "\"";
+		win_build_script +=  ", \"" + packers[i][0]['variables']['vm_name'] + ".json\"";
 	}
 	win_build_script += "\n\tforeach -parallel($mach in $machines) {\n";
 	win_build_script += "\t\tpowershell.exe -Command \"cd $loc;packer build $mach\"\n";
