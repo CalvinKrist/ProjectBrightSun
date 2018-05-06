@@ -1,4 +1,4 @@
-var ubunt_1404_desktop ={
+var ubuntu_1404_desktop ={
   "builders": [
     {
 	  "output_directory":"{{user `vm_output`}}",
