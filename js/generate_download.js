@@ -32,15 +32,19 @@ function build_boxes() {
 	win_build_script += "workflow Parallel-Vagrant {\n";
 	win_build_script += "\t$loc = Get-Location\n";
 	win_build_script += "\t$machines = \"" + packers[0][0]['variables']['vm_name'] + ".json\"";
+	nix_build_script += "packer build " + packers[0][0]['variables']['vm_name'] + ".json";
 	for(var i = 1; i < packers.length; i++) {
 		win_build_script +=  ", \"" + packers[i][0]['variables']['vm_name'] + ".json\"";
+		nix_build_script += " & packer build " + packers[i][0]['variables']['vm_name'] + ".json"
 	}
 	win_build_script += "\n\tforeach -parallel($mach in $machines) {\n";
 	win_build_script += "\t\tpowershell.exe -Command \"cd $loc;packer build $mach\"\n";
 	win_build_script += "\t}\n";
 	win_build_script += "}\n";
 	win_build_script += "Parallel-Vagrant\n"; 
+	
 	win_build_script += "vagrant up";
+	nix_build_script += "\nvagrant up";
 	
 	zip.add("build.ps1", win_build_script);
 	zip.add("build.sh", nix_build_script);
@@ -77,7 +81,6 @@ function getPackerDiffs(packs, box, differences) {
 				if(base_box['variables'][key] != box['variables'][key]) 
 					diffs.push(key);
 			}
-			console.log(diffs);
 			//do differences match valid differences? is a 'same' packer config
 			var valid = true;
 			for(var k = 0; k < diffs.length; k++) 
