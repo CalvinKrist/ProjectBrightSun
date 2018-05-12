@@ -1,6 +1,7 @@
 var ubuntu_1604_i386 =	{
   "builders": [
     {
+	  "output_directory":"{{user `vm_output`}}",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
@@ -129,6 +130,7 @@ var ubuntu_1604_i386 =	{
 	"iso_name": "ubuntu-16.04.4-server-amd64.iso",
 	"iso_url": "http://releases.ubuntu.com/16.04.4/ubuntu-16.04.4-server-i386.iso",
 	"memory": "1024",
+	"vm_output":"vm-iso-output",
 	"preseed" : "preseed.cfg"
   }
 

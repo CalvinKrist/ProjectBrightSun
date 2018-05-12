@@ -1,5 +1,6 @@
 var windows_7 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",
     "type": "virtualbox-iso",
     "vm_name": "{{user `vm_name`}}",
     "communicator": "winrm",
@@ -12,6 +13,7 @@ var windows_7 = {
     "winrm_username": "vagrant",
     "winrm_password": "vagrant",
     "winrm_timeout": "{{user `winrm_timeout`}}",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "Windows7_64",
     "guest_additions_mode": "{{user `guest_additions_mode`}}",
@@ -72,6 +74,7 @@ var windows_7 = {
   ],
   "variables": {
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/evalx/win7/x64/EN/7600.16385.090713-1255_x64fre_enterprise_en-us_EVAL_Eval_Enterprise-GRMCENXEVAL_EN_DVD.iso",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "1d0d239a252cb53e466d39e752b17c28",
     "autounattend": "./windows_x64/answer_files/7/Autounattend.xml",
@@ -82,6 +85,7 @@ var windows_7 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_7.box"
   }
 }

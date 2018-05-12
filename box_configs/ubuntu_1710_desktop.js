@@ -1,6 +1,7 @@
 var ubuntu_1710_desktop = {
     "builders": [
     {
+	  "output_directory":"{{user `vm_output`}}",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
@@ -100,6 +101,7 @@ var ubuntu_1710_desktop = {
     "custom_script": "script/custom-script.sh",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",
+	"platform":"linux",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_vagrant_key": "true",
@@ -129,6 +131,7 @@ var ubuntu_1710_desktop = {
 	"iso_url": "http://releases.ubuntu.com/17.10.1/ubuntu-17.10.1-server-amd64.iso",
 	"memory": "1024",
 	"preseed": "preseed-desktop.cfg",
+	"vm_output":"vm-iso-output",
 	"boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>"
   }
 

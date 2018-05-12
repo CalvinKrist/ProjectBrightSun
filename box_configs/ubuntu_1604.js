@@ -1,6 +1,7 @@
 var ubuntu_1604 = {
   "builders": [
     {
+	  "output_directory":"{{user `vm_output`}}",
       "boot_command": [
         "{{ user `boot_command_prefix` }}",
         "/install/vmlinuz noapic ",
@@ -97,6 +98,7 @@ var ubuntu_1604 = {
   ],
   "variables": {
     "cleanup_pause": "",
+	"platform":"linux",
     "custom_script": "script/custom-script.sh",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",
@@ -129,7 +131,8 @@ var ubuntu_1604 = {
     "memory": "1024",
     "preseed" : "preseed.cfg",
 	"boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-    "desktop": "false"
+ 	"vm_output":"vm-iso-output",
+	"desktop": "false"
   }
 
 }

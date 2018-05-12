@@ -1,5 +1,6 @@
 var windows_81 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",
     "type": "virtualbox-iso",
     "vm_name": "{{user `vm_name`}}",
     "communicator": "winrm",
@@ -11,6 +12,7 @@ var windows_81 = {
     "boot_command": "",
     "winrm_username": "vagrant",
     "winrm_password": "vagrant",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "winrm_timeout": "{{user `winrm_timeout`}}",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
     "guest_os_type": "Windows81_64",
@@ -71,6 +73,7 @@ var windows_81 = {
   ],
   "variables": {
     "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
     "autounattend": "./windows_x64/answer_files/81/Autounattend.xml",
@@ -81,6 +84,7 @@ var windows_81 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_81.box"
   }
 }

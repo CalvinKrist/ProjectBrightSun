@@ -1,5 +1,6 @@
 var windows_server_2008_r2 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",	  
     "type": "virtualbox-iso",
 	"vm_name": "{{user `vm_name`}}",
 	"communicator": "winrm",
@@ -8,6 +9,7 @@ var windows_server_2008_r2 = {
     "iso_checksum": "{{user `iso_checksum`}}",
     "headless": "{{user `headless`}}",
 	"boot_wait": "4m",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "boot_command": "",
     "winrm_username": "vagrant",
 	"winrm_password": "vagrant",
@@ -69,6 +71,7 @@ var windows_server_2008_r2 = {
   }],
   "variables": {
     "iso_url": "http://download.microsoft.com/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "4263be2cf3c59177c45085c0a7bc6ca5",
     "autounattend": "./windows_x64/answer_files/2008_r2/Autounattend.xml",
@@ -79,6 +82,7 @@ var windows_server_2008_r2 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_server_2008_r2.box"
   }
 }

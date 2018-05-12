@@ -1,5 +1,6 @@
 var windows_server_2016 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",
 	"type": "virtualbox-iso",
     "vm_name": "{{user `vm_name`}}",
 	"communicator": "winrm",
@@ -8,6 +9,7 @@ var windows_server_2016 = {
 	"iso_checksum": "{{user `iso_checksum`}}",
 	"headless": "{{user `headless`}}",
 	"boot_wait": "4m",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "boot_command": "",
 	"winrm_username": "vagrant",
 	"winrm_password": "vagrant",
@@ -85,6 +87,7 @@ var windows_server_2016 = {
   }],
   "variables": {
     "iso_url": "http://care.dlservice.microsoft.com/dl/download/1/4/9/149D5452-9B29-4274-B6B3-5361DBDA30BC/14393.0.161119-1705.RS1_REFRESH_SERVER_EVAL_X64FRE_EN-US.ISO",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
     "autounattend": "./windows_x64/answer_files/2016/Autounattend.xml",
@@ -95,6 +98,7 @@ var windows_server_2016 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_server_2016.box"
   }
 }

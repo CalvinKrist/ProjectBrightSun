@@ -55,7 +55,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		//Duplicate of the above - clean up in future
 		//edit-modal: When the platform is changed in the drop-down, clears and repopulates os drop-down options
-
 		function updateOsDropdown(){	
 			if($( "#editPlatformSelect option:selected" ).val() !== 'default'){
 				osSelect.removeAttr('disabled');
@@ -209,40 +208,40 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			console.log(machToEditIndex+"\n"+window.boxes[machToEditIndex].name+"\n"+window.boxes[machToEditIndex].platform+"\n"+window.boxes[machToEditIndex].os_version);
 			
 			
-		var currentCard = $('#card_well').find('div[data-name]').filter(function(){
-				return $(this).data('name') === oldMachName;
-		});//theoretically this should be doable with $('#card_well').find('div[data-name = oldMachName]') but that was returning undefined
+			var currentCard = $('#card_well').find('div[data-name]').filter(function(){
+					return $(this).data('name') === oldMachName;
+			});//theoretically this should be doable with $('#card_well').find('div[data-name = oldMachName]') but that was returning undefined
 		
-		currentCard.data('name', newMachName);
-		currentCard.data('platform', plat);
-		currentCard.data('os', os);
-		console.log(currentCard.data('name')+ "  "+ newMachName);
-		//oddly enough, these return the same thing so it is setting it correctly, 
-		//but when the HTML is logged, it says that the cards still have their original data
-		//weirder than that is the fact that the edit modal gets its contents from the card data
-		//and it functions as if the card data was successfully changed....
-		//identify what is going on here before it causes a problem....
-		/*
-		
-		DD      OO    N   N  TTTTTTT        IIIII    GG    N   N    OO    RRR    EEEE
-		D  D   O  O   NN  N     T             I     G      NN  N   O  O   R  R   E
-		D  D   O  O   N N N     T             I     G  G   N N N   O  O   RRR    EEEE
-		D  D   O  O   N  NN     T             I     G  G   N  NN   O  O   R  R   E
-		DD      OO    N   N     T           IIIII    GG    N   N    OO    R  R   EEEE 
-		
-		*/
-		
-		if(plat.includes('windows')) {
-				var plat_label = '<span class="badge badge-info">Windows</span>';
-			} else if(plat.includes('linux')) {
-				var plat_label = '<span class="badge badge-warning">Linux</span>';
-			} else {
-			}
+			currentCard.data('name', newMachName);
+			currentCard.data('platform', plat);
+			currentCard.data('os', os);
+			console.log(currentCard.data('name')+ "  "+ newMachName);
+			//oddly enough, these return the same thing so it is setting it correctly, 
+			//but when the HTML is logged, it says that the cards still have their original data
+			//weirder than that is the fact that the edit modal gets its contents from the card data
+			//and it functions as if the card data was successfully changed....
+			//identify what is going on here before it causes a problem....
+			/*
 			
-			var os_label = '<p>' + os + '</p>';
-		
-		currentCard[0].innerHTML = '<div class="card-body"><h5 class="card-title">' + newMachName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div>';
-		console.log(currentCard.parent()[0].innerHTML);
+			DD      OO    N   N  TTTTTTT        IIIII    GG    N   N    OO    RRR    EEEE
+			D  D   O  O   NN  N     T             I     G      NN  N   O  O   R  R   E
+			D  D   O  O   N N N     T             I     G  G   N N N   O  O   RRR    EEEE
+			D  D   O  O   N  NN     T             I     G  G   N  NN   O  O   R  R   E
+			DD      OO    N   N     T           IIIII    GG    N   N    OO    R  R   EEEE 
+			
+			*/
+			
+			if(plat.includes('windows')) {
+					var plat_label = '<span class="badge badge-info">Windows</span>';
+				} else if(plat.includes('linux')) {
+					var plat_label = '<span class="badge badge-warning">Linux</span>';
+				} else {
+				}
+				
+				var os_label = '<p>' + os + '</p>';
+			
+			currentCard[0].innerHTML = '<div class="card-body"><h5 class="card-title">' + newMachName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div>';
+			console.log(currentCard.parent()[0].innerHTML);
 		}
 		
 		
@@ -285,3 +284,55 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		});
 
 });
+
+
+
+
+/*
+Notes on code debt:
+	
+	Combine dynamic dropdown code blocks
+		* Currently different code blocks doing the same thing for options-modal and for edit-modal
+		* Current difference to rectify:
+			* Each targets based on different classes in each respective modal
+				> Solution:
+					Give similar elements the same classes and discern based on ancestor modal
+			* Method for options-modal calls anonymous function like so: $('#platformSelect').change(function() {
+				whereas code block for edit-modal has function named updateOsDropdown which is called separately by $('#editPlatformSelect').change(updateOsDropdown);
+				I believe the method for the edit-modal was coded this way due to the fact that some referenced elements may not have initially existed but I don't recall
+				> Solution:
+					Fiddle around with this to regain an understanding.
+					If possible, implement solution by, on change of a unified platform select class, call an anonymous function with an event parameter 
+					and find which modal is the closest ancestor, then store it to use as a reference point for other relative addressing
+		
+	Eliminate logic in dynamic dropdown methods that toggles disable for osSelect
+		* starts with if asking if the default is selected
+		* ends with else disabling osSelect
+		* Obsolete code - needs to be removed
+		
+	Combine functions for check_all_add_fields_set and edit_check_all_add_fields_set
+		* Currently different functions doing the same thing for options-modal and for edit-modal
+		* Current difference to rectify:
+			* Each function is called in a different context despite functioning nearly identically
+			> Solution:
+				Build new function to take a parameter telling it its context
+			* Each targets based on different classes in each respective modal
+			> Solution:
+				Give similar elements the same classes and discern based on ancestor modal
+			* Function used with edit-modal has extra conditional in logic checking for duplicate names to allow for edited machines to retain their name
+			> Solution:
+				In unified function, alter that bit of logic to execute in a different if statement afterwards, checking its context and executing the correct logic from there.  
+				Can't just use more complex logic because one of the conditionals checks properties that only exist for the edit modal
+			> Preferred Solution:
+				Do try just using fancy logic by using a ternary operator as a conditional. (Name not used)AND(is edit modal ? isn't current machine name : true)
+				Whether or not that works hinges on how ternary operators are executed - if it doesn't try to parse an expression that isn't returned, then it should work 
+
+
+Similar code blocks that should not be combined:
+
+	Save edits button action and add button action
+		* Very similar in form and function but small enough that it would only complicate things more to combine them
+	
+	save_edits() and add_box()
+		* Although similar, distinctly different enough that they should stay that way to avoid confusion
+*/

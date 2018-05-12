@@ -1,5 +1,6 @@
 var windows_server_2012_r2 = {
   "builders": [{
+	"output_directory":"{{user `vm_output`}}",
     "type": "virtualbox-iso",
 	"vm_name": "{{user `vm_name`}}",
 	"communicator": "winrm",
@@ -8,6 +9,7 @@ var windows_server_2012_r2 = {
     "iso_checksum": "{{user `iso_checksum`}}",
     "headless": "{{user `headless`}}",
 	"boot_wait": "4m",
+	"output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
     "boot_command": "",
     "winrm_username": "vagrant",
 	"winrm_password": "vagrant",
@@ -69,6 +71,7 @@ var windows_server_2012_r2 = {
   }],
   "variables": {
     "iso_url": "http://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",
+	"platform":"windows",
     "iso_checksum_type": "md5",
     "iso_checksum": "458ff91f8abc21b75cb544744bf92e6a",
     "autounattend": "./windows_x64/answer_files/2012_r2/Autounattend.xml",
@@ -79,6 +82,7 @@ var windows_server_2012_r2 = {
     "guest_additions_mode": "disable",
     "memory": "2048",
     "cpus": "2",
+	"vm_output":"vm-iso-output",
     "output_dir": "../Boxes/windows_x64/windows_server_2012_r2.box"
   }
 }
