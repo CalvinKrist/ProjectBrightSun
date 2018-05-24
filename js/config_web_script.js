@@ -19,74 +19,60 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		//options-modal: When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		$('#platformSelect').change(function() {
-			if($( "#platformSelect option:selected" ).val() !== 'default'){
-				osSelect.removeAttr('disabled');
-				if($("#platformSelect option:selected").val()==="windows_x64"){
-					$("#osSelect option").remove();
-					$.each(osWindows64Array, function (i, item) {
-						$('#osSelect').append($('<option>', { 
-							value: item,
-							text : item
-						}));
-					});
-				} else if($("#platformSelect option:selected").val()==="linux_x64"){
+			if($("#platformSelect option:selected").val()==="windows_x64"){
 				$("#osSelect option").remove();
-					$.each(osLinux64Array, function (i, item) {
-						$('#osSelect').append($('<option>', { 
-							value: item,
-							text : item
-						}));
-					});
-				} else if($("#platformSelect option:selected").val()==="linux_x32"){
-				$("#osSelect option").remove();
-					$.each(osLinux32Array, function (i, item) {
-						$('#osSelect').append($('<option>', { 
-							value: item,
-							text : item
-						}));
-					});
-				}
-			}
-			else{
-				// not functional should reset selection when dropdown is disabled $('#defaultOs').attr('selected','selected').siblings().removeAttr('selected');
-				osSelect.attr('disabled','disabled');
+				$.each(osWindows64Array, function (i, item) {
+					$('#osSelect').append($('<option>', { 
+						value: item,
+						text : item
+					}));
+				});
+			} else if($("#platformSelect option:selected").val()==="linux_x64"){
+			$("#osSelect option").remove();
+				$.each(osLinux64Array, function (i, item) {
+					$('#osSelect').append($('<option>', { 
+						value: item,
+						text : item
+					}));
+				});
+			} else if($("#platformSelect option:selected").val()==="linux_x32"){
+			$("#osSelect option").remove();
+				$.each(osLinux32Array, function (i, item) {
+					$('#osSelect').append($('<option>', { 
+						value: item,
+						text : item
+					}));
+				});
 			}
 		});
 		
 		//Duplicate of the above - clean up in future
 		//edit-modal: When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		function updateOsDropdown(){	
-			if($( "#editPlatformSelect option:selected" ).val() !== 'default'){
-				osSelect.removeAttr('disabled');
-				if($("#editPlatformSelect option:selected").val()==="windows_x64"){
-					$("#editOsSelect option").remove();
-					$.each(osWindows64Array, function (i, item) {
-						$('#editOsSelect').append($('<option>', { 
-							value: item,
-							text : item
-						}));
-					});
-				} else if($("#editPlatformSelect option:selected").val()==="linux_x64"){
+			if($("#editPlatformSelect option:selected").val()==="windows_x64"){
 				$("#editOsSelect option").remove();
-					$.each(osLinux64Array, function (i, item) {
-						$('#editOsSelect').append($('<option>', { 
-							value: item,
-							text : item
-						}));
-					});
-				} else if($("#editPlatformSelect option:selected").val()==="linux_x32"){
-				$("#editOsSelect option").remove();
-					$.each(osLinux32Array, function (i, item) {
-						$('#editOsSelect').append($('<option>', { 
-							value: item,
-							text : item
-						}));
-					});
-				}
-			}
-			else{
-				// not functional should reset selection when dropdown is disabled $('#defaultOs').attr('selected','selected').siblings().removeAttr('selected');
-				osSelect.attr('disabled','disabled');
+				$.each(osWindows64Array, function (i, item) {
+					$('#editOsSelect').append($('<option>', { 
+						value: item,
+						text : item
+					}));
+				});
+			} else if($("#editPlatformSelect option:selected").val()==="linux_x64"){
+			$("#editOsSelect option").remove();
+				$.each(osLinux64Array, function (i, item) {
+					$('#editOsSelect').append($('<option>', { 
+						value: item,
+						text : item
+					}));
+				});
+			} else if($("#editPlatformSelect option:selected").val()==="linux_x32"){
+			$("#editOsSelect option").remove();
+				$.each(osLinux32Array, function (i, item) {
+					$('#editOsSelect').append($('<option>', { 
+						value: item,
+						text : item
+					}));
+				});
 			}
 		}
 		$('#editPlatformSelect').change(updateOsDropdown);
