@@ -4,8 +4,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		var osSelect = $('#osSelect');
 		var osWindows64Array = ["windows_7", "windows_81", "windows_10", "windows_server_2008_r2", "windows_server_2012_r2", "windows_server_2016"];
 		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1710", "ubuntu_1710_desktop"];
-		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];
-		
+		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];	
 		
 		//populates options modal os drop-down with windows options when options modal is 
 		//created since windows is the default selected platform
@@ -17,66 +16,44 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		});
 		
 		
-		//options-modal: When the platform is changed in the drop-down, clears and repopulates os drop-down options
-		$('#platformSelect').change(function() {
-			if($("#platformSelect option:selected").val()==="windows_x64"){
-				$("#osSelect option").remove();
+		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
+		function updateOsDropdown() {
+			
+			var platformDropdownID = $(this).attr('id');
+			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "editOsSelect" ;
+			
+			console.log(platformDropdownID+"  "+osDropdownID);
+			
+			
+			if($("#"+platformDropdownID+" option:selected").val()==="windows_x64"){
+				$("#"+osDropdownID+" option").remove();
 				$.each(osWindows64Array, function (i, item) {
-					$('#osSelect').append($('<option>', { 
+					$('#'+osDropdownID).append($('<option>', { 
 						value: item,
 						text : item
 					}));
 				});
-			} else if($("#platformSelect option:selected").val()==="linux_x64"){
-			$("#osSelect option").remove();
+			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x64"){
+			$("#"+osDropdownID+" option").remove();
 				$.each(osLinux64Array, function (i, item) {
-					$('#osSelect').append($('<option>', { 
+					$('#'+osDropdownID).append($('<option>', { 
 						value: item,
 						text : item
 					}));
 				});
-			} else if($("#platformSelect option:selected").val()==="linux_x32"){
-			$("#osSelect option").remove();
+			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x32"){
+			$("#"+osDropdownID+" option").remove();
 				$.each(osLinux32Array, function (i, item) {
-					$('#osSelect').append($('<option>', { 
-						value: item,
-						text : item
-					}));
-				});
-			}
-		});
-		
-		//Duplicate of the above - clean up in future
-		//edit-modal: When the platform is changed in the drop-down, clears and repopulates os drop-down options
-		function updateOsDropdown(){	
-			if($("#editPlatformSelect option:selected").val()==="windows_x64"){
-				$("#editOsSelect option").remove();
-				$.each(osWindows64Array, function (i, item) {
-					$('#editOsSelect').append($('<option>', { 
-						value: item,
-						text : item
-					}));
-				});
-			} else if($("#editPlatformSelect option:selected").val()==="linux_x64"){
-			$("#editOsSelect option").remove();
-				$.each(osLinux64Array, function (i, item) {
-					$('#editOsSelect').append($('<option>', { 
-						value: item,
-						text : item
-					}));
-				});
-			} else if($("#editPlatformSelect option:selected").val()==="linux_x32"){
-			$("#editOsSelect option").remove();
-				$.each(osLinux32Array, function (i, item) {
-					$('#editOsSelect').append($('<option>', { 
+					$('#'+osDropdownID).append($('<option>', { 
 						value: item,
 						text : item
 					}));
 				});
 			}
 		}
-		$('#editPlatformSelect').change(updateOsDropdown);
-				
+		
+		$('.platform-select').change(updateOsDropdown); //updateOsDropdown is called in multiple places which is why it cannot just be an anonymous function
+		
 		
 		//When "add" button on modal is clicked, checks if all fields are populated. If not,
 		//gives a warning saying to do so and lets you return to the modal to try again. 
@@ -255,11 +232,13 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			$('#editMachineNameBox').val(machName);
 			$('#editPlatformSelect').val(machPlat);
-			updateOsDropdown();
+			console.log("ahem");
+			$('.platform-select').trigger(updateOsDropdown); //this needs addressing
+			console.log("ahehehm");
 			$('#editOsSelect').val(machOs);
 			
 			$('#editModal').data("currentMachName", machName);
-			$('#editModal').data("currentMachPlat", machPlat);
+			$('#editModal').data("currentMachPlat", machPlat); //
 			$('#editModal').data("currentMachOs", machOs);
 		});
 		
@@ -277,24 +256,8 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 /*
 Notes on code debt:
 	
-	Combine dynamic dropdown code blocks
-		* Currently different code blocks doing the same thing for options-modal and for edit-modal
-		* Current difference to rectify:
-			* Each targets based on different classes in each respective modal
-				> Solution:
-					Give similar elements the same classes and discern based on ancestor modal
-			* Method for options-modal calls anonymous function like so: $('#platformSelect').change(function() {
-				whereas code block for edit-modal has function named updateOsDropdown which is called separately by $('#editPlatformSelect').change(updateOsDropdown);
-				I believe the method for the edit-modal was coded this way due to the fact that some referenced elements may not have initially existed but I don't recall
-				> Solution:
-					Fiddle around with this to regain an understanding.
-					If possible, implement solution by, on change of a unified platform select class, call an anonymous function with an event parameter 
-					and find which modal is the closest ancestor, then store it to use as a reference point for other relative addressing
+
 		
-	Eliminate logic in dynamic dropdown methods that toggles disable for osSelect
-		* starts with if asking if the default is selected
-		* ends with else disabling osSelect
-		* Obsolete code - needs to be removed
 		
 	Combine functions for check_all_add_fields_set and edit_check_all_add_fields_set
 		* Currently different functions doing the same thing for options-modal and for edit-modal
