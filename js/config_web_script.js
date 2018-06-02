@@ -233,7 +233,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$('#editMachineNameBox').val(machName);
 			$('#editPlatformSelect').val(machPlat);
 			console.log("ahem");
-			$('.platform-select').trigger(updateOsDropdown); //this needs addressing
+			$('#editPlatformSelect').trigger('change'); //this needs addressing
 			console.log("ahehehm");
 			$('#editOsSelect').val(machOs);
 			
