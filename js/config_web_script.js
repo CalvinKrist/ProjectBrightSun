@@ -55,11 +55,9 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		$('.platform-select').change(updateOsDropdown); //updateOsDropdown is called in multiple places which is why it cannot just be an anonymous function
 		
 		
-		//When "add" button on modal is clicked, checks if all fields are populated. If not,
-		//gives a warning saying to do so and lets you return to the modal to try again. 
-		//If so, hides the modal and calls the add_box() function
+		
 		$("#addButton").on('click', function(){
-			if(check_all_add_fields_set()) {
+			if(check_all_add_fields_set(false)) {
 				$('#optionsModal').modal('hide');
 				add_box();
 			} else {
@@ -67,11 +65,9 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			}
 		});
 		
-		//When "Save Edits" button on edit modal is clicked, checks if all fields are populated. If not,
-		//gives a warning saying to do so and lets you return to the modal to try again. 
-		//If so, hides the modal and calls the save_edits() function
+		
 		$("#saveEditsButton").on('click', function(){
-			if(edit_check_all_add_fields_set()) {
+			if(check_all_add_fields_set(true)) {
 				$('#editModal').modal('hide');
 				save_edits();
 			} else {
@@ -81,32 +77,17 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		
 		//checks if name field is populated with valid content. If not, returns false and gives an alert, otherwise, returns true.
-		function check_all_add_fields_set() {
-			if($("#machineNameBox").val() === "") { //name not set
+		function check_all_add_fields_set(editNotOptionsModal) {
+			var nameBox = editNotOptionsModal ? "editMachineNameBox" : "machineNameBox" ;
+			
+			if($("#"+nameBox+"").val() === "") { //name not set
 				alert("Please give your box a hostname!");
 				return false;
-			} else if(window.boxes.map(value => value.name).includes($("#machineNameBox").val())) {
+			} else if((window.boxes.map(value => value.name).includes($("#"+nameBox+"").val()))&&((nameBox === "editMachineNameBox") ? $("#editMachineNameBox").val() !== $("#editModal").data("currentMachName") : true)) {
 				alert("Your box hostname cannot be the same as another box!");
 				return false;
 			}
-			else if($("#machineNameBox").val().indexOf(' ') >= 0){
-				alert("Your box hostname cannot contain whitespace!");
-				return false;
-			}
-			return true;
-		}
-		
-		//Duplicate of the above - clean up in future 
-		//edit-modal- checks if name field is populated with valid content. If not, returns false and gives an alert, otherwise, returns true.
-		function edit_check_all_add_fields_set() {
-			if($("#editMachineNameBox").val() === "") { //name not set
-				alert("Please give your box a hostname!");
-				return false;
-			} else if($("#editMachineNameBox").val() !== $("#editModal").data("currentMachName") && window.boxes.map(value => value.name).includes($("#editMachineNameBox").val())) {
-				alert("Your box hostname cannot be the same as another box!");
-				return false;
-			}
-			else if($("#editMachineNameBox").val().indexOf(' ') >= 0){
+			else if($("#"+nameBox+"").val().indexOf(' ') >= 0){
 				alert("Your box hostname cannot contain whitespace!");
 				return false;
 			}
@@ -249,39 +230,3 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		});
 
 });
-
-
-
-
-/*
-Notes on code debt:
-	
-
-		
-		
-	Combine functions for check_all_add_fields_set and edit_check_all_add_fields_set
-		* Currently different functions doing the same thing for options-modal and for edit-modal
-		* Current difference to rectify:
-			* Each function is called in a different context despite functioning nearly identically
-			> Solution:
-				Build new function to take a parameter telling it its context
-			* Each targets based on different classes in each respective modal
-			> Solution:
-				Give similar elements the same classes and discern based on ancestor modal
-			* Function used with edit-modal has extra conditional in logic checking for duplicate names to allow for edited machines to retain their name
-			> Solution:
-				In unified function, alter that bit of logic to execute in a different if statement afterwards, checking its context and executing the correct logic from there.  
-				Can't just use more complex logic because one of the conditionals checks properties that only exist for the edit modal
-			> Preferred Solution:
-				Do try just using fancy logic by using a ternary operator as a conditional. (Name not used)AND(is edit modal ? isn't current machine name : true)
-				Whether or not that works hinges on how ternary operators are executed - if it doesn't try to parse an expression that isn't returned, then it should work 
-
-
-Similar code blocks that should not be combined:
-
-	Save edits button action and add button action
-		* Very similar in form and function but small enough that it would only complicate things more to combine them
-	
-	save_edits() and add_box()
-		* Although similar, distinctly different enough that they should stay that way to avoid confusion
-*/
