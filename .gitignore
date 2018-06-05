@@ -10,3 +10,4 @@ build/Vagrantfile
 build/packer_cache
 build/output-virtualbox-iso/
 build/*.sh
+.idea/*

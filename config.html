@@ -48,7 +48,9 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add New Machine</button>
+						<button type="button" class="btn btn-raised " style="background:blue; color:white">Import</button>
+						<button type="button" class="btn btn-raised btn-danger">Export</button>
+						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
 					</div>
 				</div>
@@ -56,7 +58,7 @@
 		</div>
 		<br>
 		<div id="card_well">
-			<p id="no_box_text">You have no machines yet! Click the "Add new machine" button to get started.</p>
+			<p id="no_box_text">You have no machines yet! Click the "Add Machine" button to get started.</p>
 			<div class="row"><div class="card-deck"></div></div>
 		</div>
 		<div class="modal" id="optionsModal" tabindex="-1" role="dialog">
@@ -75,7 +77,7 @@
 				</div>
 				<div class="form-group">
 					<label for="platformSelect">Platform</label>
-					<select class="custom-select" id="platformSelect" >
+					<select class="custom-select platform-select" id="platformSelect" >
 						<option value = 'windows_x64'>Windows (64-bit)</option>
 						<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
 						<option value = 'linux_x64'>Linux (64-bit)</option>
@@ -112,7 +114,7 @@
 				</div>
 				<div class="form-group">
 					<label for="platformSelect">Platform</label>
-					<select class="custom-select" id="editPlatformSelect" >
+					<select class="custom-select platform-select" id="editPlatformSelect" >
 						<option value = 'windows_x64'>Windows (64-bit)</option>
 						<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
 						<option value = 'linux_x64'>Linux (64-bit)</option>
