@@ -54,7 +54,16 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		$('.platform-select').change(updateOsDropdown); //updateOsDropdown is called in multiple places which is why it cannot just be an anonymous function
 		
+		// Button On-Click events
 		
+		$("#importEnvironmentButton").on('click', function(){
+			
+		});
+		
+		$("#exportEnvironmentButton").on('click', function(){
+			console.log(window.boxes)
+			download(JSON.stringify(window.boxes, null, 2), "MyEnvironment.json", "application/json");
+		});
 		
 		$("#addButton").on('click', function(){
 			if(check_all_add_fields_set(false)) {
@@ -64,7 +73,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				$('#optionsModal').modal('show');
 			}
 		});
-		
 		
 		$("#saveEditsButton").on('click', function(){
 			if(check_all_add_fields_set(true)) {
