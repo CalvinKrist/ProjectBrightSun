@@ -28,7 +28,7 @@ function build_boxes() {
 	var win_build_script = "";
 	var nix_build_script = "";
 	
-	//Windows Build SCRIPTS
+	//Windows and Linux Build SCRIPTS
 	win_build_script += "workflow Parallel-Vagrant {\n";
 	win_build_script += "\t$loc = Get-Location\n";
 	win_build_script += "\t$machines = \"" + packers[0][0]['variables']['vm_name'] + ".json\"";
@@ -38,7 +38,8 @@ function build_boxes() {
 		nix_build_script += " & packer build " + packers[i][0]['variables']['vm_name'] + ".json"
 	}
 	win_build_script += "\n\tforeach -parallel($mach in $machines) {\n";
-	win_build_script += "\t\tpowershell.exe -Command \"cd $loc;packer build $mach\"\n";
+	win_build_script += "\t\tcat \"Packer started for $mach\""
+	win_build_script += "\t\tpowershell.exe -Command \"cd $loc;packer build $mach > $mach.txt\"\n";
 	win_build_script += "\t}\n";
 	win_build_script += "}\n";
 	win_build_script += "Parallel-Vagrant\n"; 
