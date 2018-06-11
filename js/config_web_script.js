@@ -238,6 +238,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$("#machineNameBox").val('');
 		});
 		
+		//focusus on the textbox when a modal pops up
 		$('.modal').on('shown.bs.modal', function () {
 			$('.form-control').focus();
 		});
