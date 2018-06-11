@@ -237,5 +237,9 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		$("#addNewMachineButton").on('click', function(){
 			$("#machineNameBox").val('');
 		});
+		
+		$('.modal').on('shown.bs.modal', function () {
+			$('.form-control').focus();
+		});
 
 });
