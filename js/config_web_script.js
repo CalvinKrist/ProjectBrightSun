@@ -222,18 +222,19 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		//removes the object represented by the card from window.boxes then removes the card from the GUI
 		$('#card_well').on('click', '.removeButton', function(event){   			//must use  $('#card_well').on('click', '.removeButton', function(event){ instead of $('.removeButton').on('click', function(event){ because you can only directly target elements that exist when the script it initially executed
-
 			var machToRemoveName = $(event.currentTarget).closest('.card').data("name");
-			var machToRemoveIndex;
-			$.each(window.boxes, function(index, value){
-				if(machToRemoveName === value.name){
-					machToRemoveIndex = index;
-					return false;
-				}
-			});
-			window.boxes.splice(machToRemoveIndex, 1);
+			if(confirm("Are you sure you want to remove "+machToRemoveName+"?")){
+				var machToRemoveIndex;
+				$.each(window.boxes, function(index, value){
+					if(machToRemoveName === value.name){
+						machToRemoveIndex = index;
+						return false;
+					}
+				});
+				window.boxes.splice(machToRemoveIndex, 1);
 			
-			$(event.currentTarget).closest(".card").remove();
+				$(event.currentTarget).closest(".card").remove(); 
+			}
 		});
 		
 		
@@ -258,6 +259,11 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		//clears name text box in the options modal
 		$("#addNewMachineButton").on('click', function(){
 			$("#machineNameBox").val('');
+		});
+		
+		//focusus on the textbox when a modal pops up
+		$('.modal').on('shown.bs.modal', function () {
+			$('.form-control').focus();
 		});
 
 });
