@@ -15,7 +15,10 @@
 <body>
 	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
 	<div class="container">
-		<a class="navbar-brand" href="#">Project BrightSun</a>
+		  <a class="navbar-brand" href="#">
+		  	  <img src="graphics/Asset 2.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+		  	  Project BrightSun
+		  </a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -48,15 +51,20 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add New Machine</button>
+						<label class="btn btn-raised btn-file" style="background:blue; color:white">
+							Import<input type="file" style="display: none;" id="importEnvironmentButton">
+						</label>
+						<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
+						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 		<br>
 		<div id="card_well">
-			<p id="no_box_text">You have no machines yet! Click the "Add new machine" button to get started.</p>
+			<p id="no_box_text">You have no machines yet! Click the "Add Machine" button to get started.</p>
 			<div class="row"><div class="card-deck"></div></div>
 		</div>
 		<div class="modal" id="optionsModal" tabindex="-1" role="dialog">
@@ -75,7 +83,7 @@
 				</div>
 				<div class="form-group">
 					<label for="platformSelect">Platform</label>
-					<select class="custom-select" id="platformSelect" >
+					<select class="custom-select platform-select" id="platformSelect" >
 						<option value = 'windows_x64'>Windows (64-bit)</option>
 						<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
 						<option value = 'linux_x64'>Linux (64-bit)</option>
@@ -112,7 +120,7 @@
 				</div>
 				<div class="form-group">
 					<label for="platformSelect">Platform</label>
-					<select class="custom-select" id="editPlatformSelect" >
+					<select class="custom-select platform-select" id="editPlatformSelect" >
 						<option value = 'windows_x64'>Windows (64-bit)</option>
 						<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
 						<option value = 'linux_x64'>Linux (64-bit)</option>
