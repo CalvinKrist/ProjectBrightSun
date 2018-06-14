@@ -143,7 +143,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			
 			var os_label = '<p>' + os + '</p>';
 			
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
 		}
 		
 		// uses data from selected modal to add a new machine to the environment
@@ -176,9 +176,9 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				}
 			});
 	
-			window.boxes[machToEditIndex].name = newMachName;
-			window.boxes[machToEditIndex].platform = plat;
-			window.boxes[machToEditIndex].os_version = os;
+			window.boxes[machToEditIndex]["name"] = newMachName;
+			window.boxes[machToEditIndex]["platform"] = plat;
+			window.boxes[machToEditIndex]["os_version"] = os;
 		
 			console.log(machToEditIndex+"\n"+window.boxes[machToEditIndex].name+"\n"+window.boxes[machToEditIndex].platform+"\n"+window.boxes[machToEditIndex].os_version);
 			
@@ -215,7 +215,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				
 				var os_label = '<p>' + os + '</p>';
 			
-			currentCard[0].innerHTML = '<div class="card-body"><h5 class="card-title">' + newMachName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div>';
+			currentCard[0].innerHTML = '<div class="card-body"><h5 class="card-title">' + newMachName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div>';
 			console.log(currentCard.parent()[0].innerHTML);
 		}
 		
@@ -253,6 +253,22 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$('#editModal').data("currentMachName", machName);
 			$('#editModal').data("currentMachPlat", machPlat); //
 			$('#editModal').data("currentMachOs", machOs);
+		});
+		
+		
+		$('#card_well').on('click', '.cloneButton', function(event){
+			var machToCloneName	= $(event.currentTarget).closest('.card').data("name");
+			var machToCloneIndex;
+			$.each(window.boxes, function(index, value){
+				if(machToCloneName === value.name){
+					machToCloneIndex = index;
+					return false;
+				}
+			});
+			var clonedMachine = window.boxes[machToCloneIndex];
+			clonedMachine["name"] = "clone_of_"+machToCloneName;			
+			window.boxes.push(clonedMachine);
+			add_machine_box(clonedMachine);
 		});
 		
 		
