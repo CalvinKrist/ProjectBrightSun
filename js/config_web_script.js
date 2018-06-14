@@ -15,7 +15,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			}));
 		});
 		
-		
 		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		function updateOsDropdown() {
 			
@@ -35,10 +34,10 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				});
 			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x64"){
 			$("#"+osDropdownID+" option").remove();
-				$.each(osLinux64Array, function (i, item) {
-					$('#'+osDropdownID).append($('<option>', { 
-						value: item,
-						text : item
+					$.each(osLinux64Array, function (i, item) {
+						$('#'+osDropdownID).append($('<option>', { 
+							value: item,
+							text : item
 					}));
 				});
 			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x32"){
@@ -56,8 +55,23 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		// Button On-Click events
 		
-		$("#importEnvironmentButton").on('click', function(){
+		$("#importEnvironmentButton").on('change', function(){
+			// Access file
+			var file = this.files[0];
+			var reader = new FileReader();
 			
+			// Reset inner HTML (delete any modals already there)
+			$('#card_well')[0].innerHTML = '<div class="row"><div class="card-deck"></div></div>'
+
+			reader.onloadend = function(evt) {
+				var result = JSON.parse(evt.currentTarget.result);
+				window.boxes = result;
+				
+				for(var i = 0; i < boxes.length; i++)
+					add_machine_box(boxes[i]);
+			}
+			
+			reader.readAsText(file);
 		});
 		
 		$("#exportEnvironmentButton").on('click', function(){
@@ -102,15 +116,12 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			return true;
 		}
 		
-		
-		//adds data selected in modal to a box for later download
-		function add_box() {
-			var machName = $("#machineNameBox").val();
-			var plat = $("#platformSelect option:selected").val();
-			var os = $("#osSelect option:selected").val();
-			
-			
-			window.boxes.push({'name': machName, 'platform':plat, 'os_version':os});
+		// Adds a new machine to the environment, given a machine object
+		// Does not add the machine to window.boxes
+		function add_machine_box(machine) {
+			var machName = machine["name"];
+			var plat = machine["platform"];
+			var os = machine["os_version"];
 			
 			if(window.boxes.length === 0) {
 				$('#no_box_text').show();
@@ -133,6 +144,18 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var os_label = '<p>' + os + '</p>';
 			
 			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
+		}
+		
+		// uses data from selected modal to add a new machine to the environment
+		function add_box() {
+			var machName = $("#machineNameBox").val();
+			var plat = $("#platformSelect option:selected").val();
+			var os = $("#osSelect option:selected").val();
+			
+			var machine = {'name': machName, 'platform':plat, 'os_version':os};
+			window.boxes.push(machine);
+			add_machine_box(machine);
+			
 		}
 		
 		//saves data selected in modal to the current box and card being edited
