@@ -21,9 +21,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var platformDropdownID = $(this).attr('id');
 			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "editOsSelect" ;
 			
-			console.log(platformDropdownID+"  "+osDropdownID);
-			
-			
 			if($("#"+platformDropdownID+" option:selected").val()==="windows_x64"){
 				$("#"+osDropdownID+" option").remove();
 				$.each(osWindows64Array, function (i, item) {
@@ -53,29 +50,26 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		$('.platform-select').change(updateOsDropdown); //updateOsDropdown is called in multiple places which is why it cannot just be an anonymous function
 		
-		// Button On-Click events
+		//////////////////////////
+		// Navbar Button Events //
+		//////////////////////////
 		
 		$("#importEnvironmentButton").on('change', function(){
 			// Access file
 			var file = this.files[0];
 			var reader = new FileReader();
-			
-			// Reset inner HTML (delete any modals already there)
-			$('#card_well')[0].innerHTML = '<div class="row"><div class="card-deck"></div></div>'
 
 			reader.onloadend = function(evt) {
 				var result = JSON.parse(evt.currentTarget.result);
 				window.boxes = result;
 				
-				for(var i = 0; i < boxes.length; i++)
-					add_machine_box(boxes[i]);
+				update_machine_modals();
 			}
 			
 			reader.readAsText(file);
 		});
 		
 		$("#exportEnvironmentButton").on('click', function(){
-			console.log(window.boxes)
 			download(JSON.stringify(window.boxes, null, 2), "MyEnvironment.json", "application/json");
 		});
 		
@@ -116,23 +110,22 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			return true;
 		}
 		
+		function update_machine_modals() {
+			$('#card_well')[0].innerHTML = '<br><div class="row"><div class="card-deck"></div></div>'
+			for(var i = 0; i < window.boxes.length; i++) {
+					add_machine_modal(i);
+			}
+		}
 		// Adds a new machine to the environment, given a machine object
 		// Does not add the machine to window.boxes
-		function add_machine_box(machine) {
-			var machName = machine["name"];
-			var plat = machine["platform"];
-			var os = machine["os_version"];
+		function add_machine_modal(index) {
+			var machName = window.boxes[index]["name"];
+			var plat     = window.boxes[index]["platform"];
+			var os       = window.boxes[index]["os_version"];
 			
-			if(window.boxes.length === 0) {
-				$('#no_box_text').show();
-			} else {
-				$('#no_box_text').hide();
-			}
-			
-			//Add card to page
-			if(window.boxes.length % 3 === 1 && window.boxes.length !== 0) { //add new row
+			//Add new row if necesarry
+			if((index + 1) % 3 === 1 && index !== 1) 
 				$('#card_well')[0].innerHTML += '<br><div class="row"><div class="card-deck"></div></div>';
-			}
 			
 			if(plat.includes('windows')) {
 				var plat_label = '<span class="badge badge-info">Windows</span>';
@@ -144,7 +137,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var os_label = '<p>' + os + '</p>';
 			
 			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
-		}
+ 		}
 		
 		// uses data from selected modal to add a new machine to the environment
 		function add_box() {
@@ -154,7 +147,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			
 			var machine = {'name': machName, 'platform':plat, 'os_version':os};
 			window.boxes.push(machine);
-			add_machine_box(machine);
+			update_machine_modals();
 			
 		}
 		
@@ -180,47 +173,14 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			window.boxes[machToEditIndex]["platform"] = plat;
 			window.boxes[machToEditIndex]["os_version"] = os;
 		
-			console.log(machToEditIndex+"\n"+window.boxes[machToEditIndex].name+"\n"+window.boxes[machToEditIndex].platform+"\n"+window.boxes[machToEditIndex].os_version);
-			
-			
-			var currentCard = $('#card_well').find('div[data-name]').filter(function(){
-					return $(this).data('name') === oldMachName;
-			});//theoretically this should be doable with $('#card_well').find('div[data-name = oldMachName]') but that was returning undefined
-		
-			currentCard.data('name', newMachName);
-			currentCard.data('platform', plat);
-			currentCard.data('os', os);
-			console.log(currentCard.data('name')+ "  "+ newMachName);
-			//oddly enough, these return the same thing so it is setting it correctly, 
-			//but when the HTML is logged, it says that the cards still have their original data
-			//weirder than that is the fact that the edit modal gets its contents from the card data
-			//and it functions as if the card data was successfully changed....
-			//identify what is going on here before it causes a problem....
-			/*
-			
-			DD      OO    N   N  TTTTTTT        IIIII    GG    N   N    OO    RRR    EEEE
-			D  D   O  O   NN  N     T             I     G      NN  N   O  O   R  R   E
-			D  D   O  O   N N N     T             I     G  G   N N N   O  O   RRR    EEEE
-			D  D   O  O   N  NN     T             I     G  G   N  NN   O  O   R  R   E
-			DD      OO    N   N     T           IIIII    GG    N   N    OO    R  R   EEEE 
-			
-			*/
-			
-			if(plat.includes('windows')) {
-					var plat_label = '<span class="badge badge-info">Windows</span>';
-				} else if(plat.includes('linux')) {
-					var plat_label = '<span class="badge badge-warning">Linux</span>';
-				} else {
-				}
-				
-				var os_label = '<p>' + os + '</p>';
-			
-			currentCard[0].innerHTML = '<div class="card-body"><h5 class="card-title">' + newMachName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div>';
-			console.log(currentCard.parent()[0].innerHTML);
+			update_machine_modals();
 		}
 		
+		///////////////////////////
+		// Machine modal buttons //
+		///////////////////////////
 		
-		//removes the object represented by the card from window.boxes then removes the card from the GUI
+		// Remove
 		$('#card_well').on('click', '.removeButton', function(event){   			//must use  $('#card_well').on('click', '.removeButton', function(event){ instead of $('.removeButton').on('click', function(event){ because you can only directly target elements that exist when the script it initially executed
 			var machToRemoveName = $(event.currentTarget).closest('.card').data("name");
 			if(confirm("Are you sure you want to remove "+machToRemoveName+"?")){
@@ -233,11 +193,11 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				});
 				window.boxes.splice(machToRemoveIndex, 1);
 			
-				$(event.currentTarget).closest(".card").remove(); 
+				update_machine_modals();
 			}
 		});
 		
-		
+		// Edit
 		$('#card_well').on('click', '.editButton', function(event){
 			var machName = $(event.currentTarget).closest('.card').data("name");
 			var machPlat = $(event.currentTarget).closest('.card').data("platform");
@@ -245,9 +205,8 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			$('#editMachineNameBox').val(machName);
 			$('#editPlatformSelect').val(machPlat);
-			console.log("ahem");
+
 			$('#editPlatformSelect').trigger('change'); //this needs addressing
-			console.log("ahehehm");
 			$('#editOsSelect').val(machOs);
 			
 			$('#editModal').data("currentMachName", machName);
@@ -255,7 +214,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$('#editModal').data("currentMachOs", machOs);
 		});
 		
-		
+		// Clone
 		$('#card_well').on('click', '.cloneButton', function(event){
 			var machToCloneName	= $(event.currentTarget).closest('.card').data("name");
 			var machToCloneIndex;
@@ -265,10 +224,13 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 					return false;
 				}
 			});
-			var clonedMachine = window.boxes[machToCloneIndex];
-			clonedMachine["name"] = "clone_of_"+machToCloneName;			
-			window.boxes.push(clonedMachine);
-			add_machine_box(clonedMachine);
+			
+			// Use JSON parsing as a copy constructor
+			var clonedObject = JSON.parse(JSON.stringify(window.boxes[machToCloneIndex]));
+			clonedObject["name"] = "clone_of_" + window.boxes[machToCloneIndex]["name"];
+			window.boxes.push(clonedObject);
+			
+			update_machine_modals();
 		});
 		
 		
