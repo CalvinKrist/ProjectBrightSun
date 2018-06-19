@@ -1,6 +1,6 @@
 # RedBlueCyberlab
 
-ProjectBrightsun allows for the automatic provisioning of complicated virtual environments through a GUI system. The Project also offers multiple lessoms revolving around the ability to easily generate virtual environments in otder to teach security basics, such as setting up and attacking an Active Directory environment.
+ProjectBrightsun allows for the automatic provisioning of complicated virtual environments through a GUI system. The Project also offers multiple lessons revolving around the ability to easily generate virtual environments in otder to teach security basics, such as setting up and attacking an Active Directory environment.
 
 Teachers can use ProjectBrightSun to develop lab environments for their students. The students can then re-build the virtual environments easily and quickly if they break something.
 
