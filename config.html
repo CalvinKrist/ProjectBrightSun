@@ -11,14 +11,7 @@
 
 	<!-- Material Design for Bootstrap CSS -->
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
@@ -59,11 +52,17 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<label class="btn btn-raised btn-file" style="background:blue; color:white">Import<input type="file" style="display: none;" id="importEnvironmentButton"></label>
+						<label class="btn btn-raised btn-file" style="background:blue; color:white">
+							Import<input type="file" style="display: none;" id="importEnvironmentButton">
+						</label>
 						<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
 						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
-						<label type="button" style="outline: 0;background: #ffffff;border: none;" class="btn btn-large btn-link" id="importExportEnvironmentButton"><span style="font-size:1.5em;" class="glyphicon glyphicon-cog"></span></label>
+						<label class="btn btn-link" style="color: black; background: none; border:0px solid transparent;" onclick="someFunc()">
+							<i class="material-icons md-48" >
+								settings
+							</i>
+						</label>
 					</div>
 				</div>
 			</div>
