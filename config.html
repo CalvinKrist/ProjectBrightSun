@@ -52,16 +52,25 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<label class="btn btn-raised btn-file" style="background:blue; color:white">
-							Import<input type="file" style="display: none;" id="importEnvironmentButton">
-						</label>
-						<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
+
 						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
-						<label class="btn btn-link" style="color: black; background: none; border:0px solid transparent;" onclick="someFunc()">
-							<i class="material-icons md-48" >
-								settings
-							</i>
+						<label class="btn btn-info btn-raised dropdown">
+							<a href="#" data-toggle="dropdown">
+								<i class="material-icons md-48" >
+									menu
+								</i>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
+								</li>
+								<li>
+									<label class="btn btn-raised btn-file" style="background:blue; color:white">
+										Import<input type="file" style="display: none;" id="importEnvironmentButton">
+									</label>
+								</li>
+							</ul>
 						</label>
 					</div>
 				</div>
