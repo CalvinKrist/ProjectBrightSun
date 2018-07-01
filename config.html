@@ -55,23 +55,19 @@
 
 						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
-						<label class="btn btn-info btn-raised dropdown">
-							<a href="#" data-toggle="dropdown">
+						<div class="dropdown">
+							<button class="btn btn-info btn-raised" type="button" data-toggle="dropdown">
 								<i class="material-icons md-48" >
 									menu
 								</i>
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
-								</li>
-								<li>
-									<label class="btn btn-raised btn-file" style="background:blue; color:white">
-										Import<input type="file" style="display: none;" id="importEnvironmentButton">
-									</label>
-								</li>
-							</ul>
-						</label>
+							</button>
+							<div class="dropdown-menu">
+								<button type="button" class="btn btn-raised btn-danger dropdown-item" id="exportEnvironmentButton">Export</button>
+								<label class="btn btn-raised btn-file dropdown-item" style="background:blue; color:white">
+									Import<input type="file" style="display: none;" id="importEnvironmentButton">
+								</label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
