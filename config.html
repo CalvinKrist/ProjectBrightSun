@@ -11,6 +11,7 @@
 
 	<!-- Material Design for Bootstrap CSS -->
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
 </head>
 <body>
 	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
@@ -51,13 +52,22 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<label class="btn btn-raised btn-file" style="background:blue; color:white">
-							Import<input type="file" style="display: none;" id="importEnvironmentButton">
-						</label>
-						<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
+
 						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
-						
+						<div class="dropdown">
+							<button class="btn btn-info btn-raised" type="button" data-toggle="dropdown">
+								<i class="material-icons md-48" >
+									menu
+								</i>
+							</button>
+							<div class="dropdown-menu">
+								<button type="button" class="btn btn-raised btn-danger dropdown-item" id="exportEnvironmentButton">Export</button>
+								<label class="btn btn-raised btn-file dropdown-item" style="background:blue; color:white">
+									Import<input type="file" style="display: none;" id="importEnvironmentButton">
+								</label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
