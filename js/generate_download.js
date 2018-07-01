@@ -55,7 +55,8 @@ function build_boxes() {
 	
 	
 	//GENERATE THE ZIP FILE AND START DOWNLOAD
-	content = zip.generate();
+	var content = zip.generate();
+	console.log(content);
 	download("data:application/zip;base64," + content, "boxes.zip", "application/zip");
 }
 

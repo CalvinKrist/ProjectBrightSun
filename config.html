@@ -11,7 +11,6 @@
 
 	<!-- Material Design for Bootstrap CSS -->
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-
 </head>
 <body>
 	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
@@ -52,20 +51,13 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-
+						<label class="btn btn-raised btn-file" style="background:blue; color:white">
+							Import <input type="file" style="display: none;" id="importEnvironmentButton">
+						</label>
+						<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
 						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
-							<button class="btn btn-info btn-raised" type="button" data-toggle="dropdown">
-								<i class="material-icons md-48" >
-									menu
-								</i>
-							</button>
-						<div class="dropdown-menu">
-							<button type="button" class="btn btn-raised btn-danger dropdown-item" id="exportEnvironmentButton">Export</button>
-							<label class="btn btn-raised btn-file dropdown-item" style="background:blue; color:white">
-								Import<input type="file" style="display: none;" id="importEnvironmentButton">
-							</label>
-						</div>
+						<button type="button" class="btn btn-raised btn-primary" onclick="testProvisioners()">Test</button>
 					</div>
 				</div>
 			</div>
@@ -151,14 +143,22 @@
 	</div>
 	
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+	<script>
+		window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
+	</script>
+	<script>const popper = require('./node_modules/popper.js/dist/umd/popper.js')</script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+	<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
 	<script type="text/javascript" src="js/jszip.js"></script>
 	<script type="text/javascript" src="js/download.js"></script>
 	<script type="text/javascript" src="js/generate_download.js"></script>
+	<script type="text/javascript" src="js/provisioning.js"></script>
+	<script type="text/javascript">
+		window.onload = loadProvisioners;
+	</script>
+	
 	
 	<!-- Importing Box Configuration Files -->
 	<script type="text/javascript" src="box_configs/windows_7.js"></script>

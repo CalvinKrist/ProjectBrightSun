@@ -1,6 +1,6 @@
-# Project Bright Sun
+# RedBlueCyberlab
 
-ProjectBrightsun allows for the automatic provisioning of complicated virtual environments through a GUI system. The Project also offers multiple lessons revolving around the ability to easily generate virtual environments in order to teach security basics, such as setting up and attacking an Active Directory environment.
+ProjectBrightsun allows for the automatic provisioning of complicated virtual environments through a GUI system. The Project also offers multiple lessoms revolving around the ability to easily generate virtual environments in otder to teach security basics, such as setting up and attacking an Active Directory environment.
 
 Teachers can use ProjectBrightSun to develop lab environments for their students. The students can then re-build the virtual environments easily and quickly if they break something.
 
@@ -28,12 +28,12 @@ Students can follow ProjectBrightsun's lessons while using our tools to learn mo
 * fill_in_here
 
 ## Development Progress
-[![Throughput Graph](https://graphs.waffle.io/CalvinKrist/ProjectBrightSun/throughput.svg)](https://waffle.io/CalvinKrist/ProjectBrightSun/metrics/throughput)
+[![Throughput Graph](https://graphs.waffle.io/CalvinKrist/RedBlueCyberlab/throughput.svg)](https://waffle.io/CalvinKrist/RedBlueCyberlab/metrics/throughput)
 
 ## Project Authors
 This project was initially created by Clark Benham, Calvin Krist, Saeed Razavi, and Jake Smith as part of the Synthesis Design II class at the University of Virginia (UVA) for Rodman Engineering Students.
 * Calvin Krist ([Github](https://github.com/CalvinKrist), [Twitter](https://twitter.com/CalvinKrist), [LinkedIn](https://www.linkedin.com/in/calvin-krist/))
-* Saeed Razavi ([Github](https://github.com/SaeedRazavi), [LinkedIn](https://www.linkedin.com/in/saeed-razavi-520a3b165/))
+* Saeed Razavi ([Github](https://github.com/SaeedRazavi))
 * David Smith ([Github](https://github.com/budder21), [LinkedIn](https://www.linkedin.com/in/david-smith-36978215a/))
 * Jake Smith ([Github](https://github.com/ION28), [Twitter](https://twitter.com/jtsmith282), [LinkedIn](https://linkedin.com/in/jakesmith282/))
 

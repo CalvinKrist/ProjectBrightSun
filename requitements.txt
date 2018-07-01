@@ -1,0 +1,1 @@
+Use this npm package: https://www.npmjs.com/package/require-from-url
