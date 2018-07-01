@@ -51,12 +51,25 @@
 			<div class="col-md-6">
 				<div class="row justify-content-end">
 					<div class="btn-group" role="group" aria-label="Setup Buttons">
-						<label class="btn btn-raised btn-file" style="background:blue; color:white">
-							Import <input type="file" style="display: none;" id="importEnvironmentButton">
-						</label>
-						<button type="button" class="btn btn-raised btn-danger" id="exportEnvironmentButton">Export</button>
-						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
-						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
+						<!-- Add Machine Button -->
+ 						<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#optionsModal" id="addNewMachineButton">Add Machine</button>
+						<!-- Download Button -->
+ 						<button type="button" class="btn btn-raised btn-primary" onclick="build_boxes()">Download</button>
+						<!-- Dropdown Toggle Button -->
+						<button class="btn btn-info btn-raised" type="button" data-toggle="dropdown">
+							<i class="material-icons md-48" >
+								menu
+							</i>
+						</button>
+						<!-- Dropdown Menu -->
+ 						<div class="dropdown-menu">
+							<!-- Import Button -->
+ 							<label class="btn btn-raised btn-file dropdown-item" style="background:blue; color:white">
+ 								Import<input type="file" style="display: none;" id="importEnvironmentButton">
+ 							</label>
+							<!-- Export Button -->
+							<button type="button" class="btn btn-raised btn-danger dropdown-item" id="exportEnvironmentButton">Export</button>
+ 						</div>
 					</div>
 				</div>
 			</div>
