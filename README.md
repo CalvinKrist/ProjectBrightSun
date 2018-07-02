@@ -23,9 +23,17 @@ Students can follow ProjectBrightsun's lessons while using our tools to learn mo
     * Version `2.0.2+`; Successfully tested on: `2.0.2`
 1. Install the Vagrant-Reload plugin: `vagrant plugin install vagrant-reload`
 1. Install Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+1. Install NodeJS: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
-### Using this tool to build your lab:
-* fill_in_here
+### Downloads:
+* Windows:
+* Linux:
+* MacOS:
+
+### How to build for development:
+1. CD to the project directory
+1. Run `npm init`
+1. Run `npm start`. This command is how the application is launched during deelopment.
 
 ## Development Progress
 [![Throughput Graph](https://graphs.waffle.io/CalvinKrist/RedBlueCyberlab/throughput.svg)](https://waffle.io/CalvinKrist/RedBlueCyberlab/metrics/throughput)
