@@ -23,6 +23,8 @@
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
+	<!-- Include custom JS Files -->
+	<script type="text/javascript" src="js/electron.js"></script>
 
     <div class="cover-container d-flex h-100 mx-auto flex-column">
       <header class="mb-auto">
@@ -40,7 +42,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="./index.html">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" onclick="loadWebPage('config.html')">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./config.html">Config Setup</a>

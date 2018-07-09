@@ -23,6 +23,8 @@ Students can follow ProjectBrightsun's lessons while using our tools to learn mo
     * Version `2.0.2+`; Successfully tested on: `2.0.2`
 1. Install the Vagrant-Reload plugin: `vagrant plugin install vagrant-reload`
 1. Install Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+1. Install Python 3.4+: [https://www.python.org/downloads/release/python-342/](https://www.python.org/downloads/release/python-342/)
+	* Make sure to add Python to the `path` on Windows machines
 1. Install NodeJS: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
 ### Downloads:

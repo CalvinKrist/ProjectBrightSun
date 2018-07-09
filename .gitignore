@@ -11,3 +11,5 @@ build/packer_cache
 build/output-virtualbox-iso/
 build/*.sh
 .idea/*
+python/.idea/*
+python/__pycache__/*

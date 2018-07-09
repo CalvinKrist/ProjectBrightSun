@@ -1,6 +1,6 @@
 function build_boxes() {
 	if(window.boxes.length === 0) {
-		alert("Please add a new machine first!");
+		alert("Please add a machine first!");
 		return;
 	}
 	
