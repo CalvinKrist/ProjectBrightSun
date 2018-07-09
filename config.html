@@ -152,6 +152,50 @@
 			</div>
 		  </div>
 		</div>
+		
+		
+		<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#settingsModal" id="addNewMachineButton">Show Settings Modal (temp)</button>
+		<div class="modal" id="settingsModal" tabindex="-1" role="dialog" aria-orientation="vertical" data-currentMachName = "" data-currentMachPlat = "" data-currentMachOs = "">
+		  <div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			<span class="border-bottom">
+			  <div class="modal-header">
+				<h5 class="modal-title">Machine Settings</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  </span>
+			<div class="modal-body">
+				<div clas="container-fluid">
+					<div class="row">
+					<span class="border-right">
+					<div class="col">
+						<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+							<a class="nav-link active" id="v-pills-Basic-tab" data-toggle="pill" href="#v-pills-Basic" role="tab" aria-controls="v-pills-Basic" aria-selected="true">Basic</a>
+							<a class="nav-link" id="v-pills-Machine-tab" data-toggle="pill" href="#v-pills-Machine" role="tab" aria-controls="v-pills-Machine" aria-selected="false">Machine</a>
+							<a class="nav-link" id="v-pills-Provisioners-tab" data-toggle="pill" href="#v-pills-Provisioners" role="tab" aria-controls="v-pills-Provisioners" aria-selected="false">Provisioners</a>
+							<a class="nav-link" id="v-pills-Network-tab" data-toggle="pill" href="#v-pills-Network" role="tab" aria-controls="v-pills-Network" aria-selected="false">Network</a>
+							<a class="nav-link" id="v-pills-VMHost-tab" data-toggle="pill" href="#v-pills-VMHost" role="tab" aria-controls="v-pills-VMHost" aria-selected="false">VM Host</a>
+						</div>
+					</div>
+					</span>
+					<div class="col">
+						<div class="tab-content" id="v-pills-tabContent">
+							<div class="tab-pane fade show active" id="v-pills-Basic" role="tabpanel" aria-labelledby="v-pills-Basic-tab">...basic...</div>
+							<div class="tab-pane fade" id="v-pills-Machine" role="tabpanel" aria-labelledby="v-pills-Machine-tab">...machine...</div>
+							<div class="tab-pane fade" id="v-pills-Provisioners" role="tabpanel" aria-labelledby="v-pills-Provisioners-tab">...provisioners...</div>
+							<div class="tab-pane fade" id="v-pills-Network" role="tabpanel" aria-labelledby="v-pills-Network-tab">...network...</div>
+							<div class="tab-pane fade" id="v-pills-VMHost" role="tabpanel" aria-labelledby="v-pills-VMHost-tab">...vm host...</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		  </div>
+		</div>
+
 	</div>
 	
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
