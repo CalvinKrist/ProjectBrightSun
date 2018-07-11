@@ -19,19 +19,16 @@
 	<script>
 		window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.slim.min.js');
 	</script>
-	<script>const popper = require('./node_modules/popper.js/dist/umd/popper.js')</script>
 	<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
 	<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
 	<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
 	<!-- Include custom JS Files -->
 	<script type="text/javascript" src="js/electron.js"></script>
-	
-	<!-- Load index.html -->
-	<script>loadWebView('home.html');</script>
 
 	<div class="cover-container d-flex h-100 mx-auto flex-column">
-		<header >
+		<header class="mb-auto">
+			
 			<nav class="nav navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
 				<div class="container">
 					<a class="navbar-brand" href="#">
@@ -45,20 +42,86 @@
 					<div class="collapse navbar-collapse" id="navbarColor01">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
-								<a class="nav-link" onclick="loadWebView('home.html')">Home<span class="sr-only">(current)</span></a>
+								<a class="nav-link" onclick="loadWebPage('config.html')">Home<span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" onclick="loadWebView('config.html')")>Config Setup</a>
+								<a class="nav-link" href="./config.html">Config Setup</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./lessons.html">Lessons</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./credits.html">Credits</a>
+							<li class="nav-itme">
+								<a class="nav-link" href="./Template.html">Template</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</header>
-		
-		<div id="content-view" class="container" style="padding-top: 30px; height: 100%;">
+		<div id="content-view" class="container" style="padding-top: 30px;">
+		<main role="main" class="inner cover">
+			
+				<img src="graphics/Asset 1.svg" width="33%" height="33%"/>
+				
+				<p class="lead">Enhancing cybersecurity education through hands-on exercises</p>
+				<p class="lead">
+					<a href="config.html"><button type="button" class="btn btn-lg btn-outline-primary">Get Started</button></a>
+				</p>
+			
+		</main>
 		</div>
+		<footer class="mastfoot mt-auto">
+			<div class="inner">
+				<p>Created by: Jake Smith, Saeed Razavi, Calvin Krist, and Clark Benham</p>
+			</div>
+		</footer>
 		
 	</div>
+<style>
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+	color: #333;
+	text-shadow: none; /* Prevent inheritance from `body` */
+	background-color: #fff;
+	border: .05rem solid #fff;
+}
+
+html,
+body {
+	height: 100%;
+	background-color: #5b5b5b;
+}
+
+body {
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+	-ms-flex-pack: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	color: #fff;
+}
+
+.cover-container {
+	width: 100%;
+}
+
+.cover {
+	padding: 0 1.5rem;
+}
+.cover .btn-lg {
+	padding: .75rem 1.25rem;
+	font-weight: 700;
+}
+
+.mastfoot {
+	color: rgba(255, 255, 255, .5);
+}
+
+</style>
+
 </body>
 </html>

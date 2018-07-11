@@ -17,7 +17,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		function updateOsDropdown() {
-			
+		
 			var platformDropdownID = $(this).attr('id');
 			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "editOsSelect" ;
 			
@@ -236,7 +236,8 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		//clears name text box in the options modal
 		$("#addNewMachineButton").on('click', function(){
-			$("#machineNameBox").val('');
+			console.log("hey...");
+			//$("#machineNameBox").val('');
 		});
 		
 		//focusus on the textbox when a modal pops up
