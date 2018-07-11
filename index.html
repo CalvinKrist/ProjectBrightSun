@@ -51,10 +51,16 @@
 					<div class="collapse navbar-collapse" id="navbarColor01">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
-								<a class="nav-link" onclick="loadWebView('home.html')" id="home-page-link">Home<span class="sr-only" id="selected-nav-page">(current)</span></a>
+								<a class="nav-link" onclick="loadWebView('home.html'); setCurrentNavPage('home-page-link')" id="home-page-link">Home<span class="sr-only" id="selected-nav-page">(current)</span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" onclick="loadWebView('config.html')") id="config-page-link">Config Setup</a>
+								<a class="nav-link" onclick="loadWebView('config.html'); setCurrentNavPage('config-page-link')") id="config-page-link">Config Setup</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" onclick="loadWebView('lessons.html'); setCurrentNavPage('lessons-page-link')") id="lessons-page-link">Lessons</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" onclick="loadWebView('credits.html'); setCurrentNavPage('credits-page-link')") id="credits-page-link">Credits</a>
 							</li>
 						</ul>
 					</div>
@@ -64,6 +70,9 @@
 		
 		<div id="content-view" class="container" style="padding-top: 30px; height: 100%;">
 		</div>
+		
+		<footer class="mastfoot mt-auto navbar-fixed-bottom" id="document-footer">
+		</footer>
 		
 	</div>
 </body>

@@ -1,4 +1,3 @@
-console.log("heeey");
 $(function(){ //shorthand for $(document).ready(function(){...});
 
 		window.boxes=[];

@@ -1,4 +1,3 @@
-console.log("yooo");
 function build_boxes() {
 	if(window.boxes.length === 0) {
 		alert("Please add a machine first!");

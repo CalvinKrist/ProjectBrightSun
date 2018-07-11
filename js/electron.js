@@ -22,8 +22,13 @@ function loadWebView(webPage) {
 			throw err; 
 		}
 		
+		// Set innerHTML for content-view
 		document.getElementById("content-view").innerHTML = data.toString();
 		
+		// Clear footer
+		document.getElementById("document-footer").innerHTML = "";
+		
+		// Add new script tags in order to dynamically execute JS and import JS
 		var scriptTags = document.getElementById("content-view").getElementsByTagName('script');
 		
 		for(var i = 0; i < scriptTags.length; i++) {
@@ -44,7 +49,13 @@ function loadWebView(webPage) {
 	});
 }
 
-function setCurrentNavPage(id) {
-	selectedSpan = document.getElementById('selected-nav-page');
+function setCurrentNavPage(currentNavPageLinkId) {
+	// Move span showing screen readers the selected tab
+	var selectedSpan = document.getElementById('selected-nav-page');
+	selectedSpan     = selectedSpan.parentNode.removeChild(selectedSpan);
+	document.getElementById(currentNavPageLinkId).appendChild(selectedSpan);
 	
+	// Update the classes of the nav elements
+	$(".nav").find(".active").removeClass("active");
+	$(".nav").find("#" + currentNavPageLinkId).addClass("active");
 }
