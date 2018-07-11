@@ -12,6 +12,12 @@
 		<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 
 		<title>Project BrightSun</title>
+		
+		<style type="text/css">
+			a:hover {
+				cursor:pointer;
+			}
+		</style>
 	</head>
 <body class="text-center">
 		<!-- Optional JavaScript -->
@@ -32,7 +38,7 @@
 
 	<div class="cover-container d-flex h-100 mx-auto flex-column">
 		<header >
-			<nav class="nav navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
+			<nav id="main-nav-bar" class="nav navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
 				<div class="container">
 					<a class="navbar-brand" href="#">
 						<img src="graphics/Asset 2.svg" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -45,10 +51,10 @@
 					<div class="collapse navbar-collapse" id="navbarColor01">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
-								<a class="nav-link" onclick="loadWebView('home.html')">Home<span class="sr-only">(current)</span></a>
+								<a class="nav-link" onclick="loadWebView('home.html')" id="home-page-link">Home<span class="sr-only" id="selected-nav-page">(current)</span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" onclick="loadWebView('config.html')")>Config Setup</a>
+								<a class="nav-link" onclick="loadWebView('config.html')") id="config-page-link">Config Setup</a>
 							</li>
 						</ul>
 					</div>

@@ -1,3 +1,4 @@
+console.log("heeey");
 $(function(){ //shorthand for $(document).ready(function(){...});
 
 		window.boxes=[];
@@ -236,8 +237,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		
 		//clears name text box in the options modal
 		$("#addNewMachineButton").on('click', function(){
-			console.log("hey...");
-			//$("#machineNameBox").val('');
+			$("#machineNameBox").val('');
 		});
 		
 		//focusus on the textbox when a modal pops up
