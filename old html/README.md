@@ -1,0 +1,1 @@
+These are old HTML files from before the BrightSun was made into a single page application (SPA).

@@ -4,7 +4,7 @@
 		
 		<p class="lead">Enhancing cybersecurity education through hands-on exercises</p>
 		<p class="lead">
-			<a href="config.html"><button type="button" class="btn btn-lg btn-outline-primary">Get Started</button></a>
+			<a onclick="loadWebView('config.html'); setCurrentNavPage('config-page-link');"><button type="button" class="btn btn-lg btn-outline-primary">Get Started</button></a>
 		</p>
 	
 </main>
@@ -56,4 +56,7 @@ body {
 	color: rgba(255, 255, 255, .5);
 }
 
+a:hover {
+	cursor:pointer;
+}
 </style>

@@ -20,10 +20,9 @@
 		</style>
 	</head>
 <body class="text-center">
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script>
-		window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.slim.min.js');
+		window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
 	</script>
 	<script>const popper = require('./node_modules/popper.js/dist/umd/popper.js')</script>
 	<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
@@ -34,7 +33,7 @@
 		<header >
 			<nav id="main-nav-bar" class="nav navbar sticky-top navbar-expand-lg navbar-dark bg-primary" style="background-color: #e3f2fd;">
 				<div class="container">
-					<a class="navbar-brand" href="#">
+					<a class="navbar-brand" onclick="loadWebView('home.html'); setCurrentNavPage('home-page-link')" href="#">
 						<img src="graphics/Asset 2.svg" width="30" height="30" class="d-inline-block align-top" alt="">
 						Project BrightSun
 					</a>
