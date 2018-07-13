@@ -4,12 +4,66 @@ This script file contains general utility functions that may need to be availabl
 
 */
 
+////////////////////////////////
+//       BOOT Operations      //
+////////////////////////////////
+
+const ipc = require('electron').ipcRenderer
+ipc.send('test', 'from client to main');
+ipc.on('test', function(event, arg) {
+	console.log(arg);
+});
+
 var settings = {
-	BOX_CONFIG_URL: "https://api.github.com/repos/CalvinKrist/ProjectBrightSun/contents/box_configs"
+	BOX_CONFIGS_URL: "https://api.github.com/repos/CalvinKrist/ProjectBrightSun/contents/box_configs",
+	BOX_CONFIGS_LOCATION: "box_configs"
 };
 
+downloadGitHubNode(settings.BOX_CONFIGS_URL, settings.BOX_CONFIGS_LOCATION);
+
+////////////////////////////////
+//       Global Functions     //
+////////////////////////////////
+
+// Used to download a 'GitHubNode', which is either a file or a directory, to disk.
+// @param 'nodeURL': the GitHub API url of the object being downloaded
+// @param 'downloadLocation': the relative location to where the obejct will be downloaded
+// If the file already exists at the location, it will be overwritten. Files will not be deleted.
+function downloadGitHubNode(nodeURL, downloadLocation) {
+	var fs = require('fs');
+	if(!fs.existsSync(downloadLocation))
+					fs.mkdirSync(downloadLocation);
+	
+	loadResource(nodeURL, callbackFunction = function(nodeData) {
+		for(var i = 0; i < nodeData.length; i++) {
+			if(nodeData[i].type === "dir") {
+				var dirLocation = downloadLocation + "/" + nodeData[i].name;
+				if(!fs.existsSync(dirLocation))
+					fs.mkdirSync(dirLocation);
+
+				downloadGitHubNode(nodeData[i].url, dirLocation);
+			}
+			else if(nodeData[i].type == "file") {
+				var name = nodeData[i].name;
+				
+				loadResourceSync(nodeData[i].download_url, callbackFunction = function(fileData) {
+					fs.writeFileSync(downloadLocation + "/" + nodeData[i].name, fileData);
+				});
+			}
+		}
+	});
+}
+
+function loadResourceSync(resourcePath, callbackFunction) {
+	jQuery.ajax({
+		url: resourcePath,
+		success: callbackFunction,
+		async: false
+	});
+}
+
 function loadResource(resourcePath, 
-					callbackFunction = function(){}, 
+					callbackFunction, 
 					errorHandlingFunction = function() {alert( "error: failed to load " + resourcePath);}, 
 					alwaysFunction        = function(){}) {
 	

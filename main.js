@@ -53,7 +53,8 @@ app.on('activate', function () {
 const ipcMain = require('electron').ipcMain
 
 // Listen for async message from renderer process
-ipcMain.on('change-window', (event, arg) => { 
-	mainWindow.loadFile(arg);
+ipcMain.on('test', (event, arg) => { 
+	console.log(arg);
+	event.sender.send('test', 'success');
 });
 
