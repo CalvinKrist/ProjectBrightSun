@@ -19,7 +19,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		function updateOsDropdown() {
 		
 			var platformDropdownID = $(this).attr('id');
-			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "editOsSelect" ;
+			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "settingsOsSelect" ;
 			
 			if($("#"+platformDropdownID+" option:selected").val()==="windows_x64"){
 				$("#"+osDropdownID+" option").remove();
@@ -63,7 +63,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				var result = JSON.parse(evt.currentTarget.result);
 				window.boxes = result;
 				
-				update_machine_modals();
+				update_machine_cards();
 			}
 			
 			reader.readAsText(file);
@@ -82,24 +82,24 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			}
 		});
 		
-		$("#saveEditsButton").on('click', function(){
+		$("#saveButton").on('click', function(){
 			if(check_all_add_fields_set(true)) {
-				$('#editModal').modal('hide');
+				$('#settingsModal').modal('hide');
 				save_edits();
 			} else {
-				$('#editModal').modal('show');
+				$('#settingsModal').modal('show');
 			}
 		});
 		
 		
 		//checks if name field is populated with valid content. If not, returns false and gives an alert, otherwise, returns true.
-		function check_all_add_fields_set(editNotOptionsModal) {
-			var nameBox = editNotOptionsModal ? "editMachineNameBox" : "machineNameBox" ;
+		function check_all_add_fields_set(settingsNotOptionsModal) {
+			var nameBox = settingsNotOptionsModal ? "settingsMachineNameBox" : "machineNameBox" ;
 			
 			if($("#"+nameBox+"").val() === "") { //name not set
 				alert("Please give your box a hostname!");
 				return false;
-			} else if((window.boxes.map(value => value.name).includes($("#"+nameBox+"").val()))&&((nameBox === "editMachineNameBox") ? $("#editMachineNameBox").val() !== $("#editModal").data("currentMachName") : true)) {
+			} else if((window.boxes.map(value => value.name).includes($("#"+nameBox+"").val()))&&((nameBox === "settingsMachineNameBox") ? $("#settingsMachineNameBox").val() !== $("#settingsModal").data("currentMachName") : true)) {
 				alert("Your box hostname cannot be the same as another box!");
 				return false;
 			}
@@ -110,15 +110,15 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			return true;
 		}
 		
-		function update_machine_modals() {
+		function update_machine_cards() {
 			$('#card_well')[0].innerHTML = '<br><div class="row"><div class="card-deck"></div></div>'
 			for(var i = 0; i < window.boxes.length; i++) {
-					add_machine_modal(i);
+					add_machine_card(i);
 			}
 		}
 		// Adds a new machine to the environment, given a machine object
 		// Does not add the machine to window.boxes
-		function add_machine_modal(index) {
+		function add_machine_card(index) {
 			var machName = window.boxes[index]["name"];
 			var plat     = window.boxes[index]["platform"];
 			var os       = window.boxes[index]["os_version"];
@@ -136,7 +136,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			
 			var os_label = '<p>' + os + '</p>';
 			
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info editButton" data-toggle="modal" data-target="#editModal">Edit</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal">Settings</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
  		}
 		
 		// uses data from selected modal to add a new machine to the environment
@@ -147,20 +147,23 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			
 			var machine = {'name': machName, 'platform':plat, 'os_version':os};
 			window.boxes.push(machine);
-			update_machine_modals();
+			update_machine_cards();
 			
 		}
 		
 		//saves data selected in modal to the current box and card being edited
 		function save_edits(){
-			var oldMachName = $("#editModal").data("currentMachName");
-			var newMachName = $("#editMachineNameBox").val();
-			var plat = $("#editPlatformSelect option:selected").val();
-			var os = $("#editOsSelect option:selected").val();
-
 			
+			////////////////////////////////////
+			// Saves data from different tabs //
+			////////////////////////////////////
+			
+			//Basic
+			var oldMachName = $("#settingsModal").data("currentMachName");
+			var newMachName = $("#settingsMachineNameBox").val();
+			var plat = $("#settingsPlatformSelect option:selected").val();
+			var os = $("#settingsOsSelect option:selected").val();
 			//find the right box and change the content in it
-			
 			var machToEditIndex;
 			$.each(window.boxes, function(index, value){
 				if(oldMachName === value.name){
@@ -168,16 +171,16 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 					return false;
 				}
 			});
-	
 			window.boxes[machToEditIndex]["name"] = newMachName;
 			window.boxes[machToEditIndex]["platform"] = plat;
 			window.boxes[machToEditIndex]["os_version"] = os;
-		
-			update_machine_modals();
+			update_machine_cards();
+			
+			
 		}
 		
 		///////////////////////////
-		// Machine modal buttons //
+		// Machine card buttons //
 		///////////////////////////
 		
 		// Remove
@@ -193,25 +196,27 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				});
 				window.boxes.splice(machToRemoveIndex, 1);
 			
-				update_machine_modals();
+				update_machine_cards();
 			}
 		});
 		
-		// Edit
-		$('#card_well').on('click', '.editButton', function(event){
+		// Settings
+		$('#card_well').on('click', '.settingsButton', function(event){
 			var machName = $(event.currentTarget).closest('.card').data("name");
 			var machPlat = $(event.currentTarget).closest('.card').data("platform");
 			var machOs = $(event.currentTarget).closest('.card').data("os");
 
-			$('#editMachineNameBox').val(machName);
-			$('#editPlatformSelect').val(machPlat);
+			$('#settingsMachineNameBox').val(machName);
+			$('#settingsPlatformSelect').val(machPlat);
 
-			$('#editPlatformSelect').trigger('change'); //this needs addressing
-			$('#editOsSelect').val(machOs);
+			$('#settingsPlatformSelect').trigger('change');
+			$('#settingsOsSelect').val(machOs);
 			
-			$('#editModal').data("currentMachName", machName);
-			$('#editModal').data("currentMachPlat", machPlat); //
-			$('#editModal').data("currentMachOs", machOs);
+			$('#settingsModalTitle').text(machName+" - Settings");
+			
+			$('#settingsModal').data("currentMachName", machName);
+			$('#settingsModal').data("currentMachPlat", machPlat); //
+			$('#settingsModal').data("currentMachOs", machOs);
 		});
 		
 		// Clone
@@ -230,7 +235,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			clonedObject["name"] = "clone_of_" + window.boxes[machToCloneIndex]["name"];
 			window.boxes.push(clonedObject);
 			
-			update_machine_modals();
+			update_machine_cards();
 		});
 		
 		
@@ -239,7 +244,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$("#machineNameBox").val('');
 		});
 		
-		//focusus on the textbox when a modal pops up
+		//focuses on the textbox when a modal pops up
 		$('.modal').on('shown.bs.modal', function () {
 			$('.form-control').focus();
 		});

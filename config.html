@@ -102,51 +102,13 @@
 	  </div>
 	</div>
 	
-	<div class="modal" id="editModal" tabindex="-1" role="dialog" data-currentMachName = "" data-currentMachPlat = "" data-currentMachOs = "">
-	  <div class="modal-dialog" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title">Edit Machine</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		  </div>
-		  <div class="modal-body">
-			<div class="form-group">
-				<label for="editMachineNameBox">Machine Name</label>
-				<input type="text" class="form-control" id="editMachineNameBox">
-			</div>
-			<div class="form-group">
-				<label for="platformSelect">Platform</label>
-				<select class="custom-select platform-select" id="editPlatformSelect" >
-					<option value = 'windows_x64'>Windows (64-bit)</option>
-					<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
-					<option value = 'linux_x64'>Linux (64-bit)</option>
-					<option value = 'linux_x32'>Linux (32-bit)</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="osSelect">OS</label>
-				<select class="custom-select" id="editOsSelect">
-				</select>
-			</div>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-			<button type="button" class="btn btn-primary" id="saveEditsButton">Save Edits</button>
-		  </div>
-		</div>
-	  </div>
-	</div>
 	
-	
-	<button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#settingsModal" id="addNewMachineButton">Show Settings Modal (temp)</button>
 	<div class="modal" id="settingsModal" tabindex="-1" role="dialog" aria-orientation="vertical" data-currentMachName = "" data-currentMachPlat = "" data-currentMachOs = "">
 	  <div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 		<span class="border-bottom">
 		  <div class="modal-header">
-			<h5 class="modal-title">Machine Settings</h5>
+			<h5 class="modal-title" id="settingsModalTitle">Machine Settings</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
 			</button>
@@ -168,7 +130,33 @@
 					</span>
 					<div class="col">
 						<div class="tab-content" id="v-pills-tabContent">
-							<div class="tab-pane fade show active" id="v-pills-Basic" role="tabpanel" aria-labelledby="v-pills-Basic-tab">...basic...</div>
+							<div class="tab-pane fade show active" id="v-pills-Basic" role="tabpanel" aria-labelledby="v-pills-Basic-tab">
+								
+								<div class="content-header">
+									<h5 class="content-title"></h5>
+								</div>
+								<div class="content-body">
+									<div class="form-group">
+										<label for="settingsMachineNameBox">Machine Name</label>
+										<input type="text" class="form-control" id="settingsMachineNameBox">
+									</div>
+									<div class="form-group">
+										<label for="platformSelect">Platform</label>
+										<select class="custom-select platform-select" id="settingsPlatformSelect" >
+											<option value = 'windows_x64'>Windows (64-bit)</option>
+											<!--<option value = 'windows_x32'>Windows (32-bit)</option>-->
+											<option value = 'linux_x64'>Linux (64-bit)</option>
+											<option value = 'linux_x32'>Linux (32-bit)</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="osSelect">OS</label>
+										<select class="custom-select" id="settingsOsSelect">
+										</select>
+									</div>
+								</div>
+								
+							</div>
 							<div class="tab-pane fade" id="v-pills-Machine" role="tabpanel" aria-labelledby="v-pills-Machine-tab">...machine...</div>
 							<div class="tab-pane fade" id="v-pills-Provisioners" role="tabpanel" aria-labelledby="v-pills-Provisioners-tab">...provisioners...</div>
 							<div class="tab-pane fade" id="v-pills-Network" role="tabpanel" aria-labelledby="v-pills-Network-tab">...network...</div>
@@ -178,6 +166,12 @@
 				</div>
 			</div>
 		</div>
+		<span class="border-top">
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" id="saveButton">Save</button>
+			</div>
+		</span>
 		</div>
 	  </div>
 	</div>
