@@ -6,6 +6,43 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1710", "ubuntu_1710_desktop"];
 		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];	
 		
+		////////////////////////////////
+		//   Load packer JSON files   //
+		////////////////////////////////
+		const fs = require('fs')
+		const path = require( 'path' );
+		
+		// Iterate through every file in the BOX_CONFIGS_LOCATION
+		fs.readdir(settings.BOX_CONFIGS_LOCATION, function( err, files ) {
+			for(var i = 0; i < files.length; i++) {
+				
+				// If file is a directory, treat as a platform
+				var platformDir = settings.BOX_CONFIGS_LOCATION + "/" + files[i];
+				if(fs.lstatSync(platformDir).isDirectory()) { // load synchronously so the value of platformDir doesn't change
+					// Generate option element for dropdown 
+					var platform       = document.createElement("option");
+					var displayOption  = path.basename(platformDir).replace(/_/g," (") + ")"; // pretty it for display
+					platform.innerHTML = displayOption;
+					// insertion of option element into dropdown not included . . .
+					
+					window.operatingSystems[displayOption] = {}
+					
+					// Load files in platform directory into window.operatingSystems
+					fs.readdirSync(platformDir).forEach(function(packerConfig) {
+						if(fs.lstatSync(platformDir + "/" + packerConfig).isFile()) {
+							
+							// Store contents of packer config file in window.operatingSystems
+							var osName = path.parse(packerConfig).name.replace(/_/g, " "); // pretty it for display
+							loadResourceSync(platformDir + "/" + packerConfig, function(contents) {
+								window.operatingSystems[displayOption][osName] = contents;
+							});
+						}
+					});
+				}
+			}
+		});
+		
+		console.log(window.operatingSystems);
 		//populates options modal os drop-down with windows options when options modal is 
 		//created since windows is the default selected platform
 		$.each(osWindows64Array, function (i, item) {
@@ -63,7 +100,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				var result = JSON.parse(evt.currentTarget.result);
 				window.boxes = result;
 				
-				update_machine_cards();
+				render_machine_cards();
 			}
 			
 			reader.readAsText(file);
@@ -110,7 +147,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			return true;
 		}
 		
-		function update_machine_cards() {
+		function render_machine_cards() {
 			$('#card_well')[0].innerHTML = '<br><div class="row"><div class="card-deck"></div></div>'
 			for(var i = 0; i < window.boxes.length; i++) {
 					add_machine_card(i);
@@ -147,7 +184,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			
 			var machine = {'name': machName, 'platform':plat, 'os_version':os};
 			window.boxes.push(machine);
-			update_machine_cards();
+			render_machine_cards();
 			
 		}
 		
@@ -174,7 +211,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			window.boxes[machToEditIndex]["name"] = newMachName;
 			window.boxes[machToEditIndex]["platform"] = plat;
 			window.boxes[machToEditIndex]["os_version"] = os;
-			update_machine_cards();
+			render_machine_cards();
 			
 			
 		}
@@ -196,12 +233,12 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				});
 				window.boxes.splice(machToRemoveIndex, 1);
 			
-				update_machine_cards();
+				render_machine_cards();
 			}
 		});
 		
 		// Settings
-		$('#card_well').on('click', '.settingsButton', function(event){
+		$('#card_well').on('click', '.settingsButton', function(event) {
 			var machName = $(event.currentTarget).closest('.card').data("name");
 			var machPlat = $(event.currentTarget).closest('.card').data("platform");
 			var machOs = $(event.currentTarget).closest('.card').data("os");
@@ -235,7 +272,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			clonedObject["name"] = "clone_of_" + window.boxes[machToCloneIndex]["name"];
 			window.boxes.push(clonedObject);
 			
-			update_machine_cards();
+			render_machine_cards();
 		});
 		
 		

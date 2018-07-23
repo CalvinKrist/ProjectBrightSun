@@ -20,6 +20,7 @@ var settings = {
 };
 
 downloadGitHubNode(settings.BOX_CONFIGS_URL, settings.BOX_CONFIGS_LOCATION);
+asyncLoadProvisionerList()
 
 ////////////////////////////////
 //       Global Functions     //
@@ -30,12 +31,14 @@ downloadGitHubNode(settings.BOX_CONFIGS_URL, settings.BOX_CONFIGS_LOCATION);
 // @param 'downloadLocation': the relative location to where the obejct will be downloaded
 // If the file already exists at the location, it will be overwritten. Files will not be deleted.
 function downloadGitHubNode(nodeURL, downloadLocation) {
+	// Create download location if it doesn't already exist
 	var fs = require('fs');
 	if(!fs.existsSync(downloadLocation))
 					fs.mkdirSync(downloadLocation);
 	
 	loadResource(nodeURL, callbackFunction = function(nodeData) {
 		for(var i = 0; i < nodeData.length; i++) {
+			// Recursively and asynchronously download contents of any directories
 			if(nodeData[i].type === "dir") {
 				var dirLocation = downloadLocation + "/" + nodeData[i].name;
 				if(!fs.existsSync(dirLocation))
@@ -43,9 +46,9 @@ function downloadGitHubNode(nodeURL, downloadLocation) {
 
 				downloadGitHubNode(nodeData[i].url, dirLocation);
 			}
+			// Synchronously download any files in the directory.
+			// Must be syncronous so nodeData[i].name is not changed before the download succeeds
 			else if(nodeData[i].type == "file") {
-				var name = nodeData[i].name;
-				
 				loadResourceSync(nodeData[i].download_url, callbackFunction = function(fileData) {
 					fs.writeFileSync(downloadLocation + "/" + nodeData[i].name, fileData);
 				});

@@ -35,7 +35,7 @@ Students can follow ProjectBrightsun's lessons while using our tools to learn mo
 ### How to build for development:
 1. CD to the project directory
 1. Run `npm init`
-1. Run `npm start`. This command is how the application is launched during deelopment.
+1. Run `npm start`. This command is how the application is launched during development.
 
 ## Development Progress
 [![Throughput Graph](https://graphs.waffle.io/CalvinKrist/RedBlueCyberlab/throughput.svg)](https://waffle.io/CalvinKrist/RedBlueCyberlab/metrics/throughput)
