@@ -2,9 +2,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 		window.boxes=[];
 		var osSelect = $('#osSelect');
-		var osWindows64Array = ["windows_7", "windows_81", "windows_10", "windows_server_2008_r2", "windows_server_2012_r2", "windows_server_2016"];
-		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1710", "ubuntu_1710_desktop"];
-		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];
 
 		////////////////////////////////
 		//   Load packer JSON files   //
@@ -47,9 +44,8 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				}
 			}
 		});
-
-		console.log(window.operatingSystems);
-
+		
+		
 		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		function updateOsDropdown() {
 
@@ -57,13 +53,9 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "settingsOsSelect" ;
 
 			Object.keys(window.operatingSystems).forEach(function(key, index){
-				if($("#"+platformDropdownID+" option:selected").text()===key){
-					//debugging purposes
-					console.log(key);
-					
+				if($("#"+platformDropdownID+" option:selected").text()===key){					
 					$("#"+osDropdownID+" option").remove();
 					Object.keys(window.operatingSystems[key]).forEach(function(subkey, index) {
-						console.log(subkey);
 						$('#'+osDropdownID).append($('<option>', {
 							value: subkey,
 							text : subkey
@@ -98,6 +90,11 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			download(JSON.stringify(window.boxes, null, 2), "MyEnvironment.json", "application/json");
 		});
 
+		
+		/////////////////////////
+		// Modal Button Events //
+		/////////////////////////
+		
 		$("#addButton").on('click', function(){
 			if(check_all_add_fields_set(false)) {
 				$('#optionsModal').modal('hide');
@@ -148,15 +145,16 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var plat     = window.boxes[index]["platform"];
 			var os       = window.boxes[index]["os_version"];
 
-			//Add new row if necesarry
+			//Add new row if necessary
 			if((index + 1) % 3 === 1 && index !== 1)
 				$('#card_well')[0].innerHTML += '<br><div class="row"><div class="card-deck"></div></div>';
 
-			if(plat.includes('windows')) {
+			if(plat.toLowerCase().includes('windows')) {
 				var plat_label = '<span class="badge badge-info">Windows</span>';
-			} else if(plat.includes('linux')) {
+			} else if(plat.toLowerCase().includes('linux')) {
 				var plat_label = '<span class="badge badge-warning">Linux</span>';
 			} else {
+				var plat_label = '<span class="badge badge-success">'+plat+'</span>';
 			}
 
 			var os_label = '<p>' + os + '</p>';
@@ -267,6 +265,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		//clears name text box in the options modal
 		$("#addNewMachineButton").on('click', function(){
 			$("#machineNameBox").val('');
+			$('#platformSelect').trigger('change');
 		});
 
 		//focuses on the textbox when a modal pops up
