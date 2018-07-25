@@ -4,33 +4,34 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		var osSelect = $('#osSelect');
 		var osWindows64Array = ["windows_7", "windows_81", "windows_10", "windows_server_2008_r2", "windows_server_2012_r2", "windows_server_2016"];
 		var osLinux64Array = ["ubuntu_1404", "ubuntu_1404_desktop", "ubuntu_1604", "ubuntu_1604_desktop", "ubuntu_1710", "ubuntu_1710_desktop"];
-		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];	
-		
+		var osLinux32Array = ["ubuntu_1404_i386", "ubuntu_1604_i386", "ubuntu_1710_i386"];
+
 		////////////////////////////////
 		//   Load packer JSON files   //
 		////////////////////////////////
-		const fs = require('fs')
+		const fs = require('fs');
 		const path = require( 'path' );
+		window.operatingSystems = {};
 		
 		// Iterate through every file in the BOX_CONFIGS_LOCATION
 		fs.readdir(settings.BOX_CONFIGS_LOCATION, function( err, files ) {
 			for(var i = 0; i < files.length; i++) {
-				
+
 				// If file is a directory, treat as a platform
 				var platformDir = settings.BOX_CONFIGS_LOCATION + "/" + files[i];
 				if(fs.lstatSync(platformDir).isDirectory()) { // load synchronously so the value of platformDir doesn't change
-					// Generate option element for dropdown 
+					// Generate option element for dropdown
 					var platform       = document.createElement("option");
 					var displayOption  = path.basename(platformDir).replace(/_/g," (") + ")"; // pretty it for display
 					platform.innerHTML = displayOption;
 					// insertion of option element into dropdown not included . . .
-					
-					window.operatingSystems[displayOption] = {}
-					
+
+					window.operatingSystems[displayOption] = {};
+
 					// Load files in platform directory into window.operatingSystems
 					fs.readdirSync(platformDir).forEach(function(packerConfig) {
 						if(fs.lstatSync(platformDir + "/" + packerConfig).isFile()) {
-							
+
 							// Store contents of packer config file in window.operatingSystems
 							var osName = path.parse(packerConfig).name.replace(/_/g, " "); // pretty it for display
 							loadResourceSync(platformDir + "/" + packerConfig, function(contents) {
@@ -41,27 +42,27 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				}
 			}
 		});
-		
+
 		console.log(window.operatingSystems);
-		//populates options modal os drop-down with windows options when options modal is 
+		//populates options modal os drop-down with windows options when options modal is
 		//created since windows is the default selected platform
 		$.each(osWindows64Array, function (i, item) {
-			$('#osSelect').append($('<option>', { 
+			$('#osSelect').append($('<option>', {
 				value: item,
 				text : item
 			}));
 		});
-		
+
 		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		function updateOsDropdown() {
-		
+
 			var platformDropdownID = $(this).attr('id');
 			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "settingsOsSelect" ;
-			
+
 			if($("#"+platformDropdownID+" option:selected").val()==="windows_x64"){
 				$("#"+osDropdownID+" option").remove();
 				$.each(osWindows64Array, function (i, item) {
-					$('#'+osDropdownID).append($('<option>', { 
+					$('#'+osDropdownID).append($('<option>', {
 						value: item,
 						text : item
 					}));
@@ -69,7 +70,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x64"){
 			$("#"+osDropdownID+" option").remove();
 					$.each(osLinux64Array, function (i, item) {
-						$('#'+osDropdownID).append($('<option>', { 
+						$('#'+osDropdownID).append($('<option>', {
 							value: item,
 							text : item
 					}));
@@ -77,20 +78,20 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x32"){
 			$("#"+osDropdownID+" option").remove();
 				$.each(osLinux32Array, function (i, item) {
-					$('#'+osDropdownID).append($('<option>', { 
+					$('#'+osDropdownID).append($('<option>', {
 						value: item,
 						text : item
 					}));
 				});
 			}
 		}
-		
+
 		$('.platform-select').change(updateOsDropdown); //updateOsDropdown is called in multiple places which is why it cannot just be an anonymous function
-		
+
 		//////////////////////////
 		// Navbar Button Events //
 		//////////////////////////
-		
+
 		$("#importEnvironmentButton").on('change', function(){
 			// Access file
 			var file = this.files[0];
@@ -99,17 +100,17 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			reader.onloadend = function(evt) {
 				var result = JSON.parse(evt.currentTarget.result);
 				window.boxes = result;
-				
+
 				render_machine_cards();
 			}
-			
+
 			reader.readAsText(file);
 		});
-		
+
 		$("#exportEnvironmentButton").on('click', function(){
 			download(JSON.stringify(window.boxes, null, 2), "MyEnvironment.json", "application/json");
 		});
-		
+
 		$("#addButton").on('click', function(){
 			if(check_all_add_fields_set(false)) {
 				$('#optionsModal').modal('hide');
@@ -118,7 +119,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				$('#optionsModal').modal('show');
 			}
 		});
-		
+
 		$("#saveButton").on('click', function(){
 			if(check_all_add_fields_set(true)) {
 				$('#settingsModal').modal('hide');
@@ -127,12 +128,12 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				$('#settingsModal').modal('show');
 			}
 		});
-		
-		
+
+
 		//checks if name field is populated with valid content. If not, returns false and gives an alert, otherwise, returns true.
 		function check_all_add_fields_set(settingsNotOptionsModal) {
 			var nameBox = settingsNotOptionsModal ? "settingsMachineNameBox" : "machineNameBox" ;
-			
+
 			if($("#"+nameBox+"").val() === "") { //name not set
 				alert("Please give your box a hostname!");
 				return false;
@@ -146,7 +147,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			}
 			return true;
 		}
-		
+
 		function render_machine_cards() {
 			$('#card_well')[0].innerHTML = '<br><div class="row"><div class="card-deck"></div></div>'
 			for(var i = 0; i < window.boxes.length; i++) {
@@ -159,42 +160,42 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var machName = window.boxes[index]["name"];
 			var plat     = window.boxes[index]["platform"];
 			var os       = window.boxes[index]["os_version"];
-			
+
 			//Add new row if necesarry
-			if((index + 1) % 3 === 1 && index !== 1) 
+			if((index + 1) % 3 === 1 && index !== 1)
 				$('#card_well')[0].innerHTML += '<br><div class="row"><div class="card-deck"></div></div>';
-			
+
 			if(plat.includes('windows')) {
 				var plat_label = '<span class="badge badge-info">Windows</span>';
 			} else if(plat.includes('linux')) {
 				var plat_label = '<span class="badge badge-warning">Linux</span>';
 			} else {
 			}
-			
+
 			var os_label = '<p>' + os + '</p>';
-			
+
 			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal">Settings</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
  		}
-		
+
 		// uses data from selected modal to add a new machine to the environment
 		function add_box() {
 			var machName = $("#machineNameBox").val();
 			var plat = $("#platformSelect option:selected").val();
 			var os = $("#osSelect option:selected").val();
-			
+
 			var machine = {'name': machName, 'platform':plat, 'os_version':os};
 			window.boxes.push(machine);
 			render_machine_cards();
-			
+
 		}
-		
+
 		//saves data selected in modal to the current box and card being edited
 		function save_edits(){
-			
+
 			////////////////////////////////////
 			// Saves data from different tabs //
 			////////////////////////////////////
-			
+
 			//Basic
 			var oldMachName = $("#settingsModal").data("currentMachName");
 			var newMachName = $("#settingsMachineNameBox").val();
@@ -212,14 +213,14 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			window.boxes[machToEditIndex]["platform"] = plat;
 			window.boxes[machToEditIndex]["os_version"] = os;
 			render_machine_cards();
-			
-			
+
+
 		}
-		
+
 		///////////////////////////
 		// Machine card buttons //
 		///////////////////////////
-		
+
 		// Remove
 		$('#card_well').on('click', '.removeButton', function(event){   			//must use  $('#card_well').on('click', '.removeButton', function(event){ instead of $('.removeButton').on('click', function(event){ because you can only directly target elements that exist when the script it initially executed
 			var machToRemoveName = $(event.currentTarget).closest('.card').data("name");
@@ -232,11 +233,11 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 					}
 				});
 				window.boxes.splice(machToRemoveIndex, 1);
-			
+
 				render_machine_cards();
 			}
 		});
-		
+
 		// Settings
 		$('#card_well').on('click', '.settingsButton', function(event) {
 			var machName = $(event.currentTarget).closest('.card').data("name");
@@ -248,14 +249,14 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			$('#settingsPlatformSelect').trigger('change');
 			$('#settingsOsSelect').val(machOs);
-			
+
 			$('#settingsModalTitle').text(machName+" - Settings");
-			
+
 			$('#settingsModal').data("currentMachName", machName);
 			$('#settingsModal').data("currentMachPlat", machPlat); //
 			$('#settingsModal').data("currentMachOs", machOs);
 		});
-		
+
 		// Clone
 		$('#card_well').on('click', '.cloneButton', function(event){
 			var machToCloneName	= $(event.currentTarget).closest('.card').data("name");
@@ -266,21 +267,21 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 					return false;
 				}
 			});
-			
+
 			// Use JSON parsing as a copy constructor
 			var clonedObject = JSON.parse(JSON.stringify(window.boxes[machToCloneIndex]));
 			clonedObject["name"] = "clone_of_" + window.boxes[machToCloneIndex]["name"];
 			window.boxes.push(clonedObject);
-			
+
 			render_machine_cards();
 		});
-		
-		
+
+
 		//clears name text box in the options modal
 		$("#addNewMachineButton").on('click', function(){
 			$("#machineNameBox").val('');
 		});
-		
+
 		//focuses on the textbox when a modal pops up
 		$('.modal').on('shown.bs.modal', function () {
 			$('.form-control').focus();
