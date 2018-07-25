@@ -37,7 +37,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 							// Store contents of packer config file in window.operatingSystems
 							var osName = path.parse(packerConfig).name.replace(/_/g, " "); // pretty it for display
 							loadResourceSync(platformDir + "/" + packerConfig, function(contents) {
-								window.operatingSystems[displayOption][osName] = contents;
+								window.operatingSystems[displayOption][osName] = JSON.parse(contents);
 							});
 						}
 					});

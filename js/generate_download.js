@@ -154,14 +154,14 @@ function generateVagrantfile(packs, differences) {
 /**
 Given an instance from the user defined boxes array, returns the corresponding packer object. includes modifications to variables defined by user.
 @param boxes the user definend boxes array
-@param indx the index within the array
+@param index the index within the array
 @pre the vagrant post-processor is in the 0th index of post-processors
 */
-function getPackerBox(boxes, indx) {
-	var box_json = jQuery.extend(true, {}, window[boxes[indx]['os_version']]);	
-	box_json['variables']['vm_name'] = boxes[indx]['name'];
-	box_json['variables']['output_dir'] = "Boxes/" + boxes[indx]['platform'] + "/" + boxes[indx]['name'] + ".box";
-	box_json['post-processors'][0]['output'] = "Boxes/" + boxes[indx]['platform'] + "/" + boxes[indx]['name'] + ".box";
-	box_json['builders'][0]['output_directory'] = boxes[indx]['name'] + "-iso-output";
+function getPackerBox(boxes, index) {
+	var box_json = window.operatingSystems[boxes[index]["platform"]][boxes[index]["os_version"]]
+	box_json['variables']['vm_name'] = boxes[index]['name'];
+	box_json['variables']['output_dir'] = "Boxes/" + boxes[index]['platform'] + "/" + boxes[index]['name'] + ".box";
+	box_json['post-processors'][0]['output'] = "Boxes/" + boxes[index]['platform'] + "/" + boxes[index]['name'] + ".box";
+	box_json['builders'][0]['output_directory'] = boxes[index]['name'] + "-iso-output";
 	return box_json;
 }
