@@ -24,7 +24,12 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 					var platform       = document.createElement("option");
 					var displayOption  = path.basename(platformDir).replace(/_/g," (") + ")"; // pretty it for display
 					platform.innerHTML = displayOption;
-					// insertion of option element into dropdown not included . . .
+					var platformCopy   = platform.cloneNode(true);
+					// Insert option elements into dropdowns
+					$('#platformSelect').prepend(platformCopy);
+					$('#settingsPlatformSelect').prepend(platform);
+					
+					
 
 					window.operatingSystems[displayOption] = {};
 
@@ -44,14 +49,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		});
 
 		console.log(window.operatingSystems);
-		//populates options modal os drop-down with windows options when options modal is
-		//created since windows is the default selected platform
-		$.each(osWindows64Array, function (i, item) {
-			$('#osSelect').append($('<option>', {
-				value: item,
-				text : item
-			}));
-		});
 
 		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		function updateOsDropdown() {
@@ -59,31 +56,21 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var platformDropdownID = $(this).attr('id');
 			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "settingsOsSelect" ;
 
-			if($("#"+platformDropdownID+" option:selected").val()==="windows_x64"){
-				$("#"+osDropdownID+" option").remove();
-				$.each(osWindows64Array, function (i, item) {
-					$('#'+osDropdownID).append($('<option>', {
-						value: item,
-						text : item
-					}));
-				});
-			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x64"){
-			$("#"+osDropdownID+" option").remove();
-					$.each(osLinux64Array, function (i, item) {
+			Object.keys(window.operatingSystems).forEach(function(key, index){
+				if($("#"+platformDropdownID+" option:selected").text()===key){
+					//debugging purposes
+					console.log(key);
+					
+					$("#"+osDropdownID+" option").remove();
+					Object.keys(window.operatingSystems[key]).forEach(function(subkey, index) {
+						console.log(subkey);
 						$('#'+osDropdownID).append($('<option>', {
-							value: item,
-							text : item
-					}));
-				});
-			} else if($("#"+platformDropdownID+" option:selected").val()==="linux_x32"){
-			$("#"+osDropdownID+" option").remove();
-				$.each(osLinux32Array, function (i, item) {
-					$('#'+osDropdownID).append($('<option>', {
-						value: item,
-						text : item
-					}));
-				});
-			}
+							value: subkey,
+							text : subkey
+						}));
+					});
+				}
+			});
 		}
 
 		$('.platform-select').change(updateOsDropdown); //updateOsDropdown is called in multiple places which is why it cannot just be an anonymous function
