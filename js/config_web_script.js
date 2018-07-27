@@ -236,7 +236,9 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$('#settingsOsSelect').val(machOs);
 
 			$('#settingsModalTitle').text(machName+" - Settings");
-
+				
+			console.log(window.boxes);	
+				
 			$('#settingsModal').data("currentMachName", machName);
 			$('#settingsModal').data("currentMachPlat", machPlat); //
 			$('#settingsModal').data("currentMachOs", machOs);
@@ -255,7 +257,23 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			// Use JSON parsing as a copy constructor
 			var clonedObject = JSON.parse(JSON.stringify(window.boxes[machToCloneIndex]));
-			clonedObject["name"] = "clone_of_" + window.boxes[machToCloneIndex]["name"];
+			
+			// Keep multiple clones of the same machine from sharing a name
+			var nameOfCloned = window.boxes[machToCloneIndex]["name"];
+			var counter = 0; 
+			var cloneAlreadyExists = true;
+			while(cloneAlreadyExists){
+				counter++;
+				cloneAlreadyExists = false;
+				$.each(window.boxes, function(index, value){
+					if("Clone_"+counter+"_of_"+nameOfCloned === value.name){
+						cloneAlreadyExists = true;
+						return false;// breaks out of the itteratator to save resources
+					}
+				});
+			}
+			clonedObject["name"] ="Clone_"+counter+"_of_"+nameOfCloned;
+
 			window.boxes.push(clonedObject);
 
 			render_machine_cards();
