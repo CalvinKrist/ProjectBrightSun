@@ -237,8 +237,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			$('#settingsModalTitle').text(machName+" - Settings");
 				
-			console.log(window.boxes);	
-				
 			$('#settingsModal').data("currentMachName", machName);
 			$('#settingsModal').data("currentMachPlat", machPlat); //
 			$('#settingsModal').data("currentMachOs", machOs);

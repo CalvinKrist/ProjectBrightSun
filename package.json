@@ -4,23 +4,48 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder -wl"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CalvinKrist/ProjectBrightSun"
+  },
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "BrightSun",
+    "virtual",
+    "machines",
+    "environment",
+    "automatic",
+    "server",
+    "provisioning",
+    "provisioners"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Team BrightSun",
+  "license": "MIT",
+  "build": {
+    "appId": "BrightSun",
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS"
+    },
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  },
   "devDependencies": {
-    "electron": "^2.0.0"
+    "electron": "latest",
+    "electron-builder": "^20.26.0"
   },
   "dependencies": {
     "bootstrap": "^4.1.1",
+    "glob": "^7.1.2",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3"
   }
