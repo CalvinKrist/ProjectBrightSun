@@ -25,8 +25,6 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 					// Insert option elements into dropdowns
 					$('#platformSelect').prepend(platformCopy);
 					$('#settingsPlatformSelect').prepend(platform);
-					
-					
 
 					window.operatingSystems[displayOption] = {};
 
