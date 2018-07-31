@@ -135,7 +135,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			if(stringToTest === "") { //name not set
 				alert("Please give your box a hostname!");
 				return false;
-			} else if((window.boxes.map(value => value.name).includes($(stringToTest).val()))&&((nameBox === "settingsMachineNameBox") ? $("#settingsMachineNameBox").val() !== $("#settingsModal").data("currentMachName") : true)) {
+			} else if((window.boxes.map(value => value.name).includes(stringToTest))&&((nameBox === "settingsMachineNameBox") ? $("#settingsMachineNameBox").val() !== $("#settingsModal").data("currentMachName") : true)) {
 				alert("Your box hostname cannot be the same as another box!");
 				return false;
 			}
