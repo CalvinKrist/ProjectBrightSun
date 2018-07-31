@@ -13,3 +13,4 @@ build/*.sh
 .idea/*
 python/.idea/*
 python/__pycache__/*
+node_modules/*
