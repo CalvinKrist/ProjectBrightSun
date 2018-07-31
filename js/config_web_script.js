@@ -9,7 +9,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		const fs = require('fs');
 		const path = require( 'path' );
 		window.operatingSystems = {};
-		
+
 		// Iterate through every file in the BOX_CONFIGS_LOCATION
 		fs.readdir(settings.BOX_CONFIGS_LOCATION, function( err, files ) {
 			for(var i = 0; i < files.length; i++) {
@@ -25,8 +25,8 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 					// Insert option elements into dropdowns
 					$('#platformSelect').prepend(platformCopy);
 					$('#settingsPlatformSelect').prepend(platform);
-					
-					
+
+
 
 					window.operatingSystems[displayOption] = {};
 
@@ -44,8 +44,8 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				}
 			}
 		});
-		
-		
+
+
 		//When the platform is changed in the drop-down, clears and repopulates os drop-down options
 		function updateOsDropdown() {
 
@@ -53,7 +53,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			var osDropdownID = (platformDropdownID == "platformSelect") ? "osSelect" : "settingsOsSelect" ;
 
 			Object.keys(window.operatingSystems).forEach(function(key, index){
-				if($("#"+platformDropdownID+" option:selected").text()===key){					
+				if($("#"+platformDropdownID+" option:selected").text()===key){
 					$("#"+osDropdownID+" option").remove();
 					Object.keys(window.operatingSystems[key]).forEach(function(subkey, index) {
 						$('#'+osDropdownID).append($('<option>', {
@@ -90,11 +90,11 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			download(JSON.stringify(window.boxes, null, 2), "MyEnvironment.json", "application/json");
 		});
 
-		
+
 		/////////////////////////
 		// Modal Button Events //
 		/////////////////////////
-		
+
 		$("#addButton").on('click', function(){
 			if(check_all_add_fields_set(false)) {
 				$('#optionsModal').modal('hide');
@@ -159,7 +159,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			var os_label = '<p>' + os + '</p>';
 
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal">Settings</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body" style=""><h5 class="card-title">' + machName + ' <a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal" style="float:right;"><i class="material-icons md-48">settings</i></a></h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
  		}
 
 		// uses data from selected modal to add a new machine to the environment
@@ -236,7 +236,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$('#settingsOsSelect').val(machOs);
 
 			$('#settingsModalTitle').text(machName+" - Settings");
-				
+
 			$('#settingsModal').data("currentMachName", machName);
 			$('#settingsModal').data("currentMachPlat", machPlat); //
 			$('#settingsModal').data("currentMachOs", machOs);
@@ -255,10 +255,10 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			// Use JSON parsing as a copy constructor
 			var clonedObject = JSON.parse(JSON.stringify(window.boxes[machToCloneIndex]));
-			
+
 			// Keep multiple clones of the same machine from sharing a name
 			var nameOfCloned = window.boxes[machToCloneIndex]["name"];
-			var counter = 0; 
+			var counter = 0;
 			var cloneAlreadyExists = true;
 			while(cloneAlreadyExists){
 				counter++;
