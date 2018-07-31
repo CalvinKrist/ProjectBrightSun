@@ -114,21 +114,36 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 		//checks if name field is populated with valid content. If not, returns false and gives an alert, otherwise, returns true.
 		function check_all_add_fields_set(settingsNotOptionsModal) {
-			var nameBox = settingsNotOptionsModal ? "settingsMachineNameBox" : "machineNameBox" ;
+			
+			var nameBox;
+			var stringToTest;
+			
+			if(typeof settingsNotOptionsModal === "boolean"){//handles if one of the modals
+				nameBox = settingsNotOptionsModal ? "settingsMachineNameBox" : "machineNameBox" ;
+				stringToTest = $("#"+nameBox+"").val();
+			}
+			else if(typeof settingsNotOptionsModal === "string"){ //handles for general string testing
+				stringToTest = settingsNotOptionsModal;
+			}
+			else{
+				console.log("Input to check_all_add_fields_set was not a string, nor boolean");
+			}
 
-			if($("#"+nameBox+"").val() === "") { //name not set
+			
+			if(stringToTest === "") { //name not set
 				alert("Please give your box a hostname!");
 				return false;
-			} else if((window.boxes.map(value => value.name).includes($("#"+nameBox+"").val()))&&((nameBox === "settingsMachineNameBox") ? $("#settingsMachineNameBox").val() !== $("#settingsModal").data("currentMachName") : true)) {
+			} else if((window.boxes.map(value => value.name).includes(stringToTest))&&((nameBox === "settingsMachineNameBox") ? $("#settingsMachineNameBox").val() !== $("#settingsModal").data("currentMachName") : true)) {
 				alert("Your box hostname cannot be the same as another box!");
 				return false;
 			}
-			else if($("#"+nameBox+"").val().indexOf(' ') >= 0){
+			else if(stringToTest.indexOf(' ') >= 0){
 				alert("Your box hostname cannot contain whitespace!");
 				return false;
 			}
 			return true;
 		}
+		
 
 		function render_machine_cards() {
 			$('#card_well')[0].innerHTML = '<br><div class="row"><div class="card-deck"></div></div>'
@@ -157,7 +172,57 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			var os_label = '<p>' + os + '</p>';
 
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body" style=""><h5 class="card-title">' + machName + ' <a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal" style="float:right;"><i class="material-icons md-48">settings</i></a></h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += `
+			<div class="card" data-name="`+machName+`" data-platform = "`+plat+`" data-os = "`+os+`">
+				<div class="card-body" style="">
+					<div class = "container">
+						 <div class="row">
+							<div class="col">
+								<h5 class="card-title" contenteditable="true">
+									`+ machName +` 
+								</h5>
+							</div>
+							<div class="col-2">
+								<a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal" style="float:right;">
+									<i class="material-icons md-48">
+										settings
+									</i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<p class="card-text">
+						<table class="table">
+							<tbody>
+								<tr>
+									<td>
+										Platform:
+									</td>
+									<td>
+										`+ plat_label +`
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Operating System:
+									</td>
+									<td>
+										`+ os_label + `
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</p>
+				</div>
+				<div class="card-footer">
+					<a href="#" class="card-link btn btn-sm btn-success cloneButton">
+						Clone
+					</a>
+					<a href="#" class="card-link btn btn-sm btn-danger removeButton">
+						Remove
+					</a>
+				</div>
+			</div>`;
  		}
 
 		// uses data from selected modal to add a new machine to the environment
@@ -200,11 +265,42 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 		}
 
-		///////////////////////////
-		// Machine card buttons //
-		///////////////////////////
+		///////////////////////////////
+		// Machine card interactions //
+		///////////////////////////////
 
-		// Remove
+		
+		
+		// Quick Rename By Clicking Name
+		$('#card_well').on('blur', '.card-title', function(event){
+			var titleElement = $(event.currentTarget);
+			var oldMachName = titleElement.closest(".card").data("name");
+			var newMachName = titleElement.text();
+			
+			if(check_all_add_fields_set(newMachName)){
+				titleElement.closest('.card').data("name", titleElement.text());
+							
+				//find the right box and change the content in it
+				var machToEditIndex;
+				console.log(oldMachName);
+				$.each(window.boxes, function(index, value){
+					if(oldMachName === value.name){
+						machToEditIndex = index;
+						return false;
+					}
+				});
+				console.log(window.boxes[machToEditIndex]);
+				window.boxes[machToEditIndex]["name"] = newMachName;
+			}
+			else{
+				//timeout prevents focus from activating simultaneously with the alert popping up and trapping you in a loop of eternal alerts
+				setTimeout(function(){
+					titleElement.focus();
+				}, 0);
+			}
+		});
+		
+		// Remove Button
 		$('#card_well').on('click', '.removeButton', function(event){   			//must use  $('#card_well').on('click', '.removeButton', function(event){ instead of $('.removeButton').on('click', function(event){ because you can only directly target elements that exist when the script it initially executed
 			var machToRemoveName = $(event.currentTarget).closest('.card').data("name");
 			if(confirm("Are you sure you want to remove "+machToRemoveName+"?")){
@@ -221,7 +317,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			}
 		});
 
-		// Settings
+		// Settings Button
 		$('#card_well').on('click', '.settingsButton', function(event) {
 			var machName = $(event.currentTarget).closest('.card').data("name");
 			var machPlat = $(event.currentTarget).closest('.card').data("platform");
@@ -236,11 +332,11 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$('#settingsModalTitle').text(machName+" - Settings");
 
 			$('#settingsModal').data("currentMachName", machName);
-			$('#settingsModal').data("currentMachPlat", machPlat); //
+			$('#settingsModal').data("currentMachPlat", machPlat); 
 			$('#settingsModal').data("currentMachOs", machOs);
 		});
 
-		// Clone
+		// Clone Button
 		$('#card_well').on('click', '.cloneButton', function(event){
 			var machToCloneName	= $(event.currentTarget).closest('.card').data("name");
 			var machToCloneIndex;
