@@ -13,3 +13,7 @@ build/*.sh
 .idea/*
 python/.idea/*
 python/__pycache__/*
+node_modules/*
+box_configs/*
+package-lock.json
+package.json
