@@ -172,11 +172,57 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 			var os_label = '<p>' + os + '</p>';
 
-<<<<<<< HEAD
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body"><h5 class="card-title" contenteditable="true">' + machName + '</h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal">Settings</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
-=======
-			$($('#card_well').last().children().last().children().last())[0].innerHTML += '<div class="card" data-name="'+machName+'" data-platform = "'+plat+'" data-os = "'+os+'"><div class="card-body" style=""><h5 class="card-title">' + machName + ' <a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal" style="float:right;"><i class="material-icons md-48">settings</i></a></h5><p class="card-text"><table class="table"><tbody><tr><td>Platform:</td><td>' + plat_label + '</td></tr><tr><td>Operating System:</td><td>' + os_label + '</td></tr></table></p></div><div class="card-footer"><a href="#" class="card-link btn btn-sm btn-success cloneButton">Clone</a><a href="#" class="card-link btn btn-sm btn-danger removeButton">Remove</a></div></div>';
->>>>>>> 4a7172892b63a181029b024bbcbb5e1ee4db829f
+			$($('#card_well').last().children().last().children().last())[0].innerHTML += `
+			<div class="card" data-name="`+machName+`" data-platform = "`+plat+`" data-os = "`+os+`">
+				<div class="card-body" style="">
+					<div class = "container">
+						 <div class="row">
+							<div class="col">
+								<h5 class="card-title" contenteditable="true">
+									`+ machName +` 
+								</h5>
+							</div>
+							<div class="col-2">
+								<a href="#" class="card-link btn btn-sm btn-info settingsButton" data-toggle="modal" data-target="#settingsModal" style="float:right;">
+									<i class="material-icons md-48">
+										settings
+									</i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<p class="card-text">
+						<table class="table">
+							<tbody>
+								<tr>
+									<td>
+										Platform:
+									</td>
+									<td>
+										`+ plat_label +`
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Operating System:
+									</td>
+									<td>
+										`+ os_label + `
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</p>
+				</div>
+				<div class="card-footer">
+					<a href="#" class="card-link btn btn-sm btn-success cloneButton">
+						Clone
+					</a>
+					<a href="#" class="card-link btn btn-sm btn-danger removeButton">
+						Remove
+					</a>
+				</div>
+			</div>`;
  		}
 
 		// uses data from selected modal to add a new machine to the environment
