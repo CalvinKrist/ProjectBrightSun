@@ -114,10 +114,10 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 
 		//checks if name field is populated with valid content. If not, returns false and gives an alert, otherwise, returns true.
 		function check_all_add_fields_set(settingsNotOptionsModal) {
-			
+
 			var nameBox;
 			var stringToTest;
-			
+
 			if(typeof settingsNotOptionsModal === "boolean"){//handles if one of the modals
 				nameBox = settingsNotOptionsModal ? "settingsMachineNameBox" : "machineNameBox" ;
 				stringToTest = $("#"+nameBox+"").val();
@@ -129,11 +129,14 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				console.log("Input to check_all_add_fields_set was not a string, nor boolean");
 			}
 
-			
+
 			if(stringToTest === "") { //name not set
 				alert("Please give your box a hostname!");
 				return false;
-			} else if((window.boxes.map(value => value.name).includes(stringToTest))&&((nameBox === "settingsMachineNameBox") ? $("#settingsMachineNameBox").val() !== $("#settingsModal").data("currentMachName") : true)) {
+			} else if(!isNaN(stringToTest)){
+				alert('Your box hostname cannot be all numbers!')
+				return false;
+			}else if((window.boxes.map(value => value.name).includes(stringToTest))&&((nameBox === "settingsMachineNameBox") ? $("#settingsMachineNameBox").val() !== $("#settingsModal").data("currentMachName") : true)) {
 				alert("Your box hostname cannot be the same as another box!");
 				return false;
 			}
@@ -143,7 +146,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			}
 			return true;
 		}
-		
+
 
 		function render_machine_cards() {
 			$('#card_well')[0].innerHTML = '<br><div class="row"><div class="card-deck"></div></div>'
@@ -179,7 +182,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 						 <div class="row">
 							<div class="col">
 								<h5 class="card-title" contenteditable="true">
-									`+ machName +` 
+									`+ machName +`
 								</h5>
 							</div>
 							<div class="col-2">
@@ -269,17 +272,17 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 		// Machine card interactions //
 		///////////////////////////////
 
-		
-		
+
+
 		// Quick Rename By Clicking Name
 		$('#card_well').on('blur', '.card-title', function(event){
 			var titleElement = $(event.currentTarget);
 			var oldMachName = titleElement.closest(".card").data("name");
 			var newMachName = titleElement.text();
-			
+
 			if(check_all_add_fields_set(newMachName)){
 				titleElement.closest('.card').data("name", titleElement.text());
-							
+
 				//find the right box and change the content in it
 				var machToEditIndex;
 				console.log(oldMachName);
@@ -299,7 +302,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 				}, 0);
 			}
 		});
-		
+
 		// Remove Button
 		$('#card_well').on('click', '.removeButton', function(event){   			//must use  $('#card_well').on('click', '.removeButton', function(event){ instead of $('.removeButton').on('click', function(event){ because you can only directly target elements that exist when the script it initially executed
 			var machToRemoveName = $(event.currentTarget).closest('.card').data("name");
@@ -332,7 +335,7 @@ $(function(){ //shorthand for $(document).ready(function(){...});
 			$('#settingsModalTitle').text(machName+" - Settings");
 
 			$('#settingsModal').data("currentMachName", machName);
-			$('#settingsModal').data("currentMachPlat", machPlat); 
+			$('#settingsModal').data("currentMachPlat", machPlat);
 			$('#settingsModal').data("currentMachOs", machOs);
 		});
 

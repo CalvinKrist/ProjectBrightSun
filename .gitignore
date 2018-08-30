@@ -17,3 +17,4 @@ node_modules/*
 box_configs/*
 package-lock.json
 package.json
+box_configs/*
